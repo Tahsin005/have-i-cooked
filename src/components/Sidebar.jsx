@@ -49,16 +49,19 @@ const Sidebar = () => {
 
             <nav className="mt-10 space-y-2 text-md">
                 <a href="#about" className={linkClasses("about")} onClick={() => handleNavClick("about")}>
-                    — ABOUT
+                    — About
                 </a>
                 <a href="#experience" className={linkClasses("experience")} onClick={() => handleNavClick("experience")}>
-                    — EXPERIENCE
+                    — Experience
                 </a>
                 <a href="#projects" className={linkClasses("projects")} onClick={() => handleNavClick("projects")}>
-                    — PROJECTS
+                    — Projects
                 </a>
                 <a href="#writings" className={linkClasses("writings")} onClick={() => handleNavClick("writings")}>
-                    — WRITINGS
+                    — Writings
+                </a>
+                <a href="#contact" className={linkClasses("contact")} onClick={() => handleNavClick("contact")}>
+                    — Contact
                 </a>
             </nav>
         </div>

@@ -66,7 +66,7 @@ const Writings = () => {
                 ))}
             </div>
             {user && (
-                <section className="px-6 pb-16">
+                <section className="px-4 pb-16">
                     <h2 className="text-2xl font-semibold mb-6">GitHub</h2>
 
                     <div className="text-white flex items-center gap-6 mb-4">

@@ -6,6 +6,7 @@ import Projects from "./components/Projects";
 import CursorGlow from "./components/CursorGlow";
 import RotatingText from "./RotatingText";
 import Writings from "./components/Writings";
+import Contact from "./components/Contact";
 
 const App = () => {
 
@@ -37,6 +38,9 @@ const App = () => {
             </section>
             <section id="writings">
               <Writings />
+            </section>
+            <section id="contact">
+              <Contact />
             </section>
           </div>
 

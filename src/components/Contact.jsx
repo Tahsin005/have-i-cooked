@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
 import { HelpCircleIcon, MailPlus } from 'lucide-react';
 import ContactSocials from './ContactSocials';
+import Terminal from './Terminal';
 
 const Contact = () => {
     const formRef = useRef();
@@ -53,7 +54,7 @@ const Contact = () => {
     return (
         <section id='contact' className="group relative text-gray-300 text-md leading-relaxed px-4">
             <div className='pb-8'>
-                <ContactSocials />
+                <Terminal />
             </div>
             <p className="text-2xl font-bold text-white mb-6 flex">Say Hello <MailPlus className='ms-3 mt-1' /></p>
 

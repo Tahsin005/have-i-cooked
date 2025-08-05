@@ -7,8 +7,23 @@ import CursorGlow from "./components/CursorGlow";
 import RotatingText from "./RotatingText";
 import Writings from "./components/Writings";
 import Contact from "./components/Contact";
+import { useEffect } from "react";
 
 const App = () => {
+  useEffect(() => {
+    // Handle URL hash navigation
+    const hash = window.location.hash;
+    if (hash) {
+      // If there's a hash, scroll to that section
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If no hash, scroll to top
+      window.scrollTo(0, 0);
+    }
+  }, []);
 
   return (
     <div>

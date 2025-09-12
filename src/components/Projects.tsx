@@ -43,7 +43,7 @@ const Projects = () => {
       name: "AffPilot",
       tech: ["react", "tailwindcss", "django", "postgresql"],
       description:
-        "AffPilot is an AI-powered content automation platform that helps creators, agencies, and businesses generate, schedule, and publish SEO-friendly articles at scale. It provides bulk content generation, automatic publishing to WordPress and Blogger, review/comparison article templates, keyword research tools, and workflow automation for affiliate marketers. I contributed to backend and integration features, including implementing the Shopify integration that allows users to directly publish AI-generated blogs to their Shopify stores.",
+        "AffPilot is an AI-powered content automation platform for creators and agencies to generate, schedule, and publish SEO-friendly articles at scale. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot’s suite of products.",
       link: "https://affpilot.com/",
     },
   ];

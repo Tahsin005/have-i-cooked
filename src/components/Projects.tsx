@@ -9,28 +9,12 @@ const Projects = () => {
       source: "https://github.com/Tahsin005/Nike-Landing-Page",
     },
     {
-      name: "Recipe Finder",
-      tech: ["html", "css", "javascript", "api"],
-      description:
-        "A recipe discovery platform that leverages the Meal DB API to let users search and explore recipes by name or ingredient. It features a clean UI and intuitive search for a seamless cooking inspiration experience.",
-      link: "https://recipe-app-gamma-virid.vercel.app/",
-      source: "https://github.com/Tahsin005/Recipe-App",
-    },
-    {
       name: "Around The Flag",
       tech: ["react", "tailwindcss", "country-rest-api"],
       description:
         "An informative React.js web app that fetches and displays global country data using the REST Countries API. Users can browse, search, and filter countries to view details like population, region, and native names, all within a responsive layout.",
       link: "https://country-rest-api-react.vercel.app/",
       source: "https://github.com/Tahsin005/Country-Rest-API---React",
-    },
-    {
-      name: "Bazzar Buddy",
-      tech: ["react", "tailwindcss", "django", "drf", "postgresql"],
-      description:
-        "A full-stack marketplace application where users can securely list, buy, sell, and manage products. It includes features like user registration, email verification, product editing/deletion, and sales tracking. Built with React and Django REST Framework, backed by PostgreSQL.",
-      link: "https://bazzar-buddy.vercel.app/",
-      source: "https://github.com/Tahsin005/BazzarBuddy",
     },
     {
       name: "Unlinked",
@@ -47,6 +31,20 @@ const Projects = () => {
         "A modern social media platform developed with Next.js and Tailwind CSS, featuring secure authentication, user feeds, post interactions, and PostgreSQL-backed data storage. Focused on performance, responsiveness, and a smooth user experience.",
       link: "https://socially-orcin.vercel.app/",
       source: "https://github.com/Tahsin005/Socially",
+    },
+    {
+      name: "SaaS Growthly",
+      tech: ["react", "tailwindcss", "golang", "redis", "postgresql", "stripe"],
+      description:
+        "SaaS Growthly is a product of AffPilot that centralizes SaaS growth resources for founders to launch, grow, and scale smarter. The platform delivers curated YouTube channels, guest posting sites, launch platforms, directories, growth hacks, product ideas, and community access—all in one place. I contributed to designing and developing the full-stack platform, combining a modern React frontend with a scalable Golang backend.",
+      link: "https://saasgrowthly.com/",
+    },
+     {
+      name: "AffPilot",
+      tech: ["react", "tailwindcss", "django", "postgresql"],
+      description:
+        "AffPilot is an AI-powered content automation platform that helps creators, agencies, and businesses generate, schedule, and publish SEO-friendly articles at scale. It provides bulk content generation, automatic publishing to WordPress and Blogger, review/comparison article templates, keyword research tools, and workflow automation for affiliate marketers. I contributed to backend and integration features, including implementing the Shopify integration that allows users to directly publish AI-generated blogs to their Shopify stores.",
+      link: "https://affpilot.com/",
     },
   ];
 
@@ -108,7 +106,8 @@ const Projects = () => {
                         "{project.link}"
                       </a>
                     </div>
-                    <div className="ml-4 mt-2">
+                    {project?.source && (
+                      <div className="ml-4 mt-2">
                       <span className="syntax-keyword">var</span>{" "}
                       <span className="syntax-variable">sourceCode</span>{" "}
                       <span className="text-foreground">:=</span>{" "}
@@ -121,6 +120,7 @@ const Projects = () => {
                         "github <span className="text-xl">↗</span><span>{`"`}</span>
                       </a>
                     </div>
+                    )}
                     <div className="ml-4 mt-2">
                       <span className="syntax-keyword">return</span>{" "}
                       <span className="syntax-variable">project</span>

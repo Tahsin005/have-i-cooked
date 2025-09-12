@@ -22,7 +22,7 @@ const Hero = () => {
                   <span>/*</span>
                 </div>
                 <div className="syntax-comment ml-4">
-                  <span>* Jr. Software Engineer @ Affpilot</span>
+                  <span>* Software Engineer</span>
                 </div>
                 <div className="syntax-comment ml-4">
                   <span>* Backend: Django, Golang, REST APIs, PostgreSQL, Redis, Docker</span>

@@ -21,8 +21,7 @@ const About = () => {
                 </div>
                 <div className="syntax-comment ml-4">
                   <span>
-                    I love problem solving and learning new things. Currently,
-                    I'm working as Jr. Software Engineer at Affpilot.
+                    I love problem solving and learning new things.
                   </span>
                 </div>
                 <div className="syntax-comment ml-4 mt-2">

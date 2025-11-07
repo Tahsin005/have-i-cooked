@@ -5,6 +5,7 @@ import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Blogs from "@/components/Blogs";
+import ProblemSolvingStats from "@/components/ProblemSolvingStats";
 
 const Index = () => {
   return (
@@ -26,6 +27,9 @@ const Index = () => {
 
         <div id="skills">
           <Skills />
+          <div id="problem-solving-stats">
+            <ProblemSolvingStats />
+          </div>
         </div>
 
         <div id="blogs">
@@ -41,7 +45,9 @@ const Index = () => {
       <footer className="border-t border-border py-8">
         <div className="max-w-4xl mx-auto px-8 text-center">
           <div className="code-block inline-block">
-            <span className="syntax-comment">// Built with ❤️ and lots of ☕</span>
+            <span className="syntax-comment">
+              // Never believe you are good enough....
+            </span>
           </div>
           <p className="mt-4 text-muted-foreground font-mono text-sm">
             © 2025 MD. Tahsin Ferdous. All rights reserved.

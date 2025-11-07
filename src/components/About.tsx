@@ -20,9 +20,7 @@ const About = () => {
                   </span>
                 </div>
                 <div className="syntax-comment ml-4">
-                  <span>
-                    I love problem solving and learning new things.
-                  </span>
+                  <span>I love problem solving and learning new things.</span>
                 </div>
                 <div className="syntax-comment ml-4 mt-2">
                   <span>
@@ -86,35 +84,6 @@ const About = () => {
                   <span className="text-foreground">= [</span>
                 </div>
 
-                {/* Lexaeon */}
-                <div className="ml-12">
-                  <span className="text-foreground">&#123;</span>
-                </div>
-                <div className="ml-16">
-                  <span className="syntax-string">"company"</span>:{" "}
-                  <span className="syntax-string">"Lexaeon"</span>,
-                </div>
-                <div className="ml-16">
-                  <span className="syntax-string">"role"</span>:{" "}
-                  <span className="syntax-string">
-                    "Python Developer Intern"
-                  </span>
-                  ,
-                </div>
-                <div className="ml-16">
-                  <span className="syntax-string">"period"</span>:{" "}
-                  <span className="syntax-string">"Oct 2024 — Oct 2024"</span>,
-                </div>
-                <div className="ml-16">
-                  <span className="syntax-string">"stack"</span>:{" "}
-                  <span className="syntax-string">
-                    "Python, Django, DRF, PostgreSQL"
-                  </span>
-                </div>
-                <div className="ml-12">
-                  <span className="text-foreground">&#125;</span>,
-                </div>
-
                 {/* Affpilot */}
                 <div className="ml-12">
                   <span className="text-foreground">&#123;</span>
@@ -140,11 +109,55 @@ const About = () => {
                   </span>
                 </div>
                 <div className="ml-12">
+                  <span className="text-foreground">&#125;</span>,
+                </div>
+
+                {/* Lexaeon */}
+                <div className="ml-12">
+                  <span className="text-foreground">&#123;</span>
+                </div>
+                <div className="ml-16">
+                  <span className="syntax-string">"company"</span>:{" "}
+                  <span className="syntax-string">"Lexaeon"</span>,
+                </div>
+                <div className="ml-16">
+                  <span className="syntax-string">"role"</span>:{" "}
+                  <span className="syntax-string">
+                    "Python Developer Intern"
+                  </span>
+                  ,
+                </div>
+                <div className="ml-16">
+                  <span className="syntax-string">"period"</span>:{" "}
+                  <span className="syntax-string">"Oct 2024 — Nov 2024"</span>,
+                </div>
+                <div className="ml-16">
+                  <span className="syntax-string">"stack"</span>:{" "}
+                  <span className="syntax-string">
+                    "Python, Django, DRF, PostgreSQL"
+                  </span>
+                </div>
+                <div className="ml-12">
                   <span className="text-foreground">&#125;</span>
                 </div>
 
                 <div className="ml-8">
                   <span className="text-foreground">]</span>
+                </div>
+
+                <div className="ml-8">
+                  <span className="syntax-variable">self</span>
+                  <span className="text-foreground">.</span>
+                  <span className="syntax-variable">resume</span>{" "}
+                  <span className="text-foreground">=</span>{" "}
+                  <a
+                    href="https://drive.google.com/file/d/1V2CqNMnejYeKv7_vcdP1I07_Q8ip_M4a/view?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="syntax-string hover:underline"
+                  >
+                    "View My Resume"
+                  </a>
                 </div>
               </div>
             </div>

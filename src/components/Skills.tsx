@@ -14,9 +14,9 @@ const Skills = () => {
     frontend: ["React", "Next.js", "Tailwind CSS", "HTML5/CSS3", "Redux"],
     databases: ["PostgreSQL", "MongoDB"],
     messaging: ["RabbitMQ", "Redis"],
-    devops: ["Docker", "Linux"],
+    devops: ["Docker", "CI/CD", "Nginx", "AWS", "Linux"],
     tools: ["Git", "GitHub", "Postman", "Stripe", "SSL Commerze"],
-    currentlyLearning: ["Networking"],
+    currentlyLearning: ["Design Patterns - LLD"],
   };
 
   const theme = {

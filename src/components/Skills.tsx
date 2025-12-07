@@ -2,19 +2,18 @@ import GitHubCalendar from "react-github-calendar";
 
 const Skills = () => {
   const skillsData = {
-    languages: ["GoLang", "Python", "JavaScript", "TypeScript"],
+    languages: ["Python", "JavaScript", "GoLang", "C++", "Java", "C", "TypeScript"],
     backend: [
-      "Gin",
-      "Gorm",
       "Django",
       "Django REST Framework",
       "Node.js",
       "Express.js",
+      "Gin",
+      "Gorm",
     ],
     frontend: ["React", "Next.js", "Tailwind CSS", "HTML5/CSS3", "Redux"],
-    databases: ["PostgreSQL", "MongoDB"],
-    messaging: ["RabbitMQ", "Redis"],
-    devops: ["Docker", "CI/CD", "Nginx", "AWS", "Linux"],
+    databases: ["PostgreSQL", "MongoDB", "Redis"],
+    devops: ["Docker", "CI/CD", "Nginx", "AWS", "Linux", "RabbitMQ"],
     tools: ["Git", "GitHub", "Postman", "Stripe", "SSL Commerze"],
     currentlyLearning: ["Design Patterns - LLD"],
   };
@@ -61,8 +60,8 @@ const Skills = () => {
                         <span className="text-foreground">]</span>
                         {categoryIndex <
                           Object.entries(skillsData).length - 1 && (
-                          <span className="text-foreground">,</span>
-                        )}
+                            <span className="text-foreground">,</span>
+                          )}
                       </div>
                     </div>
                   )

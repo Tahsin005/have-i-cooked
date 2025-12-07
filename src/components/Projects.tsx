@@ -1,6 +1,28 @@
 const Projects = () => {
   const projects = [
     {
+      name: "Socially",
+      tech: ["nextjs", "tailwindcss", "postgresql", "prisma", "typescript"],
+      description:
+        "A full-stack social media platform built with Next.js App Router, TypeScript, PostgreSQL, and Prisma ORM. Features include Google authentication (Clerk), profile management, follow/unfollow system, media posts, real-time notifications, and secure API routes with JWT.",
+      link: "https://socially-orcin.vercel.app/",
+      source: "https://github.com/Tahsin005/Socially",
+    },
+    {
+      name: "SaaS Growthly",
+      tech: ["react", "tailwindcss", "golang", "redis", "postgresql", "stripe"],
+      description:
+        "SaaS Growthly is a product of AffPilot that centralizes SaaS growth resources. The platform delivers curated YouTube channels, guest posting sites, launch platforms, and growth hacks. I contributed to designing and developing the full-stack platform, combining a modern React frontend with a scalable Golang backend.",
+      link: "https://saasgrowthly.com/",
+    },
+    {
+      name: "AffPilot",
+      tech: ["react", "tailwindcss", "django", "postgresql"],
+      description:
+        "AffPilot is an AI-powered content automation platform for creators and agencies. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot’s suite of products.",
+      link: "https://affpilot.com/",
+    },
+    {
       name: "Nike Landing Page",
       tech: ["react", "tailwindcss"],
       description:
@@ -12,7 +34,7 @@ const Projects = () => {
       name: "Around The Flag",
       tech: ["react", "tailwindcss", "country-rest-api"],
       description:
-        "An informative React.js web app that fetches and displays global country data using the REST Countries API. Users can browse, search, and filter countries to view details like population, region, and native names, all within a responsive layout.",
+        "An informative React.js web app that fetches and displays global country data using the REST Countries API. Users can browse, search, and filter countries to view details like population, region, and native names.",
       link: "https://country-rest-api-react.vercel.app/",
       source: "https://github.com/Tahsin005/Country-Rest-API---React",
     },
@@ -20,31 +42,9 @@ const Projects = () => {
       name: "Unlinked",
       tech: ["react", "express", "mongodb", "mongoose"],
       description:
-        "A full-stack social networking app with user authentication, profile customization, and connection-building. Includes an interactive news feed where users can share posts and engage with others. Built using React, Express.js, and MongoDB.",
+        "A full-stack social networking app with user authentication, profile customization, and connection-building. Includes an interactive news feed where users can share posts and engage with others.",
       link: "https://unlinked-siot.onrender.com/",
       source: "https://github.com/Tahsin005/UnLinked",
-    },
-    {
-      name: "Socially",
-      tech: ["nextjs", "tailwindcss", "postgresql", "prisma"],
-      description:
-        "A modern social media platform developed with Next.js and Tailwind CSS, featuring secure authentication, user feeds, post interactions, and PostgreSQL-backed data storage. Focused on performance, responsiveness, and a smooth user experience.",
-      link: "https://socially-orcin.vercel.app/",
-      source: "https://github.com/Tahsin005/Socially",
-    },
-    {
-      name: "SaaS Growthly",
-      tech: ["react", "tailwindcss", "golang", "redis", "postgresql", "stripe"],
-      description:
-        "SaaS Growthly is a product of AffPilot that centralizes SaaS growth resources for founders to launch, grow, and scale smarter. The platform delivers curated YouTube channels, guest posting sites, launch platforms, directories, growth hacks, product ideas, and community access—all in one place. I contributed to designing and developing the full-stack platform, combining a modern React frontend with a scalable Golang backend.",
-      link: "https://saasgrowthly.com/",
-    },
-     {
-      name: "AffPilot",
-      tech: ["react", "tailwindcss", "django", "postgresql"],
-      description:
-        "AffPilot is an AI-powered content automation platform for creators and agencies to generate, schedule, and publish SEO-friendly articles at scale. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot’s suite of products.",
-      link: "https://affpilot.com/",
     },
   ];
 
@@ -108,18 +108,18 @@ const Projects = () => {
                     </div>
                     {project?.source && (
                       <div className="ml-4 mt-2">
-                      <span className="syntax-keyword">var</span>{" "}
-                      <span className="syntax-variable">sourceCode</span>{" "}
-                      <span className="text-foreground">:=</span>{" "}
-                      <a
-                        href={project.source}
-                        className="syntax-string hover:text-primary transition-colors underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        "github <span className="text-xl">↗</span><span>{`"`}</span>
-                      </a>
-                    </div>
+                        <span className="syntax-keyword">var</span>{" "}
+                        <span className="syntax-variable">sourceCode</span>{" "}
+                        <span className="text-foreground">:=</span>{" "}
+                        <a
+                          href={project.source}
+                          className="syntax-string hover:text-primary transition-colors underline"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          "github <span className="text-xl">↗</span><span>{`"`}</span>
+                        </a>
+                      </div>
                     )}
                     <div className="ml-4 mt-2">
                       <span className="syntax-keyword">return</span>{" "}

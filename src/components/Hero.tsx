@@ -22,19 +22,19 @@ const Hero = () => {
                   <span>/*</span>
                 </div>
                 <div className="syntax-comment ml-4">
-                  <span>* Software Engineer</span>
+                  <span>* Full Stack Developer</span>
                 </div>
                 <div className="syntax-comment ml-4">
                   <span>* Backend: Django, Golang, REST APIs, PostgreSQL, Redis, Docker</span>
                 </div>
                 <div className="syntax-comment ml-4">
-                  <span>* Frontend: React, TypeScript, Tailwind CSS</span>
+                  <span>* Frontend: React, Next.js, TypeScript, Tailwind CSS</span>
                 </div>
                 <div className="syntax-comment ml-4">
                   <span>* Location: Dhaka, Bangladesh</span>
                 </div>
                 <div className="syntax-comment ml-4">
-                  <span>* Passion: Problem Solving & Clean API Design</span>
+                  <span>* Passion: Problem Solving & Scalable Systems</span>
                 </div>
                 <div className="syntax-comment">
                   <span>*/</span>

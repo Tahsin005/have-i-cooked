@@ -156,7 +156,7 @@ const About = () => {
                     rel="noopener noreferrer"
                     className="syntax-string hover:underline"
                   >
-                    "View My Resume<span className="text-xl">↗</span>" 
+                    "View My Resume <span className="text-xl">↗</span>" 
                   </a>
                 </div>
               </div>

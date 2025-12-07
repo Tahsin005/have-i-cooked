@@ -6,6 +6,8 @@ import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Blogs from "@/components/Blogs";
 import ProblemSolvingStats from "@/components/ProblemSolvingStats";
+import Courses from "@/components/Courses";
+import Achievements from "@/components/Achievements";
 
 const Index = () => {
   return (
@@ -30,6 +32,14 @@ const Index = () => {
           <div id="problem-solving-stats">
             <ProblemSolvingStats />
           </div>
+        </div>
+
+        <div id="courses">
+          <Courses />
+        </div>
+
+        <div id="achievements">
+          <Achievements />
         </div>
 
         <div id="blogs">

@@ -1,78 +1,73 @@
+import { ExternalLink, BookOpen, ArrowRight } from "lucide-react";
+
 const Blogs = () => {
   const blogsData = [
     {
-      title: "DSA Before Development or Development Before DSA?",
-      link: "https://medium.com/@tahsin.ferdous3546/dsa-before-development-or-development-before-dsa-c2e7ec08fcc8",
+      title: "HTTP: The Parts You Actually Need to Know",
+      link: "https://purpleonion.vercel.app/post/-http-the-parts-you-actually-need-to-know",
+      description: "A deep dive into HTTP headers, methods, and status codes for developers.",
+      date: "2024"
     },
     {
-      title: "Big O Notation and the Climb Over Constants",
-      link: "https://medium.com/@tahsin.ferdous3546/big-o-notation-and-the-climb-over-constants-7b2b84272d07",
+      title: "What is Handlers, Services, Repositories...",
+      link: "https://purpleonion.vercel.app/post/-what-is-handlers-services-repositories-middleware-and-request-context",
+      description: "Understanding the clean architecture pattern in backend development.",
+      date: "2024"
     },
   ];
 
   return (
-    <section className="py-20 px-8">
+    <section className="py-20 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold gradient-text text-center mb-12">
-          Blogs
-        </h2>
+        <div className="flex items-center justify-center mb-12">
+          <BookOpen className="text-primary mr-3" size={32} />
+          <h2 className="text-3xl font-bold font-mono">
+            <span className="text-primary">~/</span>blogs
+          </h2>
+        </div>
 
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {blogsData.map((blog, index) => (
-            <div key={index} className="code-block" style={{
-            wordBreak: "break-all",
-            overflowWrap: "break-word",
-            whiteSpace: "pre-wrap",
-          }}>
-              <div className="flex items-start">
-                <div className="flex-1 pl-4">
-                  <div className="text-base md:text-lg">
-                    <div>
-                      <span className="syntax-keyword">class</span>{" "}
-                      <span className="syntax-class">
-                        {blog.title.replace(/\s+/g, "")}
-                      </span>{" "}
-                      <span className="text-foreground">{"{"}</span>
-                    </div>
-
-                    <div className="ml-4 mt-2">
-                      <span className="syntax-keyword">public</span>
-                      <span className="text-foreground">:</span>
-                    </div>
-
-                    <div className="ml-8 mt-2">
-                      <span className="syntax-function">void</span>{" "}
-                      <span className="syntax-variable">read</span>
-                      <span className="text-foreground">() {"{"}</span>
-                    </div>
-
-                    <div className="ml-12 mt-2">
-                      <span className="syntax-keyword">string</span>{" "}
-                      <span className="syntax-variable">link</span>{" "}
-                      <span className="text-foreground">=</span>{" "}
-                      <a
-                        href={blog.link}
-                        className="syntax-string hover:text-primary transition-colors underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        "medium <span className="text-xl">↗</span><span>{`"`}</span>
-                      </a>
-                      <span className="text-foreground">;</span>
-                    </div>
-
-                    <div className="ml-8">
-                      <span className="text-foreground">{"}"}</span>
-                    </div>
-
-                    <div>
-                      <span className="text-foreground">{"};"}</span>
-                    </div>
-                  </div>
+            <a
+              key={index}
+              href={blog.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-card border border-border rounded-lg p-6 group hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-lg flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-xl font-bold font-mono text-foreground group-hover:text-primary transition-colors">
+                    {blog.title}
+                  </h3>
+                  <ExternalLink size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
                 </div>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  {blog.description}
+                </p>
               </div>
-            </div>
+
+              <div className="flex items-center text-xs font-mono text-muted-foreground mt-auto">
+                <span className="bg-primary/10 text-primary px-2 py-1 rounded">
+                  Article
+                </span>
+                <span className="mx-2">•</span>
+                <span>{blog.date}</span>
+              </div>
+            </a>
           ))}
+        </div>
+
+        <div className="flex justify-center">
+          <a
+            href="https://purpleonion.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-mono group"
+          >
+            <span>cd ../more_posts</span>
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
       </div>
     </section>

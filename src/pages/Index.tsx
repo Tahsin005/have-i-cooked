@@ -5,7 +5,7 @@ import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Blogs from "@/components/Blogs";
-import ProblemSolvingStats from "@/components/ProblemSolvingStats";
+
 import Courses from "@/components/Courses";
 import Achievements from "@/components/Achievements";
 
@@ -29,9 +29,7 @@ const Index = () => {
 
         <div id="skills">
           <Skills />
-          <div id="problem-solving-stats">
-            <ProblemSolvingStats />
-          </div>
+
         </div>
 
         <div id="courses">

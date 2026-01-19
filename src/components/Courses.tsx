@@ -1,3 +1,5 @@
+import { GraduationCap, Calendar, CheckCircle2 } from "lucide-react";
+
 const Courses = () => {
     const courses = [
         {
@@ -13,57 +15,36 @@ const Courses = () => {
     ];
 
     return (
-        <section className="py-20 px-8">
+        <section className="py-20 px-4 md:px-8">
             <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold gradient-text text-center mb-12">
-                    Courses
-                </h2>
+                <div className="flex items-center justify-center mb-12">
+                    <GraduationCap className="text-primary mr-3" size={32} />
+                    <h2 className="text-3xl font-bold font-mono">Courses & Certifications</h2>
+                </div>
 
-                <div className="space-y-8">
+                <div className="space-y-6">
                     {courses.map((course, index) => (
-                        <div key={index} className="code-block">
-                            <div className="flex items-start">
-                                <div className="flex-1 pl-4">
-                                    <div className="text-base md:text-lg">
-                                        <div>
-                                            <span className="syntax-keyword">class</span>{" "}
-                                            <span className="syntax-function">Course</span>
-                                            <span className="text-foreground">{" {"}</span>
-                                        </div>
-
-                                        <div className="ml-4 mt-2">
-                                            <span className="syntax-keyword">name</span>
-                                            <span className="text-foreground">: </span>
-                                            <span className="syntax-string">"{course.name}"</span>
-                                        </div>
-
-                                        <div className="ml-4">
-                                            <span className="syntax-keyword">period</span>
-                                            <span className="text-foreground">: </span>
-                                            <span className="syntax-string">"{course.period}"</span>
-                                        </div>
-
-                                        <div className="ml-4 mt-2">
-                                            <span className="syntax-keyword">whatILearned</span>
-                                            <span className="text-foreground">: [</span>
-                                        </div>
-
-                                        {course.learnings.map((item, i) => (
-                                            <div key={i} className="ml-8">
-                                                <span className="syntax-string">"{item}"</span>
-                                                {i < course.learnings.length - 1 && <span className="text-foreground">,</span>}
-                                            </div>
-                                        ))}
-
-                                        <div className="ml-4">
-                                            <span className="text-foreground">]</span>
-                                        </div>
-
-                                        <div className="text-foreground">
-                                            <span>{"}"}</span>
-                                        </div>
-                                    </div>
+                        <div
+                            key={index}
+                            className="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-lg"
+                        >
+                            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                <h3 className="text-xl font-bold font-mono text-foreground mb-2 md:mb-0">
+                                    {course.name}
+                                </h3>
+                                <div className="flex items-center text-sm text-primary font-mono bg-primary/10 px-3 py-1 rounded-full w-fit">
+                                    <Calendar size={14} className="mr-2" />
+                                    {course.period}
                                 </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                {course.learnings.map((item, i) => (
+                                    <div key={i} className="flex items-start text-muted-foreground">
+                                        <CheckCircle2 size={16} className="text-primary mt-1 mr-2 flex-shrink-0" />
+                                        <span>{item}</span>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     ))}

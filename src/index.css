@@ -58,16 +58,12 @@ All colors MUST be HSL.
     --cursor: 280 100% 70%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(
-      135deg,
-      hsl(280 100% 70%),
-      hsl(300 100% 80%)
-    );
-    --gradient-glow: radial-gradient(
-      circle at center,
-      hsl(280 100% 70% / 0.3),
-      transparent 70%
-    );
+    --gradient-primary: linear-gradient(135deg,
+        hsl(280 100% 70%),
+        hsl(300 100% 80%));
+    --gradient-glow: radial-gradient(circle at center,
+        hsl(280 100% 70% / 0.3),
+        transparent 70%);
 
     /* Shadows */
     --shadow-glow: 0 0 30px hsl(280 100% 70% / 0.3);
@@ -86,6 +82,7 @@ All colors MUST be HSL.
 }
 
 @layer components {
+
   /* Code Block Styling */
   .code-block {
     @apply bg-code-bg border border-border rounded p-4 font-mono text-sm shadow-code;
@@ -186,23 +183,28 @@ All colors MUST be HSL.
 .custom-scrollbar {
   /* WebKit (Chrome, Edge, Safari) */
 
-  scrollbar-width: thin; /* For Firefox */
+  scrollbar-width: thin;
+  /* For Firefox */
 
-  scrollbar-color: #112044 #112044; /* Thumb and track colors for Firefox */
+  scrollbar-color: #112044 #112044;
+  /* Thumb and track colors for Firefox */
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  height: 8px; /* Horizontal scrollbar height */
+  height: 8px;
+  /* Horizontal scrollbar height */
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #112044; /* Dark gray track to match dark theme */
+  background: #112044;
+  /* Dark gray track to match dark theme */
 
   border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #112044; /* Purple thumb to match portfolio aesthetic */
+  background: #112044;
+  /* Purple thumb to match portfolio aesthetic */
 
   border-radius: 4px;
 
@@ -210,5 +212,6 @@ All colors MUST be HSL.
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #112044; /* Lighter purple on hover for interactivity */
+  background: #112044;
+  /* Lighter purple on hover for interactivity */
 }

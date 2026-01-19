@@ -1,3 +1,6 @@
+import { ExternalLink, Github, Folder } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
 const Projects = () => {
   const projects = [
     {
@@ -49,86 +52,65 @@ const Projects = () => {
   ];
 
   return (
-    <section className="py-20 px-8">
+    <section className="py-20 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold gradient-text text-center mb-12">
-          Featured Projects
-        </h2>
+        <div className="flex items-center mb-12">
+          <Folder className="text-primary mr-4" size={32} />
+          <h2 className="text-3xl font-bold font-mono">
+            <span className="text-primary">~/</span>projects
+          </h2>
+        </div>
 
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <div key={index} className="code-block" >
-              <div className="flex items-start">
-                <div className="flex-1 pl-4">
-                  <div className="text-base md:text-lg">
-                    <div>
-                      <span className="syntax-keyword">func</span>{" "}
-                      <span className="syntax-function">
-                        {project.name.replace(/\s+/g, "")}
-                      </span>
-                      <span className="text-foreground">() {"{"}</span>
-                    </div>
-                    <div className="ml-4 mt-2">
-                      <span className="syntax-keyword">var</span>{" "}
-                      <span className="syntax-variable">description</span>{" "}
-                      <span className="text-foreground">:=</span>{" "}
-                      <span className="syntax-string">
-                        "{project.description}"
-                      </span>
-                    </div>
-                    <div className="ml-4">
-                      <span className="syntax-keyword">var</span>{" "}
-                      <span className="syntax-variable">techStack</span>{" "}
-                      <span className="text-foreground">:=</span>{" "}
-                      <span className="text-foreground">[</span>
-                    </div>
-                    {project.tech.map((tech, techIndex) => (
-                      <div key={techIndex} className="ml-8">
-                        <span className="syntax-string">"{tech}"</span>
-                        {techIndex < project.tech.length - 1 && (
-                          <span className="text-foreground">,</span>
-                        )}
-                      </div>
-                    ))}
-                    <div className="ml-4">
-                      <span className="text-foreground">]</span>
-                    </div>
-                    <div className="ml-4 mt-2">
-                      <span className="syntax-keyword">var</span>{" "}
-                      <span className="syntax-variable">link</span>{" "}
-                      <span className="text-foreground">:=</span>{" "}
+            <div
+              key={index}
+              className="bg-card border border-border rounded-lg p-6 flex flex-col justify-between group hover:border-primary/50 transition-all hover:shadow-glow hover:-translate-y-1"
+            >
+              <div>
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-xl font-bold font-mono text-foreground group-hover:text-primary transition-colors">
+                    {project.name}
+                  </h3>
+                  <div className="flex gap-2">
+                    {project.source && (
                       <a
-                        href={project.link}
-                        className="syntax-string hover:text-primary transition-colors underline"
+                        href={project.source}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                        title="View Source Code"
                       >
-                        "{project.link}"
+                        <Github size={20} />
                       </a>
-                    </div>
-                    {project?.source && (
-                      <div className="ml-4 mt-2">
-                        <span className="syntax-keyword">var</span>{" "}
-                        <span className="syntax-variable">sourceCode</span>{" "}
-                        <span className="text-foreground">:=</span>{" "}
-                        <a
-                          href={project.source}
-                          className="syntax-string hover:text-primary transition-colors underline"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          "github <span className="text-xl">↗</span><span>{`"`}</span>
-                        </a>
-                      </div>
                     )}
-                    <div className="ml-4 mt-2">
-                      <span className="syntax-keyword">return</span>{" "}
-                      <span className="syntax-variable">project</span>
-                    </div>
-                    <div>
-                      <span className="text-foreground">{"}"}</span>
-                    </div>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                      title="Live Demo"
+                    >
+                      <ExternalLink size={20} />
+                    </a>
                   </div>
+                </div>
+
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                  {project.description}
+                </p>
+              </div>
+
+              <div>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {project.tech.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="text-xs font-mono px-2 py-1 rounded bg-secondary text-secondary-foreground"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>

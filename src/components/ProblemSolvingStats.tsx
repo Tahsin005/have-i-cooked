@@ -25,7 +25,7 @@ const ProblemSolvingStats = () => {
                   <span className="text-foreground">[</span>
                 </div>
                 <div className="ml-16">
-                  <span className="syntax-string">"ICPC Dhaka Regional 24 Onsite Contest Participant"</span>
+                  <span className="syntax-string">"ICPC Dhaka Regional 24, 25 Onsite Contest Participant"</span>
                   <span className="text-foreground">,</span>
                 </div>
                 <div className="ml-16">

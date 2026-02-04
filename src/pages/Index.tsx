@@ -58,7 +58,7 @@ const Index = () => {
             </span>
           </div>
           <p className="mt-4 text-muted-foreground font-mono text-sm">
-            © 2025 MD. Tahsin Ferdous. All rights reserved.
+            © 2026 MD. Tahsin Ferdous. All rights reserved.
           </p>
         </div>
       </footer>

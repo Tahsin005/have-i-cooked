@@ -1,4 +1,4 @@
-import { ExternalLink, BookOpen, ArrowRight } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 
 const Blogs = () => {
   const blogsData = [
@@ -19,11 +19,14 @@ const Blogs = () => {
   return (
     <section className="py-20 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-center mb-12">
-          <BookOpen className="text-primary mr-3" size={32} />
-          <h2 className="text-3xl font-bold font-mono">
-            <span className="text-primary">~/</span>blogs
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            <span className="text-primary">Blogs</span>
           </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Thoughts and insights on software development
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -33,22 +36,22 @@ const Blogs = () => {
               href={blog.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-card border border-border rounded-lg p-6 group hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-lg flex flex-col justify-between"
+              className="bg-card border border-border rounded-xl p-6 group hover:border-primary/30 transition-all hover:shadow-lg hover:shadow-primary/5 flex flex-col justify-between"
             >
               <div>
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold font-mono text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {blog.title}
                   </h3>
-                  <ExternalLink size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                  <ExternalLink size={18} className="text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 ml-2" />
                 </div>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                   {blog.description}
                 </p>
               </div>
 
-              <div className="flex items-center text-xs font-mono text-muted-foreground mt-auto">
-                <span className="bg-primary/10 text-primary px-2 py-1 rounded">
+              <div className="flex items-center text-xs text-muted-foreground mt-auto">
+                <span className="bg-primary/10 text-primary px-2 py-1 rounded border border-primary/20">
                   Article
                 </span>
                 <span className="mx-2">•</span>
@@ -63,9 +66,9 @@ const Blogs = () => {
             href="https://purpleonion.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-mono group"
+            className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
           >
-            <span>cd ../more_posts</span>
+            <span>View all posts</span>
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
@@ -75,3 +78,4 @@ const Blogs = () => {
 };
 
 export default Blogs;
+

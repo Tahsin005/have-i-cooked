@@ -1,5 +1,4 @@
-import { ExternalLink, Github, Folder } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ExternalLink, Github } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
@@ -22,7 +21,7 @@ const Projects = () => {
       name: "AffPilot",
       tech: ["react", "tailwindcss", "django", "postgresql"],
       description:
-        "AffPilot is an AI-powered content automation platform for creators and agencies. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot’s suite of products.",
+        "AffPilot is an AI-powered content automation platform for creators and agencies. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot's suite of products.",
       link: "https://affpilot.com/",
     },
     {
@@ -54,22 +53,25 @@ const Projects = () => {
   return (
     <section className="py-20 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center mb-12">
-          <Folder className="text-primary mr-4" size={32} />
-          <h2 className="text-3xl font-bold font-mono">
-            <span className="text-primary">~/</span>projects
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            <span className="text-primary">Projects</span>
           </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            A collection of projects I've built and contributed to
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-card border border-border rounded-lg p-6 flex flex-col justify-between group hover:border-primary/50 transition-all hover:shadow-glow hover:-translate-y-1"
+              className="bg-card border border-border rounded-xl p-6 flex flex-col justify-between group hover:border-primary/30 transition-all hover:shadow-lg hover:shadow-primary/5"
             >
               <div>
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold font-mono text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {project.name}
                   </h3>
                   <div className="flex gap-2">
@@ -106,7 +108,7 @@ const Projects = () => {
                   {project.tech.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="text-xs font-mono px-2 py-1 rounded bg-secondary text-secondary-foreground"
+                      className="text-xs px-2 py-1 rounded bg-secondary/50 text-secondary-foreground border border-border/30"
                     >
                       {tech}
                     </span>
@@ -122,3 +124,4 @@ const Projects = () => {
 };
 
 export default Projects;
+

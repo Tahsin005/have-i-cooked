@@ -1,88 +1,116 @@
-import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, ArrowRight } from 'lucide-react';
+import tahsinLogo from '@/assets/tahsin logo.png';
 
 const Hero = () => {
     return (
-        <section className="min-h-screen flex items-center justify-center px-4 md:px-8 pt-20 md:pt-24">
-            <div className="w-full max-w-4xl text-center">
-                {/* Profile Image Section */}
-                <div className="flex justify-center mb-8">
-                    <div className="relative group">
-                        <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-gradient-to-br from-primary/20 to-purple-500/20 p-1 backdrop-blur-sm border border-primary/30">
-                            <div className="w-full h-full rounded-2xl bg-card flex items-center justify-center overflow-hidden">
-                                {/* Placeholder for profile image - you can replace with actual image */}
-                                <div className="w-full h-full bg-gradient-to-br from-primary/30 to-purple-500/30 flex items-center justify-center">
-                                    <span className="text-5xl md:text-6xl font-bold text-primary">MTF</span>
-                                </div>
+        <section className="min-h-screen flex items-center justify-center px-4 md:px-8 pt-20 md:pt-24 pb-20">
+            <div className="w-full max-w-6xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <div className="bg-card border border-border/50 rounded-3xl p-8 md:p-12 flex flex-col justify-between hover:border-primary/30 transition-all">
+                        <div>
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
+                                MD. Tahsin<br />Ferdous
+                            </h1>
+                            <p className="text-xl md:text-2xl text-primary font-medium mb-8">
+                                Software Engineer
+                            </p>
+                        </div>
+
+                        <div className="flex items-center gap-4 flex-wrap">
+                            <a
+                                href="https://github.com/tahsin005"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                            >
+                                <Github size={18} />
+                                <span className="text-sm">GitHub</span>
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/md-tahsin-ferdous/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                            >
+                                <Linkedin size={18} />
+                                <span className="text-sm">LinkedIn</span>
+                            </a>
+                            <a
+                                href="mailto:tahsin.ferdous3546@gmail.com"
+                                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                            >
+                                <Mail size={18} />
+                                <span className="text-sm">Email</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-primary/20 to-purple-600/20 border border-primary/20 rounded-3xl p-8 md:p-12 flex flex-col items-center justify-center text-center hover:border-primary/30 transition-all backdrop-blur-sm">
+                        <div className="mb-6">
+                            <div className="w-40 h-40 md:w-48 md:h-48 rounded-2xl bg-white/5 backdrop-blur-sm flex items-center justify-center mb-4 border border-white/10 p-8 shadow-lg shadow-primary/10">
+                                <img
+                                    src={tahsinLogo}
+                                    alt="MTF Logo"
+                                    className="w-full h-full object-contain brightness-110 drop-shadow-lg"
+                                />
+                            </div>
+                        </div>
+                        <span className="inline-flex items-center px-4 py-2 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">
+                            # PORTFOLIO 2026
+                        </span>
+                    </div>
+
+                    <div className="bg-card border border-border/50 rounded-3xl p-8 md:p-12 flex flex-col justify-between hover:border-primary/30 transition-all">
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+                            Building scalable backend systems and crafting beautiful, accessible user experiences. Focused on{' '}
+                            <span className="text-foreground font-semibold">Performance</span>,{' '}
+                            <span className="text-foreground font-semibold">Clean Code</span>, and{' '}
+                            <span className="text-foreground font-semibold">Innovation</span>.
+                        </p>
+                        <a
+                            href="#about"
+                            className="inline-flex items-center gap-2 text-primary hover:gap-3 transition-all group"
+                        >
+                            <span className="text-sm font-medium">Read more about me</span>
+                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                        </a>
+                    </div>
+
+                    <div className="bg-card border border-border/50 rounded-3xl p-8 md:p-12 flex flex-col justify-between hover:border-primary/30 transition-all">
+                        <div className="mb-6">
+                            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                                Core Focus
+                            </h3>
+                            <div className="flex flex-wrap gap-2">
+                                <span className="px-3 py-1.5 rounded-lg text-sm bg-secondary/50 text-secondary-foreground border border-border/30">
+                                    Full Stack Developer
+                                </span>
+                                <span className="px-3 py-1.5 rounded-lg text-sm bg-secondary/50 text-secondary-foreground border border-border/30">
+                                    Problem Solver
+                                </span>
+                                <span className="px-3 py-1.5 rounded-lg text-sm bg-secondary/50 text-secondary-foreground border border-border/30">
+                                    System Architecture
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="space-y-3">
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                                <MapPin size={16} className="text-primary" />
+                                <span className="text-sm">Dhaka, Bangladesh</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                <span className="text-sm text-green-500">Available for work</span>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Name and Title */}
-                <div className="space-y-4 mb-6">
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-                        <span className="text-foreground">MD. Tahsin </span>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-primary">
-                            Ferdous
-                        </span>
-                    </h1>
-                    <p className="text-xl md:text-2xl text-primary font-medium">
-                        Software Engineer
-                    </p>
                 </div>
-
-                {/* Badge Tags */}
-                <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/50 text-secondary-foreground border border-border/50">
-                        Full Stack Developer
-                    </span>
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/50 text-secondary-foreground border border-border/50">
-                        Problem Solver
-                    </span>
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/50 text-secondary-foreground border border-border/50">
-                        <MapPin size={12} className="mr-1" />
-                        Bangladesh
-                    </span>
-                </div>
-
-                {/* Social Links */}
-                <div className="flex items-center justify-center gap-4 mb-8">
-                    <a
-                        href="https://github.com/tahsin-ferdous"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 group"
-                    >
-                        <Github size={20} className="text-muted-foreground group-hover:text-primary transition-colors" />
-                        <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors hidden sm:inline">GitHub</span>
-                    </a>
-                    <a
-                        href="https://linkedin.com/in/tahsin-ferdous"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 group"
-                    >
-                        <Linkedin size={20} className="text-muted-foreground group-hover:text-primary transition-colors" />
-                        <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors hidden sm:inline">LinkedIn</span>
-                    </a>
-                    <a
-                        href="mailto:tahsinferdous.cse@gmail.com"
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 group"
-                    >
-                        <Mail size={20} className="text-muted-foreground group-hover:text-primary transition-colors" />
-                        <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">tahsinferdous.cse@gmail.com</span>
-                    </a>
-                </div>
-
-                {/* Brief Description */}
-                <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                    Building scalable backend systems and crafting beautiful, accessible user experiences.
-                    Focused on <span className="text-foreground font-semibold">Performance</span>, <span className="text-foreground font-semibold">Clean Code</span>, and <span className="text-foreground font-semibold">Innovation</span>.
-                </p>
             </div>
         </section>
     );
 };
 
 export default Hero;
-

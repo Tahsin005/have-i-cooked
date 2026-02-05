@@ -50,7 +50,9 @@ const Navigation = () => {
           className="flex items-center cursor-pointer group"
           onClick={() => scrollToSection("hero")}
         >
-          <img src={tahsinlogo} alt="MTF" className="h-8 w-auto object-contain" />
+          <div className="bg-primary/10 p-2 rounded-lg ring-1 ring-primary/20 group-hover:ring-primary/40 transition-all">
+            <img src={tahsinlogo} alt="MTF" className="h-6 w-auto object-contain brightness-110" />
+          </div>
         </div>
 
         {/* Desktop Menu */}

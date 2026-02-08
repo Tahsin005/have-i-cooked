@@ -57,7 +57,7 @@ const Index = () => {
               // Never believe you are good enough....
             </span>
           </div>
-          <p className="mt-4 text-muted-foreground font-mono text-sm">
+          <p className="mt-4 text-muted-foreground text-sm">
             © 2026 MD. Tahsin Ferdous. All rights reserved.
           </p>
         </div>

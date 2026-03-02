@@ -2,8 +2,12 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import tahsinlogo from "../assets/tahsin logo.png";
 
-const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
+type NavigationProps = {
+  isMenuOpen: boolean;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -27,7 +31,7 @@ const Navigation = () => {
         top: offsetPosition,
         behavior: "smooth"
       });
-      setIsOpen(false);
+      setIsMenuOpen(false);
     }
   };
 
@@ -71,25 +75,31 @@ const Navigation = () => {
         {/* Mobile Toggle */}
         <button
           className="md:hidden text-foreground hover:text-primary transition-colors"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 bg-background/98 backdrop-blur-lg border-b border-border shadow-2xl">
-          <div className="flex flex-col p-6 space-y-4">
-            {menuItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-left font-sans text-sm tracking-[0.2em] text-foreground hover:text-primary transition-colors uppercase"
-              >
-                {item.label}
-              </button>
-            ))}
+      {isMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-40" onClick={() => setIsMenuOpen(false)}>
+          <div className="absolute inset-0 bg-background/60 backdrop-blur-xl" />
+          <div
+            className="absolute top-16 left-4 right-4 bg-card/95 backdrop-blur-xl border border-border/70 shadow-2xl rounded-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex flex-col p-6 space-y-2">
+              {menuItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-left font-sans text-base tracking-[0.15em] text-foreground/90 hover:text-primary transition-colors uppercase py-2 px-2 rounded-lg hover:bg-secondary/60"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}

@@ -14,7 +14,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <main>
+      <main className="relative z-10">
         <div id="hero">
           <Hero />
         </div>
@@ -50,14 +50,14 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8">
+      <footer className="border-t border-border/70 py-10 relative z-10">
         <div className="max-w-4xl mx-auto px-8 text-center">
           <div className="code-block inline-block">
             <span className="syntax-comment">
               // Never believe you are good enough....
             </span>
           </div>
-          <p className="mt-4 text-muted-foreground text-sm">
+          <p className="mt-4 text-muted-foreground text-xs font-display uppercase tracking-[0.2em]">
             © 2026 MD. Tahsin Ferdous. All rights reserved.
           </p>
         </div>

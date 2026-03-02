@@ -41,7 +41,7 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-lg border-b border-border/50" : "bg-background/80 backdrop-blur-sm"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-lg border-b border-border/70" : "bg-background/80 backdrop-blur-sm border-b border-border/40"
         }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
@@ -61,7 +61,7 @@ const Navigation = () => {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="text-xs font-medium tracking-wider text-muted-foreground hover:text-primary transition-colors duration-200 uppercase"
+              className="font-sans text-sm tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors duration-200 uppercase"
             >
               {item.label}
             </button>
@@ -85,7 +85,7 @@ const Navigation = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-left text-sm font-medium tracking-wider text-foreground hover:text-primary transition-colors uppercase"
+                className="text-left font-sans text-sm tracking-[0.2em] text-foreground hover:text-primary transition-colors uppercase"
               >
                 {item.label}
               </button>

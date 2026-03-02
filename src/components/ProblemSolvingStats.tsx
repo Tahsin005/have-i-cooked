@@ -1,6 +1,6 @@
 const ProblemSolvingStats = () => {
   return (
-    <section className="py-20 px-8">
+  <section className="section-shell">
       <div className="max-w-4xl mx-auto">
         <div className="code-block">
           <div className="flex items-start">

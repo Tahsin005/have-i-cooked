@@ -45,11 +45,12 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-20 px-4 md:px-8">
+    <section className="section-shell">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-16 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <div className="section-label mb-3">// 07 CONTACT</div>
+          <h2 className="section-title mb-4">
             Get In <span className="text-primary">Touch</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">

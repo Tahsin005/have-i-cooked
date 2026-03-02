@@ -3,17 +3,24 @@ import tahsinLogo from '@/assets/tahsin logo.png';
 
 const Hero = () => {
     return (
-        <section className="min-h-screen flex items-center justify-center px-4 md:px-8 pt-20 md:pt-24 pb-20">
+        <section className="section-shell min-h-screen flex items-center justify-center pt-24 md:pt-28">
             <div className="w-full max-w-6xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    <div className="bg-card border border-border/50 rounded-3xl p-8 md:p-12 flex flex-col justify-between hover:border-primary/30 transition-all">
+                    <div className="bg-card border border-border/70 rounded-2xl p-8 md:p-12 flex flex-col justify-between hover:border-primary/50 transition-all">
                         <div>
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
+                            <div className="hero-tag mb-6">
+                                <span className="inline-block w-8 h-px bg-primary"></span>
+                                Engineering Portfolio
+                            </div>
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4">
                                 MD. Tahsin<br />Ferdous
                             </h1>
                             <p className="text-xl md:text-2xl text-primary font-medium mb-8">
                                 Software Engineer
+                            </p>
+                            <p className="text-base md:text-lg text-muted-foreground italic max-w-md">
+                                Building scalable backend systems and crafting modern, accessible user experiences with precision.
                             </p>
                         </div>
 
@@ -46,7 +53,7 @@ const Hero = () => {
                         </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-primary/20 to-purple-600/20 border border-primary/20 rounded-3xl p-8 md:p-12 flex flex-col items-center justify-center text-center hover:border-primary/30 transition-all backdrop-blur-sm">
+                    <div className="bg-gradient-to-br from-primary/15 to-accent/10 border border-border/70 rounded-2xl p-8 md:p-12 flex flex-col items-center justify-center text-center hover:border-primary/50 transition-all backdrop-blur-sm">
                         <div className="mb-6">
                             <div className="w-40 h-40 md:w-48 md:h-48 rounded-2xl bg-white/5 backdrop-blur-sm flex items-center justify-center mb-4 border border-white/10 p-8 shadow-lg shadow-primary/10">
                                 <img
@@ -56,12 +63,12 @@ const Hero = () => {
                                 />
                             </div>
                         </div>
-                        <span className="inline-flex items-center px-4 py-2 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">
-                            # PORTFOLIO 2026
+                        <span className="inline-flex items-center px-4 py-2 rounded-full text-[11px] font-display uppercase tracking-[0.3em] bg-secondary/80 text-primary border border-border/70">
+                            Portfolio 2026
                         </span>
                     </div>
 
-                    <div className="bg-card border border-border/50 rounded-3xl p-8 md:p-12 flex flex-col justify-between hover:border-primary/30 transition-all">
+                    <div className="bg-card border border-border/70 rounded-2xl p-8 md:p-12 flex flex-col justify-between hover:border-primary/50 transition-all">
                         <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
                             Building scalable backend systems and crafting beautiful, accessible user experiences. Focused on{' '}
                             <span className="text-foreground font-semibold">Performance</span>,{' '}
@@ -77,9 +84,9 @@ const Hero = () => {
                         </a>
                     </div>
 
-                    <div className="bg-card border border-border/50 rounded-3xl p-8 md:p-12 flex flex-col justify-between hover:border-primary/30 transition-all">
+                    <div className="bg-card border border-border/70 rounded-2xl p-8 md:p-12 flex flex-col justify-between hover:border-primary/50 transition-all">
                         <div className="mb-6">
-                            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                            <h3 className="section-label mb-4">
                                 Core Focus
                             </h3>
                             <div className="flex flex-wrap gap-2">

@@ -6,20 +6,18 @@ const ProblemSolvingStats = () => {
           <div className="flex items-start">
             <div className="flex-1 pl-4">
               <div className="text-base md:text-lg">
-                {/* Function definition */}
+                {}
                 <div className="mt-4">
                   <span className="syntax-keyword">def</span>{" "}
                   <span className="syntax-function">competitive_programming</span>
                   <span className="text-foreground">():</span>
                 </div>
-
-                {/* Return statement */}
+                {}
                 <div className="ml-8">
                   <span className="syntax-keyword">return</span>{" "}
                   <span className="text-foreground">&#123;</span>
                 </div>
-
-                {/* Stats dictionary */}
+                {}
                 <div className="ml-12">
                   <span className="syntax-string">"contests"</span>:{" "}
                   <span className="text-foreground">[</span>
@@ -34,7 +32,6 @@ const ProblemSolvingStats = () => {
                 <div className="ml-12">
                   <span className="text-foreground">],</span>
                 </div>
-
                 <div className="ml-12">
                   <span className="syntax-string">"ratings"</span>:{" "}
                   <span className="text-foreground">&#123;</span>
@@ -50,12 +47,10 @@ const ProblemSolvingStats = () => {
                 <div className="ml-12">
                   <span className="text-foreground">&#125;,</span>
                 </div>
-
                 <div className="ml-12">
                   <span className="syntax-string">"total_problems_solved"</span>:{" "}
                   <span className="syntax-number">2000</span><span className="syntax-string">+</span>
                 </div>
-
                 <div className="ml-8">
                   <span className="text-foreground">&#125;</span>
                 </div>
@@ -67,5 +62,4 @@ const ProblemSolvingStats = () => {
     </section>
   );
 };
-
 export default ProblemSolvingStats;

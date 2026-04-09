@@ -1,5 +1,5 @@
 import { ExternalLink, ArrowRight } from "lucide-react";
-
+import ScrollReveal from "./ScrollReveal";
 const Blogs = () => {
   const blogsData = [
     {
@@ -15,13 +15,12 @@ const Blogs = () => {
       date: "2024"
     },
   ];
-
   return (
     <section className="section-shell">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
+        {}
         <div className="mb-16 text-center">
-          <div className="section-label mb-3">// 06 BLOGS</div>
+          <div className="section-label mb-3"></div>
           <h2 className="section-title mb-4">
             <span className="text-primary">Blogs</span>
           </h2>
@@ -29,19 +28,18 @@ const Blogs = () => {
             Thoughts and insights on software development
           </p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {blogsData.map((blog, index) => (
+            <ScrollReveal key={index} delay={`delay-${(index + 1) * 100}`}>
             <a
-              key={index}
               href={blog.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-card border border-border rounded-xl p-6 group hover:border-primary/30 transition-all hover:shadow-lg hover:shadow-primary/5 flex flex-col justify-between"
+              className={`glass-card glass-hover p-6 rounded-xl flex flex-col justify-between h-full`}
             >
               <div>
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-[17px] font-semibold leading-[1.3] text-foreground group-hover:text-primary transition-colors">
                     {blog.title}
                   </h3>
                   <ExternalLink size={18} className="text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 ml-2" />
@@ -50,7 +48,6 @@ const Blogs = () => {
                   {blog.description}
                 </p>
               </div>
-
               <div className="flex items-center text-xs text-muted-foreground mt-auto">
                 <span className="bg-primary/10 text-primary px-2 py-1 rounded border border-primary/20">
                   Article
@@ -59,9 +56,9 @@ const Blogs = () => {
                 <span>{blog.date}</span>
               </div>
             </a>
+            </ScrollReveal>
           ))}
         </div>
-
         <div className="flex justify-center">
           <a
             href="https://purpleonion.vercel.app/"
@@ -77,6 +74,4 @@ const Blogs = () => {
     </section>
   );
 };
-
 export default Blogs;
-

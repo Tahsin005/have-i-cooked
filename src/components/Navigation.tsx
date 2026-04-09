@@ -1,15 +1,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import tahsinlogo from "../assets/tahsin logo.png";
-
 type NavigationProps = {
   isMenuOpen: boolean;
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
 const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
   const [scrolled, setScrolled] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -17,7 +14,6 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -26,7 +22,6 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
       const offsetPosition = elementPosition - offset;
-
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
@@ -34,7 +29,6 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
       setIsMenuOpen(false);
     }
   };
-
   const menuItems = [
     { label: "INTRO", id: "hero" },
     { label: "SKILLS", id: "skills" },
@@ -42,14 +36,13 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
     { label: "BLOGS", id: "blogs" },
     { label: "CONTACT", id: "contact" },
   ];
-
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-lg border-b border-border/70" : "bg-background/80 backdrop-blur-sm border-b border-border/40"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 animate-in fade-in slide-in-from-top-4 duration-1000 ${scrolled ? "bg-background/70 backdrop-blur-xl border-b border-white/5" : "bg-background/40 backdrop-blur-md border-b border-white/5"
         }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
-        {/* Logo */}
+        {}
         <div
           className="flex items-center cursor-pointer group"
           onClick={() => scrollToSection("hero")}
@@ -58,21 +51,19 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
             <img src={tahsinlogo} alt="MTF" className="h-6 w-auto object-contain brightness-110" />
           </div>
         </div>
-
-        {/* Desktop Menu */}
+        {}
         <div className="hidden md:flex items-center gap-8">
           {menuItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="font-sans text-sm tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors duration-200 uppercase"
+              className="font-display text-[13px] font-medium tracking-[0.1em] text-muted-foreground hover:text-primary transition-colors duration-200 uppercase"
             >
               {item.label}
             </button>
           ))}
         </div>
-
-        {/* Mobile Toggle */}
+        {}
         <button
           className="md:hidden text-foreground hover:text-primary transition-colors"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -80,31 +71,27 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
-
-      {/* Mobile Menu */}
+      {}
       {isMenuOpen && (
         <div className="md:hidden fixed inset-0 z-40" onClick={() => setIsMenuOpen(false)}>
           <div className="absolute inset-0 bg-background/60 backdrop-blur-xl" />
           <div
-            className="absolute top-16 left-4 right-4 bg-card/95 backdrop-blur-xl border border-border/70 shadow-2xl rounded-2xl"
+            className="absolute top-16 left-4 right-4 glass-card p-6 space-y-2 rounded-2xl"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="flex flex-col p-6 space-y-2">
               {menuItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-left font-sans text-base tracking-[0.15em] text-foreground/90 hover:text-primary transition-colors uppercase py-2 px-2 rounded-lg hover:bg-secondary/60"
+                  className="text-left font-display text-[13px] font-medium tracking-[0.1em] text-foreground/90 hover:text-primary transition-colors uppercase py-2 px-2 rounded-lg hover:bg-white/5"
                 >
                   {item.label}
                 </button>
               ))}
             </div>
           </div>
-        </div>
       )}
     </nav>
   );
 };
-
 export default Navigation;

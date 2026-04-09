@@ -1,92 +1,65 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-  /* Editorial Tech Theme — Purple Edition (logo aligned) */
-  --background: 248 50% 6%;
-  --foreground: 220 25% 92%;
-
-  --card: 246 45% 12%;
-  --card-foreground: 220 25% 92%;
-
-  --popover: 246 45% 12%;
-  --popover-foreground: 220 25% 92%;
-
-  /* Primary Accent (Logo Purple) */
-  --primary: 272 80% 55%;
-  --primary-foreground: 248 50% 6%;
-
-  /* Surface Layers */
-  --secondary: 246 35% 18%;
-  --secondary-foreground: 220 25% 92%;
-
-  /* Muted Text */
-  --muted: 246 35% 18%;
-  --muted-foreground: 228 15% 55%;
-
-  /* Secondary Accents */
-  --accent: 272 80% 55%;
-  --accent-foreground: 248 50% 6%;
-  --accent-2: 285 85% 65%;
-  --accent-3: 258 90% 70%;
-  --success: 160 84% 39%;
-
+    --background: 248 50% 6%;
+    --foreground: 220 25% 92%;
+    --card: 246 45% 12%;
+    --card-foreground: 220 25% 92%;
+    --popover: 246 45% 12%;
+    --popover-foreground: 220 25% 92%;
+    --primary: 272 80% 55%;
+    --primary-foreground: 248 50% 6%;
+    --secondary: 246 35% 18%;
+    --secondary-foreground: 220 25% 92%;
+    --muted: 246 35% 18%;
+    --muted-foreground: 228 15% 55%;
+    --accent: 272 80% 55%;
+    --accent-foreground: 248 50% 6%;
+    --accent-2: 285 85% 65%;
+    --accent-3: 258 90% 70%;
+    --success: 160 84% 39%;
     --destructive: 0 85% 60%;
     --destructive-foreground: 280 5% 85%;
-
-  /* Borders and Inputs */
-  --border: 255 30% 30%;
-  --input: 246 35% 18%;
-  --ring: 272 80% 55%;
-
-  --radius: 0.75rem;
-
-  /* Syntax Colors */
-  --syntax-comment: 228 15% 55%;
-  --syntax-string: 288 80% 72%;
-  --syntax-number: 288 80% 72%;
-  --syntax-keyword: 272 80% 55%;
-  --syntax-function: 255 85% 75%;
-  --syntax-variable: 290 85% 70%;
-
-    /* Code Editor Elements */
-  --line-number: 228 15% 55%;
-  --code-bg: 250 45% 8%;
-  --cursor: 272 80% 55%;
-
-    /* Gradients */
-  --gradient-primary: linear-gradient(135deg,
-    hsl(272 80% 55%),
-    hsl(258 90% 70%));
-  --gradient-glow: radial-gradient(circle at center,
-    hsl(272 80% 55% / 0.3),
-    transparent 70%);
-
-    /* Shadows */
-  --shadow-glow: 0 0 30px hsl(272 80% 55% / 0.25);
-  --shadow-code: 0 4px 20px hsl(250 40% 6% / 0.8);
+    --border: 255 30% 30%;
+    --input: 246 35% 18%;
+    --ring: 272 80% 55%;
+    --radius: 0.75rem;
+    --syntax-comment: 228 15% 55%;
+    --syntax-string: 288 80% 72%;
+    --syntax-number: 288 80% 72%;
+    --syntax-keyword: 272 80% 55%;
+    --syntax-function: 255 85% 75%;
+    --syntax-variable: 290 85% 70%;
+    --line-number: 228 15% 55%;
+    --code-bg: 250 45% 8%;
+    --cursor: 272 80% 55%;
+    --gradient-primary: linear-gradient(135deg,
+        hsl(272 80% 55%),
+        hsl(258 90% 70%));
+    --gradient-glow: radial-gradient(circle at center,
+        hsl(272 80% 55% / 0.3),
+        transparent 70%);
+    --shadow-glow: 0 0 30px hsl(272 80% 55% / 0.25);
+    --shadow-code: 0 4px 20px hsl(250 40% 6% / 0.8);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
   }
 }
-
 @layer base {
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    line-height: 1.8;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
-
   body::before {
     content: "";
     position: fixed;
@@ -98,175 +71,144 @@ All colors MUST be HSL.
     pointer-events: none;
     z-index: 0;
   }
-
   h1,
   h2,
   h3,
   h4 {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
 }
-
 @layer components {
-
-  /* Code Block Styling */
   .code-block {
     @apply bg-code-bg border border-border rounded-xl p-4 font-sans text-sm shadow-code;
   }
-
   .line-number {
     @apply text-line-number select-none mr-4 opacity-50;
   }
-
-  /* Syntax Highlighting */
   .syntax-comment {
     @apply text-syntax-comment italic;
   }
-
   .syntax-string {
     @apply text-syntax-string;
   }
-
   .syntax-keyword {
     @apply text-syntax-keyword font-semibold;
   }
-
   .syntax-function {
     @apply text-syntax-function;
   }
-
   .syntax-variable {
     @apply text-syntax-variable;
   }
-
   .syntax-number {
     @apply text-syntax-number;
   }
-
-  /* Blinking Cursor Animation */
   .cursor {
     @apply inline-block w-2 h-5 bg-cursor animate-pulse;
   }
-
-  /* Code Editor Glow Effect */
   .editor-glow {
     @apply shadow-glow;
   }
-
-  /* Gradient Text */
   .gradient-text {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .section-shell {
     @apply py-20 px-4 md:px-8 border-b border-border/70 relative;
   }
-
   .section-label {
-    @apply font-display text-[11px] uppercase tracking-[0.3em] text-muted-foreground;
+    @apply font-display;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    @apply text-muted-foreground;
   }
-
   .section-title {
-    @apply text-3xl md:text-5xl font-extrabold leading-tight;
+    @apply font-display text-foreground;
+    font-size: clamp(32px, 5vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
   }
-
   .hero-tag {
-    @apply font-display text-[11px] uppercase tracking-[0.3em] text-primary flex items-center gap-3;
+    @apply font-display text-[11px] font-medium uppercase tracking-[0.15em] text-primary flex items-center gap-3;
+  }
+  .glass-panel {
+    @apply bg-card/40 backdrop-blur-md border border-white/5 shadow-2xl;
+  }
+  .glass-card {
+    @apply bg-card/50 backdrop-blur-xl border border-white/10 shadow-xl;
+  }
+  .glass-hover {
+    @apply hover:bg-card/70 hover:border-primary/30 hover:shadow-primary/5 transition-all duration-300;
   }
 }
-
 @layer utilities {
   .bg-code-bg {
     background-color: hsl(var(--code-bg));
   }
-
   .text-line-number {
     color: hsl(var(--line-number));
   }
-
   .text-syntax-comment {
     color: hsl(var(--syntax-comment));
   }
-
   .text-syntax-string {
     color: hsl(var(--syntax-string));
   }
-
   .text-syntax-keyword {
     color: hsl(var(--syntax-keyword));
   }
-
   .text-syntax-function {
     color: hsl(var(--syntax-function));
   }
-
   .text-syntax-variable {
     color: hsl(var(--syntax-variable));
   }
-
   .text-syntax-number {
     color: hsl(var(--syntax-number));
   }
-
   .shadow-glow {
     box-shadow: var(--shadow-glow);
   }
-
   .shadow-code {
     box-shadow: var(--shadow-code);
   }
-
   .text-accent-2 {
     color: hsl(var(--accent-2));
   }
-
   .text-accent-3 {
     color: hsl(var(--accent-3));
   }
-
   .text-success {
     color: hsl(var(--success));
   }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
 }
-
-/* Custom Scrollbar Styles */
-
 .custom-scrollbar {
-  /* WebKit (Chrome, Edge, Safari) */
-
   scrollbar-width: thin;
-  /* For Firefox */
-
   scrollbar-color: #112044 #112044;
-  /* Thumb and track colors for Firefox */
 }
-
 .custom-scrollbar::-webkit-scrollbar {
   height: 8px;
-  /* Horizontal scrollbar height */
 }
-
 .custom-scrollbar::-webkit-scrollbar-track {
   background: #112044;
-  /* Dark gray track to match dark theme */
-
   border-radius: 4px;
 }
-
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: #112044;
-  /* Purple thumb to match portfolio aesthetic */
-
   border-radius: 4px;
-
   transition: background 0.3s ease;
 }
-
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #112044;
-  /* Lighter purple on hover for interactivity */
 }

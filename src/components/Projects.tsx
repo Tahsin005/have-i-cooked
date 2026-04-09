@@ -1,5 +1,5 @@
 import { ExternalLink, Github } from 'lucide-react';
-
+import ScrollReveal from './ScrollReveal';
 const Projects = () => {
   const projects = [
     {
@@ -49,13 +49,12 @@ const Projects = () => {
       source: "https://github.com/Tahsin005/UnLinked",
     },
   ];
-
   return (
     <section className="section-shell">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
+        {}
         <div className="mb-16 text-center">
-          <div className="section-label mb-3">// 02 PROJECTS</div>
+          <div className="section-label mb-3"></div>
           <h2 className="section-title mb-4">
             <span className="text-primary">Projects</span>
           </h2>
@@ -63,16 +62,15 @@ const Projects = () => {
             A collection of projects I've built and contributed to
           </p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
+            <ScrollReveal key={index} delay={`delay-${(index % 5 + 1) * 100}`}>
             <div
-              key={index}
-              className="bg-card border border-border rounded-xl p-6 flex flex-col justify-between group hover:border-primary/30 transition-all hover:shadow-lg hover:shadow-primary/5"
+              className={`glass-card glass-hover p-6 flex flex-col justify-between group rounded-xl h-full`}
             >
               <div>
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-[18px] font-semibold leading-[1.3] text-foreground group-hover:text-primary transition-colors">
                     {project.name}
                   </h3>
                   <div className="flex gap-2">
@@ -98,18 +96,16 @@ const Projects = () => {
                     </a>
                   </div>
                 </div>
-
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                <p className="font-body text-[14px] font-normal leading-[1.7] text-muted-foreground mb-6">
                   {project.description}
                 </p>
               </div>
-
               <div>
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {project.tech.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="text-xs px-2 py-1 rounded bg-secondary/50 text-secondary-foreground border border-border/30"
+                      className="font-display text-[11px] font-medium tracking-[0.06em] px-2 py-1 rounded bg-secondary/50 text-secondary-foreground border border-border/30"
                     >
                       {tech}
                     </span>
@@ -117,12 +113,11 @@ const Projects = () => {
                 </div>
               </div>
             </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
     </section>
   );
 };
-
 export default Projects;
-

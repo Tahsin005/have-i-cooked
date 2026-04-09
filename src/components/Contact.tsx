@@ -2,21 +2,18 @@ import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import { Mail, MapPin, Send, Loader2, Linkedin, Github, BookOpen } from "lucide-react";
-
+import ScrollReveal from "./ScrollReveal";
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
     emailjs
       .send(
         import.meta.env.VITE_SERVICE_ID,
@@ -43,13 +40,12 @@ const Contact = () => {
         }
       );
   };
-
   return (
     <section className="section-shell">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
+        {}
         <div className="mb-16 text-center">
-          <div className="section-label mb-3">// 07 CONTACT</div>
+          <div className="section-label mb-3"></div>
           <h2 className="section-title mb-4">
             Get In <span className="text-primary">Touch</span>
           </h2>
@@ -57,41 +53,40 @@ const Contact = () => {
             Have a question or want to work together? Drop me a message!
           </p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="bg-card border border-border rounded-xl p-6 hover:border-primary/30 transition-all hover:shadow-lg hover:shadow-primary/5">
+          {}
+          <ScrollReveal animation="animate-in fade-in slide-in-from-left-8 duration-1000" className="space-y-8">
+            <ScrollReveal animation="animate-in fade-in slide-in-from-bottom-4 duration-700" delay="delay-200">
+            <div className="glass-card glass-hover p-6 rounded-xl h-full">
               <h3 className="text-xl font-bold mb-6">
                 Contact <span className="text-primary">Information</span>
               </h3>
-
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-2 rounded mr-4">
                     <Mail className="text-primary" size={20} />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground mb-1">Email</p>
-                    <a href="mailto:tahsin.ferdous3546@gmail.com" className="text-foreground hover:text-primary transition-colors font-medium">
+                    <p className="font-body text-[14px] font-normal leading-[1.6] text-muted-foreground mb-1">Email</p>
+                    <a href="mailto:tahsin.ferdous3546@gmail.com" className="font-body text-[14px] font-normal leading-[1.6] text-foreground hover:text-primary transition-colors font-medium">
                       tahsin.ferdous3546@gmail.com
                     </a>
                   </div>
                 </div>
-
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-2 rounded mr-4">
                     <MapPin className="text-primary" size={20} />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground mb-1">Location</p>
-                    <p className="text-foreground font-medium">Dhaka, Bangladesh (UTC+6)</p>
+                    <p className="font-body text-[14px] font-normal leading-[1.6] text-muted-foreground mb-1">Location</p>
+                    <p className="font-body text-[14px] font-normal leading-[1.6] text-foreground font-medium">Dhaka, Bangladesh (UTC+6)</p>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div className="bg-card border border-border rounded-xl p-6 hover:border-primary/30 transition-all hover:shadow-lg hover:shadow-primary/5">
+            </ScrollReveal>
+            <ScrollReveal animation="animate-in fade-in slide-in-from-bottom-4 duration-700" delay="delay-400">
+            <div className="glass-card glass-hover p-6 rounded-xl h-full">
               <h3 className="text-xl font-bold mb-6">
                 Social <span className="text-primary">Links</span>
               </h3>
@@ -100,7 +95,7 @@ const Contact = () => {
                   href="https://github.com/tahsin005"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-secondary/50 text-secondary-foreground px-4 py-2 rounded border border-border/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                  className="font-body text-[14px] font-normal leading-[1.6] flex items-center gap-2 bg-secondary/50 text-secondary-foreground px-4 py-2 rounded border border-border/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
                 >
                   <Github size={20} />
                   <span>GitHub</span>
@@ -109,7 +104,7 @@ const Contact = () => {
                   href="https://www.linkedin.com/in/md-tahsin-ferdous/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-secondary/50 text-secondary-foreground px-4 py-2 rounded border border-border/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                  className="font-body text-[14px] font-normal leading-[1.6] flex items-center gap-2 bg-secondary/50 text-secondary-foreground px-4 py-2 rounded border border-border/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
                 >
                   <Linkedin size={20} />
                   <span>LinkedIn</span>
@@ -118,24 +113,24 @@ const Contact = () => {
                   href="https://purpleonion.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-secondary/50 text-secondary-foreground px-4 py-2 rounded border border-border/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                  className="font-body text-[14px] font-normal leading-[1.6] flex items-center gap-2 bg-secondary/50 text-secondary-foreground px-4 py-2 rounded border border-border/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
                 >
                   <BookOpen size={20} />
                   <span>Purple Onion</span>
                 </a>
               </div>
             </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="bg-card border border-border rounded-xl shadow-xl overflow-hidden flex flex-col h-full">
+            </ScrollReveal>
+          </ScrollReveal>
+          {}
+          <ScrollReveal animation="animate-in fade-in slide-in-from-right-8 duration-1000" className="h-full">
+          <div className="glass-card rounded-xl shadow-xl overflow-hidden flex flex-col h-full bg-card/30">
             <div className="bg-secondary/50 border-b border-border p-3 flex items-center space-x-2">
               <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
               <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
               <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
               <span className="ml-2 text-xs text-muted-foreground">Send Message</span>
             </div>
-
             <form ref={formRef} onSubmit={handleSubmit} className="p-6 space-y-6 flex-1 flex flex-col">
               <div className="space-y-4 flex-1">
                 <div>
@@ -153,7 +148,6 @@ const Contact = () => {
                     className="w-full bg-background/50 border border-border rounded px-4 py-2 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-muted-foreground/50"
                   />
                 </div>
-
                 <div>
                   <label htmlFor="email" className="text-foreground block mb-2 text-sm font-medium">
                     Email
@@ -169,7 +163,6 @@ const Contact = () => {
                     className="w-full bg-background/50 border border-border rounded px-4 py-2 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-muted-foreground/50"
                   />
                 </div>
-
                 <div className="flex-1">
                   <label htmlFor="message" className="text-foreground block mb-2 text-sm font-medium">
                     Message
@@ -186,7 +179,6 @@ const Contact = () => {
                   ></textarea>
                 </div>
               </div>
-
               <button
                 type="submit"
                 disabled={loading}
@@ -197,6 +189,7 @@ const Contact = () => {
               </button>
             </form>
           </div>
+          </ScrollReveal>
         </div>
       </div>
       <Toaster position="bottom-right" toastOptions={{
@@ -209,6 +202,4 @@ const Contact = () => {
     </section>
   );
 };
-
 export default Contact;
-

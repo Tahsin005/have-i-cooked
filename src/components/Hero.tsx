@@ -1,28 +1,26 @@
 import { Github, Linkedin, Mail, MapPin, ArrowRight } from 'lucide-react';
 import tahsinLogo from '@/assets/tahsin logo.png';
-
 const Hero = () => {
     return (
         <section className="section-shell min-h-screen flex items-center justify-center pt-24 md:pt-28">
             <div className="w-full max-w-6xl">
                 <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8">
-                    <div className="bg-card border border-border/70 rounded-2xl p-8 md:p-12 flex flex-col justify-between hover:border-primary/50 transition-all">
+                    <div className="glass-card glass-hover p-8 md:p-12 flex flex-col justify-between rounded-2xl animate-in fade-in slide-in-from-left-8 duration-1000">
                         <div>
-                            <div className="hero-tag mb-6">
+                            <div className="hero-tag mb-6 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-300 fill-mode-both">
                                 <span className="inline-block w-8 h-px bg-primary"></span>
                                 Engineering Portfolio
                             </div>
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4">
+                             <h1 className="font-display text-[clamp(44px,8vw,64px)] font-bold tracking-[-0.02em] leading-[1.05] mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500 fill-mode-both">
                                 MD. Tahsin<br />Ferdous
                             </h1>
-                            <p className="text-xl md:text-2xl text-primary font-medium mb-6">
+                            <p className="font-display text-[18px] font-normal tracking-[0.01em] text-primary mb-6 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-700 fill-mode-both">
                                 Full Stack Engineer
                             </p>
-                            <p className="text-base md:text-lg text-muted-foreground italic max-w-lg">
+                            <p className="font-body text-[15px] font-normal italic leading-[1.7] text-muted-foreground max-w-lg animate-in fade-in slide-in-from-bottom-2 duration-700 delay-1000 fill-mode-both">
                                 Building scalable backend systems and crafting modern, accessible user experiences with precision.
                             </p>
                         </div>
-
                         <div className="mt-10 flex flex-wrap items-center gap-4">
                             <a
                                 href="#projects"
@@ -38,7 +36,6 @@ const Hero = () => {
                                 Let’s Talk
                             </a>
                         </div>
-
                         <div className="mt-8 flex items-center gap-4 flex-wrap">
                             <a
                                 href="https://github.com/tahsin005"
@@ -67,11 +64,10 @@ const Hero = () => {
                             </a>
                         </div>
                     </div>
-
                     <div className="flex flex-col gap-6">
-                        <div className="bg-gradient-to-br from-primary/20 to-accent/10 border border-border/70 rounded-2xl p-8 md:p-10 flex flex-col items-center justify-center text-center hover:border-primary/50 transition-all backdrop-blur-sm">
-                            <div className="mb-6">
-                                <div className="w-36 h-36 md:w-44 md:h-44 rounded-2xl bg-white/5 backdrop-blur-sm flex items-center justify-center mb-4 border border-white/10 p-6 shadow-lg shadow-primary/10">
+                        <div className="glass-panel glass-hover p-8 md:p-10 flex flex-col items-center justify-center text-center rounded-2xl animate-in fade-in slide-in-from-right-8 duration-1000">
+                            <div className="mb-6 animate-float">
+                                <div className="w-36 h-36 md:w-44 md:h-44 rounded-2xl bg-white/5 backdrop-blur-sm flex items-center justify-center mb-4 border border-white/10 p-6 shadow-lg shadow-primary/10 hover:scale-105 transition-transform duration-500">
                                     <img
                                         src={tahsinLogo}
                                         alt="MTF Logo"
@@ -83,8 +79,7 @@ const Hero = () => {
                                 Portfolio 2026
                             </span>
                         </div>
-
-                        <div className="bg-card border border-border/70 rounded-2xl p-6 md:p-8 hover:border-primary/50 transition-all">
+                        <div className="glass-card glass-hover p-6 md:p-8 rounded-2xl animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 fill-mode-both">
                             <h3 className="section-label mb-3">Core Focus</h3>
                             <div className="flex flex-wrap gap-2 mb-6">
                                 <span className="px-3 py-1.5 rounded-lg text-sm bg-secondary/50 text-secondary-foreground border border-border/30">
@@ -97,7 +92,6 @@ const Hero = () => {
                                     System Architecture
                                 </span>
                             </div>
-
                             <div className="space-y-3">
                                 <div className="flex items-center gap-2 text-muted-foreground">
                                     <MapPin size={16} className="text-primary" />
@@ -109,9 +103,8 @@ const Hero = () => {
                                 </div>
                             </div>
                         </div>
-
-                        <div className="bg-card border border-border/70 rounded-2xl p-6 md:p-8 flex flex-col justify-between hover:border-primary/50 transition-all">
-                            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+                        <div className="glass-card glass-hover p-6 md:p-8 flex flex-col justify-between rounded-2xl animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500 fill-mode-both">
+                            <p className="font-body text-[15px] font-normal leading-[1.7] text-muted-foreground mb-6">
                                 Building scalable backend systems and crafting beautiful, accessible user experiences. Focused on{' '}
                                 <span className="text-foreground font-semibold">Performance</span>,{' '}
                                 <span className="text-foreground font-semibold">Clean Code</span>, and{' '}
@@ -131,5 +124,4 @@ const Hero = () => {
         </section>
     );
 };
-
 export default Hero;

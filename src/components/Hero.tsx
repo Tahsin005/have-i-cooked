@@ -1,9 +1,23 @@
 import { Github, Linkedin, Mail, MapPin, ArrowRight } from 'lucide-react';
-import tahsinLogo from '@/assets/tahsin logo.png';
+import tahsinLogo from '@/assets/tahsin-logo.png';
+import DotGrid from '@/components/DotGrid';
 const Hero = () => {
     return (
-        <section className="section-shell min-h-screen flex items-center justify-center pt-24 md:pt-28">
-            <div className="w-full max-w-6xl">
+        <section className="section-shell min-h-screen flex items-center justify-center pt-24 md:pt-28 relative overflow-hidden">
+            <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
+                <DotGrid
+                    dotSize={2}
+                    gap={24}
+                    baseColor="#9231E8"
+                    activeColor="#1E904E"
+                    proximity={180}
+                    shockRadius={280}
+                    shockStrength={6}
+                    resistance={800}
+                    returnDuration={1.5}
+                />
+            </div>
+            <div className="w-full max-w-6xl relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8">
                     <div className="glass-card glass-hover p-8 md:p-12 flex flex-col justify-between rounded-2xl animate-in fade-in slide-in-from-left-8 duration-1000">
                         <div>

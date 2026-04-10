@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import { Mail, MapPin, Send, Loader2, Linkedin, Github, BookOpen } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import DotGrid from '@/components/DotGrid';
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -41,8 +42,11 @@ const Contact = () => {
       );
   };
   return (
-    <section className="section-shell">
-      <div className="max-w-6xl mx-auto">
+    <section className="section-shell relative overflow-hidden">
+      <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
+        <DotGrid dotSize={2} gap={24} baseColor="#9231E8" activeColor="#1E904E" proximity={180} shockRadius={280} shockStrength={6} resistance={800} returnDuration={1.5} />
+      </div>
+      <div className="max-w-6xl mx-auto relative z-10">
         {}
         <div className="mb-16 text-center">
           <div className="section-label mb-3"></div>

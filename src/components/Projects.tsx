@@ -1,5 +1,6 @@
 import { ExternalLink, Github } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
+import DotGrid from '@/components/DotGrid';
 const Projects = () => {
   const projects = [
     {
@@ -9,6 +10,14 @@ const Projects = () => {
         "A full-stack social media platform built with Next.js App Router, TypeScript, PostgreSQL, and Prisma ORM. Features include Google authentication (Clerk), profile management, follow/unfollow system, media posts, real-time notifications, and secure API routes with JWT.",
       link: "https://socially-orcin.vercel.app/",
       source: "https://github.com/Tahsin005/Socially",
+    },
+    {
+      name: "Smart Inventory & Order Management",
+      tech: ["react", "express", "postgresql", "prisma"],
+      description:
+        "A full-stack inventory and order management system designed for efficient tracking of products, categories, stock movements, and customer orders. Built with React for the frontend and Express/Prisma for the backend.",
+      link: "https://eap-assesment-task-five.vercel.app/",
+      source: "https://github.com/Tahsin005/smart-inventory-and-order-management",
     },
     {
       name: "SaaS Growthly",
@@ -40,18 +49,13 @@ const Projects = () => {
       link: "https://country-rest-api-react.vercel.app/",
       source: "https://github.com/Tahsin005/Country-Rest-API---React",
     },
-    {
-      name: "Unlinked",
-      tech: ["react", "express", "mongodb", "mongoose"],
-      description:
-        "A full-stack social networking app with user authentication, profile customization, and connection-building. Includes an interactive news feed where users can share posts and engage with others.",
-      link: "https://unlinked-siot.onrender.com/",
-      source: "https://github.com/Tahsin005/UnLinked",
-    },
   ];
   return (
-    <section className="section-shell">
-      <div className="max-w-6xl mx-auto">
+    <section className="section-shell relative overflow-hidden">
+      <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
+        <DotGrid dotSize={2} gap={24} baseColor="#9231E8" activeColor="#1E904E" proximity={180} shockRadius={280} shockStrength={6} resistance={800} returnDuration={1.5} />
+      </div>
+      <div className="max-w-6xl mx-auto relative z-10">
         {}
         <div className="mb-16 text-center">
           <div className="section-label mb-3"></div>

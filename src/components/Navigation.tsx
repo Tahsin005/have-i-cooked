@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import tahsinlogo from "../assets/tahsin logo.png";
+import tahsinLogo from '@/assets/tahsin-logo.png';
 type NavigationProps = {
   isMenuOpen: boolean;
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,7 +48,7 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
           onClick={() => scrollToSection("hero")}
         >
           <div className="bg-primary/10 p-2 rounded-lg ring-1 ring-primary/20 group-hover:ring-primary/40 transition-all">
-            <img src={tahsinlogo} alt="MTF" className="h-6 w-auto object-contain brightness-110" />
+            <img src={tahsinLogo} alt="MTF" className="h-6 w-auto object-contain brightness-110" />
           </div>
         </div>
         {}

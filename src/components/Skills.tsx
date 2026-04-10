@@ -1,6 +1,7 @@
 import GitHubCalendar from "react-github-calendar";
 import { Code2, Server, Layout, Database, Wrench } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import DotGrid from '@/components/DotGrid';
 const Skills = () => {
   const categories = [
     {
@@ -30,8 +31,11 @@ const Skills = () => {
     },
   ];
   return (
-    <section className="section-shell">
-      <div className="max-w-6xl mx-auto">
+    <section className="section-shell relative overflow-hidden">
+      <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
+        <DotGrid dotSize={2} gap={24} baseColor="#9231E8" activeColor="#1E904E" proximity={180} shockRadius={280} shockStrength={6} resistance={800} returnDuration={1.5} />
+      </div>
+      <div className="max-w-6xl mx-auto relative z-10">
         {}
         <div className="mb-16 text-center">
           <div className="section-label mb-3"></div>

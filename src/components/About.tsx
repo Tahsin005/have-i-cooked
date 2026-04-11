@@ -28,11 +28,11 @@ const About = () => {
               <h3 className="font-display text-[18px] font-semibold leading-[1.3] mb-4">Who is MD. Tahsin Ferdous?</h3>
             </div>
             <p className="font-body text-[14px] font-normal leading-[1.7] text-muted-foreground mb-4">
-              I am a <span className="text-foreground font-semibold">Jr. Software Engineer</span> at Affpilot, focused on building clean, accessible, and maintainable web applications.
+              I am a <span className="text-foreground font-semibold">Full Stack Engineer</span> focused on building clean, accessible, and maintainable web applications.
               I thrive on problem-solving and am constantly learning new things to improve my craft.
             </p>
             <p className="font-body text-[14px] font-normal leading-[1.7] text-muted-foreground">
-              My journey involves working with modern tech stacks, from building robust backends with <span className="text-foreground">Python & Django</span> to creating dynamic frontends with <span className="text-foreground">React & Tailwind</span>.
+              My journey involves working with modern tech stacks, from building robust backends with <span className="text-foreground">Javascript, Golang & Python</span> to creating dynamic frontends with <span className="text-foreground">React, Next.js & Tailwind</span>.
             </p>
           </div>
           </ScrollReveal>
@@ -43,12 +43,12 @@ const About = () => {
               <Code className="text-primary" size={32} strokeWidth={1.5} />
             </div>
             <h3 className="font-display text-[18px] font-semibold leading-[1.3] mb-2">Affpilot</h3>
-            <p className="font-display text-[11px] font-medium tracking-[0.06em] text-primary mb-4">Apr 2025 — Present</p>
+            <p className="font-display text-[11px] font-medium tracking-[0.06em] text-primary mb-4">Apr 2025 — Feb 2026</p>
             <p className="font-body text-[14px] font-normal leading-[1.7] text-muted-foreground mb-4">
               Jr. Software Engineer
             </p>
             <div className="flex flex-wrap gap-2">
-              {["Python", "Django", "Golang", "PostgreSQL", "Docker", "Redis"].map(tech => (
+              {["Python", "Django", "Golang", "Reactjs", "PostgreSQL", "Docker", "Redis"].map(tech => (
                 <span key={tech} className="font-display text-[11px] font-medium tracking-[0.06em] bg-secondary/50 text-secondary-foreground px-2 py-1 rounded border border-border/30">
                   {tech}
                 </span>

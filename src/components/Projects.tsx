@@ -1,6 +1,90 @@
 import { ExternalLink, Github } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import DotGrid from '@/components/DotGrid';
+import { useState, useEffect, useCallback } from 'react';
+import affpilot1 from '@/assets/project-ss/affpilot-1.png'
+import affpilot2 from '@/assets/project-ss/affpilot-2.png'
+import country1 from '@/assets/project-ss/country-1.png'
+import country2 from '@/assets/project-ss/country-2.png'
+import nike1 from '@/assets/project-ss/nike-1.png'
+import nike2 from '@/assets/project-ss/nike-2.png'
+import sim1 from '@/assets/project-ss/sim-1.png'
+import sim2 from '@/assets/project-ss/sim-2.png'
+import socially1 from '@/assets/project-ss/socially-1.png'
+import socially2 from '@/assets/project-ss/socially-2.png'
+
+interface ProjectImageSliderProps {
+  images: string[];
+  projectName: string;
+}
+
+const ProjectImageSlider = ({ images, projectName }: ProjectImageSliderProps) => {
+  const [current, setCurrent] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % images.length);
+  }, [images.length]);
+
+  useEffect(() => {
+    if (isHovered || images.length <= 1) return;
+    const interval = setInterval(next, 3000);
+    return () => clearInterval(interval);
+  }, [isHovered, next, images.length]);
+
+  return (
+    <div
+      className="relative w-full overflow-hidden"
+      style={{ height: '180px' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Slides */}
+      <div
+        className="flex h-full transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+      >
+        {images.map((img, i) => (
+          <div key={i} className="min-w-full h-full flex-shrink-0">
+            <img
+              src={img}
+              alt={`${projectName} screenshot ${i + 1}`}
+              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Bottom gradient fade */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-10 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to top, hsl(var(--card, 240 10% 8%)) 0%, transparent 100%)',
+        }}
+      />
+
+      {/* Dot indicators */}
+      {images.length > 1 && (
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className="rounded-full transition-all duration-300 cursor-pointer border-0 p-0"
+              style={{
+                width: i === current ? '16px' : '6px',
+                height: '6px',
+                background: i === current ? 'var(--primary, #9231E8)' : 'rgba(255,255,255,0.35)',
+              }}
+              aria-label={`Go to screenshot ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Projects = () => {
   const projects = [
     {
@@ -10,6 +94,7 @@ const Projects = () => {
         "A full-stack social media platform built with Next.js App Router, TypeScript, PostgreSQL, and Prisma ORM. Features include Google authentication (Clerk), profile management, follow/unfollow system, media posts, real-time notifications, and secure API routes with JWT.",
       link: "https://socially-orcin.vercel.app/",
       source: "https://github.com/Tahsin005/Socially",
+      images: [socially1, socially2]
     },
     {
       name: "Smart Inventory & Order Management",
@@ -18,13 +103,7 @@ const Projects = () => {
         "A full-stack inventory and order management system designed for efficient tracking of products, categories, stock movements, and customer orders. Built with React for the frontend and Express/Prisma for the backend.",
       link: "https://eap-assesment-task-five.vercel.app/",
       source: "https://github.com/Tahsin005/smart-inventory-and-order-management",
-    },
-    {
-      name: "SaaS Growthly",
-      tech: ["react", "tailwindcss", "golang", "redis", "postgresql", "stripe"],
-      description:
-        "SaaS Growthly is a product of AffPilot that centralizes SaaS growth resources. The platform delivers curated YouTube channels, guest posting sites, launch platforms, and growth hacks. I contributed to designing and developing the full-stack platform, combining a modern React frontend with a scalable Golang backend.",
-      link: "https://saasgrowthly.com/",
+      images: [sim1, sim2]
     },
     {
       name: "AffPilot",
@@ -32,6 +111,16 @@ const Projects = () => {
       description:
         "AffPilot is an AI-powered content automation platform for creators and agencies. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot's suite of products.",
       link: "https://affpilot.com/",
+      images: [affpilot1, affpilot2]
+    },
+    {
+      name: "World Explorer",
+      tech: ["react", "tailwindcss", "country-rest-api"],
+      description:
+        "A high-performance, modern cartographic dashboard built with React and the REST Countries API. This application provides a comprehensive geographic registry with technical data modules, visual identifiers, and optimized orbital scanning (search).",
+      link: "https://country-rest-api-react.vercel.app/",
+      source: "https://github.com/Tahsin005/country-rest-api",
+      images: [country1, country2]
     },
     {
       name: "Nike Landing Page",
@@ -40,16 +129,10 @@ const Projects = () => {
         "A sleek, responsive e-commerce landing page inspired by Nike's branding. Built with React.js and Tailwind CSS, it showcases advanced layout techniques, reusable components, and modern UI design tailored for all screen sizes.",
       link: "https://nike-mocha-delta.vercel.app/",
       source: "https://github.com/Tahsin005/Nike-Landing-Page",
-    },
-    {
-      name: "Around The Flag",
-      tech: ["react", "tailwindcss", "country-rest-api"],
-      description:
-        "An informative React.js web app that fetches and displays global country data using the REST Countries API. Users can browse, search, and filter countries to view details like population, region, and native names.",
-      link: "https://country-rest-api-react.vercel.app/",
-      source: "https://github.com/Tahsin005/Country-Rest-API---React",
+      images: [nike1, nike2]
     },
   ];
+
   return (
     <section className="section-shell relative overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
@@ -69,54 +152,56 @@ const Projects = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <ScrollReveal key={index} delay={`delay-${(index % 5 + 1) * 100}`}>
-            <div
-              className={`glass-card glass-hover p-6 flex flex-col justify-between group rounded-xl h-full`}
-            >
-              <div>
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-display text-[18px] font-semibold leading-[1.3] text-foreground group-hover:text-primary transition-colors">
-                    {project.name}
-                  </h3>
-                  <div className="flex gap-2">
-                    {project.source && (
+              <div className="glass-card glass-hover flex flex-col group rounded-xl h-full overflow-hidden">
+                {/* Image Slider at the top */}
+                <ProjectImageSlider images={project.images} projectName={project.name} />
+
+                {/* Card content */}
+                <div className="flex flex-col flex-1 p-5">
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="font-display text-[18px] font-semibold leading-[1.3] text-foreground group-hover:text-primary transition-colors">
+                      {project.name}
+                    </h3>
+                    <div className="flex gap-2 shrink-0 ml-2">
+                      {project.source && (
+                        <a
+                          href={project.source}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          title="View Source Code"
+                        >
+                          <Github size={20} />
+                        </a>
+                      )}
                       <a
-                        href={project.source}
+                        href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-muted-foreground hover:text-primary transition-colors"
-                        title="View Source Code"
+                        title="Live Demo"
                       >
-                        <Github size={20} />
+                        <ExternalLink size={20} />
                       </a>
-                    )}
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                      title="Live Demo"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
+                    </div>
+                  </div>
+
+                  <p className="font-body text-[14px] font-normal leading-[1.7] text-muted-foreground mb-4 flex-1">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {project.tech.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="font-display text-[11px] font-medium tracking-[0.06em] px-2 py-1 rounded bg-secondary/50 text-secondary-foreground border border-border/30"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
-                <p className="font-body text-[14px] font-normal leading-[1.7] text-muted-foreground mb-6">
-                  {project.description}
-                </p>
               </div>
-              <div>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.tech.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="font-display text-[11px] font-medium tracking-[0.06em] px-2 py-1 rounded bg-secondary/50 text-secondary-foreground border border-border/30"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
             </ScrollReveal>
           ))}
         </div>
@@ -124,4 +209,5 @@ const Projects = () => {
     </section>
   );
 };
+
 export default Projects;

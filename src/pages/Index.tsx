@@ -45,9 +45,10 @@ const Index = () => {
         <div className="max-w-4xl mx-auto px-8 text-center">
           <div className="code-block inline-block">
             <span className="syntax-comment">
+              // Never believe you are good enough
             </span>
           </div>
-          <p className="mt-4 text-muted-foreground text-xs font-display uppercase tracking-[0.2em]">
+          <p className="mt-4 text-muted-foreground text-xs font-display tracking-[0.2em]">
             © 2026 MD. Tahsin Ferdous. All rights reserved.
           </p>
         </div>

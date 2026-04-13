@@ -15,6 +15,7 @@ import socially2 from '@/assets/project-ss/socially-2.png'
 import ibuiltthis1 from '@/assets/project-ss/ibuiltthis-1.png'
 import ibuiltthis2 from '@/assets/project-ss/ibuiltthis-2.png'
 import ibuiltthis3 from '@/assets/project-ss/ibuiltthis-3.png'
+import rtwd from '@/assets/project-ss/rtwd.png'
 
 interface ProjectImageSliderProps {
   images: string[];
@@ -121,6 +122,15 @@ const Projects = () => {
         "AffPilot is an AI-powered content automation platform for creators and agencies. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot's suite of products.",
       link: "https://affpilot.com/",
       images: [affpilot1, affpilot2]
+    },
+    {
+      name: "Realtime Weather Dashboard",
+      tech: ["react", "tailwindcss", "typescript", "open-weather-map-api", "zod", "tanstack-query", "leaflet"],
+      description:
+        "A high-performance, interactive weather dashboard that delivers real-time meteorological data, forecasts, and air quality indices. It features an interactive cartographic map with dynamic weather overlays and a responsive, beautifully crafted UI with seamless light/dark mode support.",
+      link: "https://realtime-weather-dashboard-delta.vercel.app/",
+      source: "https://github.com/Tahsin005/realtime-weather-dashboard",
+      images: [rtwd]
     },
     {
       name: "World Explorer",

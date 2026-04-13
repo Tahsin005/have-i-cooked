@@ -12,6 +12,9 @@ import sim1 from '@/assets/project-ss/sim-1.png'
 import sim2 from '@/assets/project-ss/sim-2.png'
 import socially1 from '@/assets/project-ss/socially-1.png'
 import socially2 from '@/assets/project-ss/socially-2.png'
+import ibuiltthis1 from '@/assets/project-ss/ibuiltthis-1.png'
+import ibuiltthis2 from '@/assets/project-ss/ibuiltthis-2.png'
+import ibuiltthis3 from '@/assets/project-ss/ibuiltthis-3.png'
 
 interface ProjectImageSliderProps {
   images: string[];
@@ -39,7 +42,6 @@ const ProjectImageSlider = ({ images, projectName }: ProjectImageSliderProps) =>
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Slides */}
       <div
         className="flex h-full transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${current * 100}%)` }}
@@ -55,7 +57,6 @@ const ProjectImageSlider = ({ images, projectName }: ProjectImageSliderProps) =>
         ))}
       </div>
 
-      {/* Bottom gradient fade */}
       <div
         className="absolute inset-x-0 bottom-0 h-10 pointer-events-none"
         style={{
@@ -63,7 +64,6 @@ const ProjectImageSlider = ({ images, projectName }: ProjectImageSliderProps) =>
         }}
       />
 
-      {/* Dot indicators */}
       {images.length > 1 && (
         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
           {images.map((_, i) => (
@@ -95,6 +95,15 @@ const Projects = () => {
       link: "https://socially-orcin.vercel.app/",
       source: "https://github.com/Tahsin005/Socially",
       images: [socially1, socially2]
+    },
+    {
+      name: "iBuiltThis",
+      tech: ["nextjs", "tailwindcss", "postgresql", "clerk", "drizzle"],
+      description:
+        "A community platform for creators to showcase their apps, AI tools, SaaS products, and creative projects. Authentic launches, real builders, genuine feedback.",
+      link: "https://ibuiltthis-three.vercel.app/",
+      source: "https://github.com/Tahsin005/ibuiltthis",
+      images: [ibuiltthis1, ibuiltthis2, ibuiltthis3]
     },
     {
       name: "Smart Inventory & Order Management",

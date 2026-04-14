@@ -16,6 +16,8 @@ import ibuiltthis1 from '@/assets/project-ss/ibuiltthis-1.png'
 import ibuiltthis2 from '@/assets/project-ss/ibuiltthis-2.png'
 import ibuiltthis3 from '@/assets/project-ss/ibuiltthis-3.png'
 import rtwd from '@/assets/project-ss/rtwd.png'
+import job1 from '@/assets/project-ss/job-application-1.png'
+import job2 from '@/assets/project-ss/job-application-2.png'
 
 interface ProjectImageSliderProps {
   images: string[];
@@ -107,6 +109,23 @@ const Projects = () => {
       images: [ibuiltthis1, ibuiltthis2, ibuiltthis3]
     },
     {
+      name: "AffPilot",
+      tech: ["react", "tailwindcss", "django", "postgresql"],
+      description:
+        "AffPilot is an AI-powered content automation platform for creators and agencies. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot's suite of products.",
+      link: "https://affpilot.com/",
+      images: [affpilot1, affpilot2]
+    },
+    {
+      name: "Job Application Tracker",
+      tech: ["nextjs", "better-auth", "mongodb", "dnd-kit"],
+      description:
+        "A high-performance, real-time Kanban board tailored specifically for organizing, tracking, and prioritizing your job hunting lifecycle. Built with the bleeding-edge Next.js 16 architecture, this platform allows developers and professionals to seamlessly drag-and-drop applications across custom pipelines natively.",
+      link: "https://job-application-tracker-six-taupe.vercel.app/",
+      source: "https://github.com/Tahsin005/job-application-tracker",
+      images: [job2, job1]
+    },
+    {
       name: "Smart Inventory & Order Management",
       tech: ["react", "express", "postgresql", "prisma"],
       description:
@@ -114,14 +133,6 @@ const Projects = () => {
       link: "https://eap-assesment-task-five.vercel.app/",
       source: "https://github.com/Tahsin005/smart-inventory-and-order-management",
       images: [sim1, sim2]
-    },
-    {
-      name: "AffPilot",
-      tech: ["react", "tailwindcss", "django", "postgresql"],
-      description:
-        "AffPilot is an AI-powered content automation platform for creators and agencies. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot's suite of products.",
-      link: "https://affpilot.com/",
-      images: [affpilot1, affpilot2]
     },
     {
       name: "Realtime Weather Dashboard",

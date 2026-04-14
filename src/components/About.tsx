@@ -112,7 +112,7 @@ const About = () => {
               </p>
             </div>
             <a
-              href="https://drive.google.com/file/d/1V2CqNMnejYeKv7_vcdP1I07_Q8ip_M4a/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1RM7AtJX7fXWBWjQuWxbM03gUSak7_L1k/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center text-primary font-bold hover:underline group-hover:translate-x-1 transition-transform"

@@ -18,6 +18,14 @@ import ibuiltthis3 from '@/assets/project-ss/ibuiltthis-3.png'
 import rtwd from '@/assets/project-ss/rtwd.png'
 import job1 from '@/assets/project-ss/job-application-1.png'
 import job2 from '@/assets/project-ss/job-application-2.png'
+import ecom1 from '@/assets/project-ss/ecom-11.png'
+import ecom2 from '@/assets/project-ss/ecom-12.png'
+import ecom3 from '@/assets/project-ss/ecom-13.png'
+import ecom4 from '@/assets/project-ss/ecom-14.png'
+import ecom5 from '@/assets/project-ss/ecom-15.png'
+import ecom6 from '@/assets/project-ss/ecom-16.png'
+import ecom7 from '@/assets/project-ss/ecom-17.png'
+
 
 interface ProjectImageSliderProps {
   images: string[];
@@ -115,6 +123,13 @@ const Projects = () => {
         "AffPilot is an AI-powered content automation platform for creators and agencies. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot's suite of products.",
       link: "https://affpilot.com/",
       images: [affpilot1, affpilot2]
+    },
+    {
+      name: "Shoppio",
+      tech: ["react", "tailwind", "express", "mongodb", "moneybag payment gateway"],
+      description:
+        "Shoppio is a premium, full-stack e-commerce application built with speed, scalability, and modern aesthetics in mind. It features a robust administration dashboard, a seamless customer shopping experience, and secure payment integrations.",
+      images: [ecom1, ecom2, ecom3, ecom4, ecom5, ecom6, ecom7]
     },
     {
       name: "Job Application Tracker",

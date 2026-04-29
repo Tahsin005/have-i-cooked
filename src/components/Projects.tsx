@@ -25,6 +25,8 @@ import ecom4 from '@/assets/project-ss/ecom-14.png'
 import ecom5 from '@/assets/project-ss/ecom-15.png'
 import ecom6 from '@/assets/project-ss/ecom-16.png'
 import ecom7 from '@/assets/project-ss/ecom-17.png'
+import storeit1 from '@/assets/project-ss/storeit-1.png'
+import storeit2 from '@/assets/project-ss/storeit-2.png'
 
 
 interface ProjectImageSliderProps {
@@ -129,7 +131,18 @@ const Projects = () => {
       tech: ["react", "tailwind", "express", "mongodb", "moneybag payment gateway"],
       description:
         "Shoppio is a premium, full-stack e-commerce application built with speed, scalability, and modern aesthetics in mind. It features a robust administration dashboard, a seamless customer shopping experience, and secure payment integrations.",
+      link: "https://shoppio-theta.vercel.app/",
+      source: "https://github.com/Tahsin005/shoppio",
       images: [ecom1, ecom2, ecom3, ecom4, ecom5, ecom6, ecom7]
+    },
+    {
+      name: "StoreIt",
+      tech: ["nextjs", "tailwindcss", "appwrite", "react-dropzone", "shadcn"],
+      description:
+        "StoreIt is a modern, full-stack cloud storage solution built with Next.js 16, TypeScript, and Appwrite. It offers a secure, intuitive platform for users to upload, manage, and share files with a premium user experience. Features include secure email-based OTP authentication, real-time upload progress, drag-and-drop file management, shareable public links, and a comprehensive dashboard for file organization and retrieval.",
+      link: "https://storeit-jet.vercel.app/",
+      source: "https://github.com/Tahsin005/store-it",
+      images: [storeit1, storeit2]
     },
     {
       name: "Job Application Tracker",

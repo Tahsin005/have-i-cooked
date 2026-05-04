@@ -8,8 +8,6 @@ import country1 from '@/assets/project-ss/country-1.png'
 import country2 from '@/assets/project-ss/country-2.png'
 import nike1 from '@/assets/project-ss/nike-1.png'
 import nike2 from '@/assets/project-ss/nike-2.png'
-import sim1 from '@/assets/project-ss/sim-1.png'
-import sim2 from '@/assets/project-ss/sim-2.png'
 import socially1 from '@/assets/project-ss/socially-1.png'
 import socially2 from '@/assets/project-ss/socially-2.png'
 import ibuiltthis1 from '@/assets/project-ss/ibuiltthis-1.png'
@@ -18,15 +16,15 @@ import ibuiltthis3 from '@/assets/project-ss/ibuiltthis-3.png'
 import rtwd from '@/assets/project-ss/rtwd.png'
 import job1 from '@/assets/project-ss/job-application-1.png'
 import job2 from '@/assets/project-ss/job-application-2.png'
-import ecom1 from '@/assets/project-ss/ecom-11.png'
-import ecom2 from '@/assets/project-ss/ecom-12.png'
-import ecom3 from '@/assets/project-ss/ecom-13.png'
-import ecom4 from '@/assets/project-ss/ecom-14.png'
-import ecom5 from '@/assets/project-ss/ecom-15.png'
-import ecom6 from '@/assets/project-ss/ecom-16.png'
-import ecom7 from '@/assets/project-ss/ecom-17.png'
 import storeit1 from '@/assets/project-ss/storeit-1.png'
 import storeit2 from '@/assets/project-ss/storeit-2.png'
+import northwind from '@/assets/project-ss/northwind.png'
+import northwind1 from '@/assets/project-ss/northwind1.png'
+import northwind2 from '@/assets/project-ss/northwind2.png'
+import northwind3 from '@/assets/project-ss/northwind3.png'
+import northwind4 from '@/assets/project-ss/northwind4.png'
+import northwind5 from '@/assets/project-ss/northwind5.png'
+import northwind6 from '@/assets/project-ss/northwind6.png'
 
 
 interface ProjectImageSliderProps {
@@ -127,13 +125,13 @@ const Projects = () => {
       images: [affpilot1, affpilot2]
     },
     {
-      name: "Shoppio",
-      tech: ["react", "tailwind", "express", "mongodb", "moneybag payment gateway"],
+      name: "Northwind",
+      tech: ["react", "tailwind", "express", "postgres", "polar payment", "stream"],
       description:
-        "Shoppio is a premium, full-stack e-commerce application built with speed, scalability, and modern aesthetics in mind. It features a robust administration dashboard, a seamless customer shopping experience, and secure payment integrations.",
-      link: "https://shoppio-theta.vercel.app/",
-      source: "https://github.com/Tahsin005/shoppio",
-      images: [ecom1, ecom2, ecom3, ecom4, ecom5, ecom6, ecom7]
+        "Northwind is a high-performance, full-stack e-commerce platform designed for modern retail. It seamlessly integrates product management, secure checkout, and real-time customer support via chat and video calls, providing a premium experience for both customers and administrators.",
+      link: "https://northwind-4967.onrender.com/",
+      source: "https://github.com/Tahsin005/northwind",
+      images: [northwind, northwind1, northwind2, northwind3, northwind4, northwind5, northwind6]
     },
     {
       name: "StoreIt",
@@ -152,15 +150,6 @@ const Projects = () => {
       link: "https://job-application-tracker-six-taupe.vercel.app/",
       source: "https://github.com/Tahsin005/job-application-tracker",
       images: [job2, job1]
-    },
-    {
-      name: "Smart Inventory & Order Management",
-      tech: ["react", "express", "postgresql", "prisma"],
-      description:
-        "A full-stack inventory and order management system designed for efficient tracking of products, categories, stock movements, and customer orders. Built with React for the frontend and Express/Prisma for the backend.",
-      link: "https://eap-assesment-task-five.vercel.app/",
-      source: "https://github.com/Tahsin005/smart-inventory-and-order-management",
-      images: [sim1, sim2]
     },
     {
       name: "Realtime Weather Dashboard",

@@ -180,6 +180,45 @@ const Projects = () => {
     },
   ];
 
+  const funProjects = [
+    {
+      name: "Intersteller Omarchy Theme",
+      description: "Intersteller inspired deep-space and accretion disk palette for the Omarchy ecosystem.",
+      source: "https://github.com/Tahsin005/intersteller-omarchy-theme",
+      tech: ["Hyprland", "CSS", "Neovim"]
+    },
+    {
+      name: "Folderly",
+      description: "A CLI based npm package for automatically organizing files into categorized folders.",
+      source: "https://github.com/Tahsin005/folderly",
+      tech: ["Node.js", "JavaScript", "CLI"]
+    },
+    {
+      name: "Matrix Image Rotator",
+      description: "Converts images to 2D pixel matrices and applies matrix algorithms for rotation.",
+      source: "https://github.com/Tahsin005/matrix-image-rotator",
+      tech: ["Go", "Algorithms"]
+    },
+    {
+      name: "Termnote",
+      description: "A high-performance, CLI-based markdown note-taking application written in Golang.",
+      source: "https://github.com/Tahsin005/termnote",
+      tech: ["Go", "CLI", "Markdown"]
+    },
+    {
+      name: "Deen Daily",
+      description: "React Native application providing prayer times, Qibla, and fasting schedules based on location.",
+      source: "https://github.com/Tahsin005/deen-daily",
+      tech: ["React Native", "Expo"]
+    },
+    {
+      name: "MiniGit VCS",
+      description: "Minimal version control system in JavaScript implementing init, add, commit, log, and diff.",
+      source: "https://github.com/Tahsin005/minigit-vcs",
+      tech: ["JavaScript", "CLI"]
+    }
+  ];
+
   return (
     <section className="section-shell relative overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
@@ -247,6 +286,56 @@ const Projects = () => {
                       </span>
                     ))}
                   </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {/* Fun & Cool Section */}
+        <div className="mt-24 mb-12 text-center">
+          <ScrollReveal>
+            <h3 className="text-2xl font-display font-semibold text-foreground mb-4">
+              Fun & Cool <span className="text-primary">Experiments</span>
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Smaller projects, CLI tools, and creative experiments I've worked on
+            </p>
+          </ScrollReveal>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {funProjects.map((project, index) => (
+            <ScrollReveal key={index} delay={`delay-${(index % 3 + 1) * 100}`}>
+              <div className="glass-card glass-hover p-5 rounded-xl h-full flex flex-col group border border-border/50">
+                <div className="flex justify-between items-start mb-3">
+                  <h4 className="font-display text-[17px] font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {project.name}
+                  </h4>
+                  <div className="flex gap-2">
+                    <a
+                      href={project.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                      title="View Source Code"
+                    >
+                      <Github size={18} />
+                    </a>
+                  </div>
+                </div>
+                <p className="font-body text-[13px] text-muted-foreground mb-4 flex-1">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="text-[10px] font-medium px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
             </ScrollReveal>

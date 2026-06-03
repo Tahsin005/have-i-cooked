@@ -14,7 +14,7 @@
   <h3 align="center">MD. Tahsin Ferdous</h3>
 
    <div align="center">
-     Competitive Programmer, ICPC Dhaka Regional Contestant - 2024, Full Stack Developer
+     Competitive Programmer, ICPC Dhaka Regional Contestant - 2024, 2025, Full Stack Developer
     </div>
 </div>
 

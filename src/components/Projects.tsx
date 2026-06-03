@@ -182,16 +182,16 @@ const Projects = () => {
 
   const funProjects = [
     {
+      name: "Database Backup Tool",
+      description: "A command-line utility written in Go for backing up, restoring, and monitoring PostgreSQL databases",
+      source: "https://github.com/Tahsin005/database-backup-tool",
+      tech: ["Go", "CLI"]
+    },
+    {
       name: "Intersteller Omarchy Theme",
       description: "Intersteller inspired deep-space and accretion disk palette for the Omarchy ecosystem.",
       source: "https://github.com/Tahsin005/intersteller-omarchy-theme",
       tech: ["Hyprland", "CSS", "Neovim"]
-    },
-    {
-      name: "Folderly",
-      description: "A CLI based npm package for automatically organizing files into categorized folders.",
-      source: "https://github.com/Tahsin005/folderly",
-      tech: ["Node.js", "JavaScript", "CLI"]
     },
     {
       name: "Matrix Image Rotator",
@@ -216,6 +216,27 @@ const Projects = () => {
       description: "Minimal version control system in JavaScript implementing init, add, commit, log, and diff.",
       source: "https://github.com/Tahsin005/minigit-vcs",
       tech: ["JavaScript", "CLI"]
+    },
+    
+  ];
+  const openSourceProjects = [
+    {
+      name: "Folderly",
+      description: "A CLI based npm package for automatically organizing files into categorized folders.",
+      source: "https://github.com/Tahsin005/folderly",
+      tech: ["Node.js", "JavaScript", "CLI"]
+    },
+    {
+      name: "nmclean (Node Modules Cleaner)",
+      description: "A simple and efficient Node.js CLI tool to recursively find and delete node_modules directories from your project and its subdirectories.",
+      source: "https://github.com/mdsiaofficial/nmclean",
+      tech: ["NPM", "CLI"]
+    },
+    {
+      name: "Codeforces Stats Card",
+      description: "A tool to generate your Codeforces stats card for profile README",
+      source: "https://github.com/Andrew-Velox/codeforces-stats",
+      tech: ["Next.js", "Codeforces"]
     }
   ];
 
@@ -239,10 +260,8 @@ const Projects = () => {
           {projects.map((project, index) => (
             <ScrollReveal key={index} delay={`delay-${(index % 5 + 1) * 100}`}>
               <div className="glass-card glass-hover flex flex-col group rounded-xl h-full overflow-hidden">
-                {/* Image Slider at the top */}
                 <ProjectImageSlider images={project.images} projectName={project.name} />
 
-                {/* Card content */}
                 <div className="flex flex-col flex-1 p-5">
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="font-display text-[18px] font-semibold leading-[1.3] text-foreground group-hover:text-primary transition-colors">
@@ -292,7 +311,6 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Fun & Cool Section */}
         <div className="mt-24 mb-12 text-center">
           <ScrollReveal>
             <h3 className="text-2xl font-display font-semibold text-foreground mb-4">
@@ -306,6 +324,55 @@ const Projects = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {funProjects.map((project, index) => (
+            <ScrollReveal key={index} delay={`delay-${(index % 3 + 1) * 100}`}>
+              <div className="glass-card glass-hover p-5 rounded-xl h-full flex flex-col group border border-border/50">
+                <div className="flex justify-between items-start mb-3">
+                  <h4 className="font-display text-[17px] font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {project.name}
+                  </h4>
+                  <div className="flex gap-2">
+                    <a
+                      href={project.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                      title="View Source Code"
+                    >
+                      <Github size={18} />
+                    </a>
+                  </div>
+                </div>
+                <p className="font-body text-[13px] text-muted-foreground mb-4 flex-1">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="text-[10px] font-medium px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <div className="mt-20 mb-12 text-center">
+          <ScrollReveal>
+            <h3 className="text-2xl font-display font-semibold text-foreground mb-4">
+              Open <span className="text-primary">Source</span>
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Open-source tools and widgets I've contributed to
+            </p>
+          </ScrollReveal>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {openSourceProjects.map((project, index) => (
             <ScrollReveal key={index} delay={`delay-${(index % 3 + 1) * 100}`}>
               <div className="glass-card glass-hover p-5 rounded-xl h-full flex flex-col group border border-border/50">
                 <div className="flex justify-between items-start mb-3">

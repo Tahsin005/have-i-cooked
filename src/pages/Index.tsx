@@ -10,6 +10,8 @@ import Blogs from "@/components/Blogs";
 import Courses from "@/components/Courses";
 import Achievements from "@/components/Achievements";
 import ScrollToTop from "@/components/ScrollToTop";
+import AmbientBackground from "@/components/AmbientBackground";
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
@@ -23,7 +25,7 @@ const Index = () => {
 
   if (showSplash) {
     return (
-      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 backdrop-blur-xl overflow-hidden">
+      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 backdrop-blur-3xl overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '3s' }} />
 
         <div className="relative z-10 flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-1000">
@@ -37,7 +39,7 @@ const Index = () => {
             <img 
               src={logo} 
               alt="Tahsin Logo" 
-              className="relative w-40 h-40 md:w-56 md:h-56 object-contain animate-in zoom-in-75 duration-700 ease-out" 
+              className="relative w-40 h-40 md:w-56 md:h-56 object-contain animate-in zoom-in-75 duration-700 ease-out drop-shadow-2xl" 
             />
           </div>
           
@@ -54,7 +56,8 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background animate-in fade-in duration-1000">
+    <div className="min-h-screen bg-transparent animate-in fade-in duration-1000 relative">
+      <AmbientBackground />
       <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <main className="relative z-10">
         <div id="hero">
@@ -83,15 +86,13 @@ const Index = () => {
         </div>
       </main>
       {}
-      <footer className="border-t border-border/70 py-10 relative z-10">
-        <div className="max-w-4xl mx-auto px-8 text-center">
-          <div className="code-block inline-block">
-            <span className="syntax-comment">
-              // Never believe you are good enough
-            </span>
-          </div>
-          <p className="mt-4 text-muted-foreground text-xs font-display tracking-[0.2em]">
-            © 2026 MD. Tahsin Ferdous. All rights reserved.
+      <footer className="py-12 relative z-10 border-t border-white/5">
+        <div className="max-w-4xl mx-auto px-8 text-center space-y-3">
+          <p className="font-display text-[14px] text-foreground/40 tracking-wide">
+            Designed & built by <span className="text-foreground/70 font-medium">MD. Tahsin Ferdous</span>
+          </p>
+          <p className="font-display text-[12px] text-foreground/25 tracking-widest uppercase">
+            © {new Date().getFullYear()} · All rights reserved
           </p>
         </div>
       </footer>

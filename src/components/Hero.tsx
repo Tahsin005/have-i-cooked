@@ -1,36 +1,42 @@
 import { Github, Linkedin, Mail, MapPin, ArrowRight, Code, Sparkles, Cpu } from 'lucide-react';
 import tahsinLogo from '@/assets/tahsin-logo.png';
 import tahsinPhoto from '@/assets/hero-image.png';
-import DotGrid from '@/components/DotGrid';
+import { useState, useEffect } from 'react';
+
 const Hero = () => {
+    const [typedText, setTypedText] = useState("");
+    const fullText = "Full Stack Engineer & Creative Developer";
+
+    useEffect(() => {
+        let i = 0;
+        const typingInterval = setInterval(() => {
+            if (i < fullText.length) {
+                setTypedText(fullText.substring(0, i + 1));
+                i++;
+            } else {
+                clearInterval(typingInterval);
+            }
+        }, 50);
+        return () => clearInterval(typingInterval);
+    }, []);
+
     return (
-        <section className="section-shell min-h-screen flex items-center justify-center pt-24 md:pt-28 relative overflow-hidden">
-            <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
-                <DotGrid
-                    dotSize={2}
-                    gap={24}
-                    baseColor="#9231E8"
-                    activeColor="#1E904E"
-                    proximity={180}
-                    shockRadius={280}
-                    shockStrength={6}
-                    resistance={800}
-                    returnDuration={1.5}
-                />
-            </div>
+        <section className="section-shell min-h-screen flex items-center justify-center pt-24 md:pt-28 relative overflow-hidden border-none">
             <div className="w-full max-w-6xl relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8">
-                    <div className="glass-card glass-hover p-8 md:p-12 flex flex-col justify-between rounded-2xl animate-in fade-in slide-in-from-left-8 duration-1000">
+                    <div className="glass-card glass-hover p-8 md:p-12 flex flex-col justify-between rounded-2xl animate-in fade-in slide-in-from-left-8 duration-1000 relative overflow-hidden">
+                        {/* Decorative glitch lines */}
+                        <div className="absolute -left-10 top-20 w-32 h-[1px] bg-primary/40 rotate-45"></div>
+                        <div className="absolute -left-10 top-24 w-24 h-[1px] bg-accent-3/40 rotate-45"></div>
+                        
                         <div>
-                             <h1 className="font-display text-[clamp(44px,8vw,64px)] font-bold tracking-[-0.02em] leading-[1.05] mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500 fill-mode-both">
-                                MD. Tahsin<br />Ferdous
+                             <h1 className="font-display text-[clamp(60px,10vw,120px)] font-bold tracking-tighter leading-[0.9] mb-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+                                <span className="block -mb-2 md:-mb-4 text-foreground/90">Tahsin</span>
+                                <span className="block bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/40">Ferdous</span>
                             </h1>
-                            <p className="font-display text-[18px] font-normal tracking-[0.01em] text-primary mb-6 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-700 fill-mode-both">
-                                Full Stack Engineer
-                            </p>
-                            <p className="font-body text-[15px] font-normal italic leading-[1.7] text-muted-foreground max-w-lg animate-in fade-in slide-in-from-bottom-2 duration-700 delay-1000 fill-mode-both">
-                                Building scalable backend systems and crafting modern, accessible user experiences with precision.
-                            </p>
+                            <div className="font-display text-[18px] md:text-[22px] font-medium text-foreground/80 mb-8 animate-in fade-in duration-700 delay-700 flex items-center gap-3">
+                                <span>{typedText}</span>
+                            </div>
                         </div>
                         <div className="mt-10 flex flex-wrap items-center gap-4">
                             <a
@@ -107,22 +113,22 @@ const Hero = () => {
 
                                 {/* Floating Badges */}
                                 <div className="absolute -top-4 -right-8 z-20 animate-float delay-100">
-                                    <div className="glass-card px-4 py-2 rounded-xl flex items-center gap-2 text-[10px] font-display font-bold tracking-widest uppercase border-primary/40 shadow-xl shadow-primary/10 scale-90 md:scale-100">
-                                        <Code size={14} className="text-primary" />
+                                    <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 text-[12px] font-display font-medium tracking-wide border-white/10 shadow-xl scale-90 md:scale-100 text-foreground/90">
+                                        <Code size={14} className="text-foreground/70" />
                                         Full Stack
                                     </div>
                                 </div>
                                 
                                 <div className="absolute top-1/2 -left-12 -translate-y-1/2 z-20 animate-float delay-500">
-                                    <div className="glass-card px-4 py-2 rounded-xl flex items-center gap-2 text-[10px] font-display font-bold tracking-widest uppercase border-accent-2/40 shadow-xl shadow-accent-2/10 scale-90 md:scale-100">
-                                        <Sparkles size={14} className="text-accent-2" />
+                                    <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 text-[12px] font-display font-medium tracking-wide border-white/10 shadow-xl scale-90 md:scale-100 text-foreground/90">
+                                        <Sparkles size={14} className="text-foreground/70" />
                                         Problem Solver
                                     </div>
                                 </div>
                                 
                                 <div className="absolute -bottom-4 -right-10 z-20 animate-float delay-300">
-                                    <div className="glass-card px-4 py-2 rounded-xl flex items-center gap-2 text-[10px] font-display font-bold tracking-widest uppercase border-accent-3/40 shadow-xl shadow-accent-3/10 scale-90 md:scale-100">
-                                        <Cpu size={14} className="text-accent-3" />
+                                    <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 text-[12px] font-display font-medium tracking-wide border-white/10 shadow-xl scale-90 md:scale-100 text-foreground/90">
+                                        <Cpu size={14} className="text-foreground/70" />
                                         Architecture
                                     </div>
                                 </div>

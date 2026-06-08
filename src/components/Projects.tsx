@@ -1,6 +1,5 @@
 import { ExternalLink, Github } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
-import DotGrid from '@/components/DotGrid';
 import { useState, useEffect, useCallback } from 'react';
 import affpilot1 from '@/assets/project-ss/affpilot-1.png'
 import affpilot2 from '@/assets/project-ss/affpilot-2.png'
@@ -32,6 +31,14 @@ interface ProjectImageSliderProps {
   projectName: string;
 }
 
+const TiltCard = ({ children, className }: { children: React.ReactNode, className?: string }) => {
+  return (
+    <div className={`relative ${className || ''}`}>
+      {children}
+    </div>
+  );
+};
+
 const ProjectImageSlider = ({ images, projectName }: ProjectImageSliderProps) => {
   const [current, setCurrent] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -49,7 +56,7 @@ const ProjectImageSlider = ({ images, projectName }: ProjectImageSliderProps) =>
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{ height: '180px' }}
+      style={{ height: '180px', transform: 'translateZ(20px)' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -62,7 +69,7 @@ const ProjectImageSlider = ({ images, projectName }: ProjectImageSliderProps) =>
             <img
               src={img}
               alt={`${projectName} screenshot ${i + 1}`}
-              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
             />
           </div>
         ))}
@@ -81,11 +88,11 @@ const ProjectImageSlider = ({ images, projectName }: ProjectImageSliderProps) =>
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className="rounded-full transition-all duration-300 cursor-pointer border-0 p-0"
+              className="rounded-full transition-all duration-300 cursor-pointer border-0 p-0 hover:scale-150"
               style={{
-                width: i === current ? '16px' : '6px',
+                width: i === current ? '20px' : '6px',
                 height: '6px',
-                background: i === current ? 'var(--primary, #9231E8)' : 'rgba(255,255,255,0.35)',
+                background: i === current ? 'var(--primary, #9231E8)' : 'rgba(255,255,255,0.5)',
               }}
               aria-label={`Go to screenshot ${i + 1}`}
             />
@@ -241,28 +248,26 @@ const Projects = () => {
   ];
 
   return (
-    <section className="section-shell relative overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
-        <DotGrid dotSize={2} gap={24} baseColor="#9231E8" activeColor="#1E904E" proximity={180} shockRadius={280} shockStrength={6} resistance={800} returnDuration={1.5} />
-      </div>
+    <section className="section-shell relative overflow-hidden border-none" id="projects">
       <div className="max-w-6xl mx-auto relative z-10">
         {}
         <div className="mb-16 text-center">
           <div className="section-label mb-3"></div>
-          <h2 className="section-title mb-4">
-            <span className="text-primary">Projects</span>
+          <h2 className="font-display text-[clamp(40px,8vw,80px)] font-bold tracking-tighter mb-4">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">Projects</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A collection of projects I've built and contributed to
+          <p className="font-display text-[18px] md:text-[22px] text-foreground/70 max-w-2xl mx-auto">
+            A collection of projects I've built and contributed to.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <ScrollReveal key={index} delay={`delay-${(index % 5 + 1) * 100}`}>
-              <div className="glass-card glass-hover flex flex-col group rounded-xl h-full overflow-hidden">
-                <ProjectImageSlider images={project.images} projectName={project.name} />
+              <TiltCard className="h-full">
+                <div className="glass-card glass-shimmer glass-hover flex flex-col group rounded-xl h-full overflow-hidden border border-white/10 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] transition-all duration-500">
+                  <ProjectImageSlider images={project.images} projectName={project.name} />
 
-                <div className="flex flex-col flex-1 p-5">
+                  <div className="flex flex-col flex-1 p-5" style={{ transform: 'translateZ(30px)' }}>
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="font-display text-[18px] font-semibold leading-[1.3] text-foreground group-hover:text-primary transition-colors">
                       {project.name}
@@ -299,7 +304,62 @@ const Projects = () => {
                     {project.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="font-display text-[11px] font-medium tracking-[0.06em] px-2 py-1 rounded bg-secondary/50 text-secondary-foreground border border-border/30"
+                        className="font-display text-[12px] font-medium tracking-wide bg-white/5 text-foreground/80 px-4 py-1.5 rounded-full border border-white/10 shadow-sm"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              </TiltCard>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <div className="mt-24 mb-16 text-center">
+          <ScrollReveal>
+            <div className="section-label mb-3"></div>
+            <h3 className="font-display text-[clamp(30px,6vw,60px)] font-bold tracking-tighter mb-4">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">Fun & Cool </span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary/80 to-primary/40">Experiments</span>
+            </h3>
+            <p className="font-display text-[18px] md:text-[22px] text-foreground/70 max-w-2xl mx-auto">
+              Smaller projects, CLI tools, and creative experiments I've worked on.
+            </p>
+          </ScrollReveal>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+          {funProjects.map((project, index) => (
+            <ScrollReveal key={index} delay={`delay-${(index % 3 + 1) * 100}`}>
+              <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 hover:border-yellow-500/50 hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] transition-all duration-500 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex justify-between items-start mb-4">
+                    <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground group-hover:text-yellow-500 transition-colors">
+                      {project.name}
+                    </h4>
+                    <div className="flex gap-2">
+                      <a
+                        href={project.source}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-yellow-500 transition-colors bg-yellow-500/10 p-2 rounded-full border border-yellow-500/20"
+                        title="View Source Code"
+                      >
+                        <Github size={18} />
+                      </a>
+                    </div>
+                  </div>
+                  <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 group-hover:text-foreground/80 transition-colors">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="font-display text-[11px] font-medium tracking-wide bg-white/5 text-foreground/80 px-3 py-1 rounded-full border border-white/10 shadow-sm"
                       >
                         {tech}
                       </span>
@@ -311,98 +371,54 @@ const Projects = () => {
           ))}
         </div>
 
-        <div className="mt-24 mb-12 text-center">
+        <div className="mt-20 mb-16 text-center">
           <ScrollReveal>
-            <h3 className="text-2xl font-display font-semibold text-foreground mb-4">
-              Fun & Cool <span className="text-primary">Experiments</span>
+            <div className="section-label mb-3"></div>
+            <h3 className="font-display text-[clamp(30px,6vw,60px)] font-bold tracking-tighter mb-4">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">Open </span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary/80 to-primary/40">Source</span>
             </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Smaller projects, CLI tools, and creative experiments I've worked on
+            <p className="font-display text-[18px] md:text-[22px] text-foreground/70 max-w-2xl mx-auto">
+              Open-source tools and widgets I've contributed to.
             </p>
           </ScrollReveal>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {funProjects.map((project, index) => (
-            <ScrollReveal key={index} delay={`delay-${(index % 3 + 1) * 100}`}>
-              <div className="glass-card glass-hover p-5 rounded-xl h-full flex flex-col group border border-border/50">
-                <div className="flex justify-between items-start mb-3">
-                  <h4 className="font-display text-[17px] font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {project.name}
-                  </h4>
-                  <div className="flex gap-2">
-                    <a
-                      href={project.source}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                      title="View Source Code"
-                    >
-                      <Github size={18} />
-                    </a>
-                  </div>
-                </div>
-                <p className="font-body text-[13px] text-muted-foreground mb-4 flex-1">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="text-[10px] font-medium px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-
-        <div className="mt-20 mb-12 text-center">
-          <ScrollReveal>
-            <h3 className="text-2xl font-display font-semibold text-foreground mb-4">
-              Open <span className="text-primary">Source</span>
-            </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Open-source tools and widgets I've contributed to
-            </p>
-          </ScrollReveal>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {openSourceProjects.map((project, index) => (
             <ScrollReveal key={index} delay={`delay-${(index % 3 + 1) * 100}`}>
-              <div className="glass-card glass-hover p-5 rounded-xl h-full flex flex-col group border border-border/50">
-                <div className="flex justify-between items-start mb-3">
-                  <h4 className="font-display text-[17px] font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {project.name}
-                  </h4>
-                  <div className="flex gap-2">
-                    <a
-                      href={project.source}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                      title="View Source Code"
-                    >
-                      <Github size={18} />
-                    </a>
+              <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all duration-500 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex justify-between items-start mb-4">
+                    <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground group-hover:text-blue-500 transition-colors">
+                      {project.name}
+                    </h4>
+                    <div className="flex gap-2">
+                      <a
+                        href={project.source}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-blue-500 transition-colors bg-blue-500/10 p-2 rounded-full border border-blue-500/20"
+                        title="View Source Code"
+                      >
+                        <Github size={18} />
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <p className="font-body text-[13px] text-muted-foreground mb-4 flex-1">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="text-[10px] font-medium px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 group-hover:text-foreground/80 transition-colors">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="font-display text-[11px] font-medium tracking-wide bg-white/5 text-foreground/80 px-3 py-1 rounded-full border border-white/10 shadow-sm"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </ScrollReveal>

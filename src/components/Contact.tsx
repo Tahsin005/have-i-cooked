@@ -3,15 +3,18 @@ import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import { Mail, MapPin, Send, Loader2, Linkedin, Github, BookOpen } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
-import DotGrid from '@/components/DotGrid';
+import { TiltCard } from "./TiltCard";
+
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -41,158 +44,166 @@ const Contact = () => {
         }
       );
   };
+
   return (
-    <section className="section-shell relative overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
-        <DotGrid dotSize={2} gap={24} baseColor="#9231E8" activeColor="#1E904E" proximity={180} shockRadius={280} shockStrength={6} resistance={800} returnDuration={1.5} />
-      </div>
+    <section className="section-shell relative overflow-hidden border-none" id="contact">
       <div className="max-w-6xl mx-auto relative z-10">
-        {}
         <div className="mb-16 text-center">
           <div className="section-label mb-3"></div>
-          <h2 className="section-title mb-4">
-            Get In <span className="text-primary">Touch</span>
+          <h2 className="font-display text-[clamp(40px,8vw,80px)] font-bold tracking-tighter mb-4">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">Get In </span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary/80 to-primary/40">Touch</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a question or want to work together? Drop me a message!
+          <p className="font-display text-[18px] md:text-[22px] text-foreground/70 max-w-2xl mx-auto">
+            Have a question or want to work together? Drop me a message.
           </p>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {}
-          <ScrollReveal animation="animate-in fade-in slide-in-from-left-8 duration-1000" className="space-y-8">
-            <ScrollReveal animation="animate-in fade-in slide-in-from-bottom-4 duration-700" delay="delay-200">
-            <div className="glass-card glass-hover p-6 rounded-xl h-full">
-              <h3 className="text-xl font-bold mb-6">
-                Contact <span className="text-primary">Information</span>
-              </h3>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-2 rounded mr-4">
-                    <Mail className="text-primary" size={20} />
-                  </div>
-                  <div>
-                    <p className="font-body text-[14px] font-normal leading-[1.6] text-muted-foreground mb-1">Email</p>
-                    <a href="mailto:tahsin.ferdous3546@gmail.com" className="font-body text-[14px] font-normal leading-[1.6] text-foreground hover:text-primary transition-colors font-medium">
-                      tahsin.ferdous3546@gmail.com
-                    </a>
+          <div className="space-y-8 h-full flex flex-col">
+            <ScrollReveal animation="animate-in fade-in slide-in-from-left-8 duration-700" delay="delay-200" className="flex-1">
+              <TiltCard className="h-full">
+                <div className="glass-card glass-hover p-8 rounded-2xl h-full border border-white/5 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] transition-all duration-500 overflow-hidden relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div style={{ transform: 'translateZ(30px)' }}>
+                    <h3 className="text-2xl font-display font-bold mb-8 tracking-wider text-foreground transition-colors">
+                      Contact Information
+                    </h3>
+                    <div className="space-y-8">
+                      <div className="flex items-start">
+                        <div className="bg-white/5 p-3 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors duration-300 mr-5">
+                          <Mail className="text-foreground/80 group-hover:text-foreground" size={24} />
+                        </div>
+                        <div>
+                          <p className="font-display text-[12px] uppercase tracking-wide text-foreground/50 mb-2">Email</p>
+                          <a href="mailto:tahsin.ferdous3546@gmail.com" className="font-display text-[14px] md:text-[16px] leading-[1.6] text-foreground/80 hover:text-foreground transition-colors font-medium">
+                            tahsin.ferdous3546@gmail.com
+                          </a>
+                        </div>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="bg-white/5 p-3 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors duration-300 mr-5">
+                          <MapPin className="text-foreground/80 group-hover:text-foreground" size={24} />
+                        </div>
+                        <div>
+                          <p className="font-display text-[12px] uppercase tracking-wide text-foreground/50 mb-2">Location</p>
+                          <p className="font-display text-[14px] md:text-[16px] leading-[1.6] text-foreground/80 font-medium transition-colors">Dhaka, Bangladesh (UTC+6)</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-2 rounded mr-4">
-                    <MapPin className="text-primary" size={20} />
-                  </div>
-                  <div>
-                    <p className="font-body text-[14px] font-normal leading-[1.6] text-muted-foreground mb-1">Location</p>
-                    <p className="font-body text-[14px] font-normal leading-[1.6] text-foreground font-medium">Dhaka, Bangladesh (UTC+6)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </TiltCard>
             </ScrollReveal>
-            <ScrollReveal animation="animate-in fade-in slide-in-from-bottom-4 duration-700" delay="delay-400">
-            <div className="glass-card glass-hover p-6 rounded-xl h-full">
-              <h3 className="text-xl font-bold mb-6">
-                Social <span className="text-primary">Links</span>
-              </h3>
-              <div className="flex flex-wrap gap-4">
-                <a
-                  href="https://github.com/tahsin005"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-body text-[14px] font-normal leading-[1.6] flex items-center gap-2 bg-secondary/50 text-secondary-foreground px-4 py-2 rounded border border-border/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
-                >
-                  <Github size={20} />
-                  <span>GitHub</span>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/md-tahsin-ferdous/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-body text-[14px] font-normal leading-[1.6] flex items-center gap-2 bg-secondary/50 text-secondary-foreground px-4 py-2 rounded border border-border/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
-                >
-                  <Linkedin size={20} />
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href="https://purpleonion.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-body text-[14px] font-normal leading-[1.6] flex items-center gap-2 bg-secondary/50 text-secondary-foreground px-4 py-2 rounded border border-border/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
-                >
-                  <BookOpen size={20} />
-                  <span>Purple Onion</span>
-                </a>
-              </div>
-            </div>
+
+            <ScrollReveal animation="animate-in fade-in slide-in-from-left-8 duration-700" delay="delay-400" className="flex-1">
+              <TiltCard className="h-full">
+                <div className="glass-card glass-hover p-8 rounded-2xl h-full border border-white/5 transition-all duration-500 overflow-hidden relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div style={{ transform: 'translateZ(30px)' }}>
+                    <h3 className="text-2xl font-display font-bold mb-8 tracking-wider text-foreground transition-colors">
+                      Social Links
+                    </h3>
+                    <div className="flex flex-wrap gap-4">
+                      <a
+                        href="https://github.com/tahsin005"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-display text-[13px] tracking-wide font-medium flex items-center gap-3 bg-white/5 text-foreground/80 px-5 py-3 rounded-full border border-white/10 hover:bg-white/10 hover:text-foreground transition-all duration-300 shadow-sm"
+                      >
+                        <Github size={18} />
+                        <span>GitHub</span>
+                      </a>
+                      <a
+                        href="https://www.linkedin.com/in/md-tahsin-ferdous/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-display text-[13px] tracking-wide font-medium flex items-center gap-3 bg-white/5 text-foreground/80 px-5 py-3 rounded-full border border-white/10 hover:bg-white/10 hover:text-foreground transition-all duration-300 shadow-sm"
+                      >
+                        <Linkedin size={18} />
+                        <span>LinkedIn</span>
+                      </a>
+                      <a
+                        href="https://purpleonion.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-display text-[13px] tracking-wide font-medium flex items-center gap-3 bg-white/5 text-foreground/80 px-5 py-3 rounded-full border border-white/10 hover:bg-white/10 hover:text-foreground transition-all duration-300 shadow-sm"
+                      >
+                        <BookOpen size={18} />
+                        <span>Blog</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </TiltCard>
             </ScrollReveal>
-          </ScrollReveal>
-          {}
-          <ScrollReveal animation="animate-in fade-in slide-in-from-right-8 duration-1000" className="h-full">
-          <div className="glass-card rounded-xl shadow-xl overflow-hidden flex flex-col h-full bg-card/30">
-            <div className="bg-secondary/50 border-b border-border p-3 flex items-center space-x-2">
-              <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
-              <span className="ml-2 text-xs text-muted-foreground">Send Message</span>
-            </div>
-            <form ref={formRef} onSubmit={handleSubmit} className="p-6 space-y-6 flex-1 flex flex-col">
-              <div className="space-y-4 flex-1">
-                <div>
-                  <label htmlFor="name" className="text-foreground block mb-2 text-sm font-medium">
-                    Name
-                  </label>
-                  <input
-                    name="name"
-                    type="text"
-                    id="name"
-                    required
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder="Your name"
-                    className="w-full bg-background/50 border border-border rounded px-4 py-2 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-muted-foreground/50"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="text-foreground block mb-2 text-sm font-medium">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="your.email@example.com"
-                    className="w-full bg-background/50 border border-border rounded px-4 py-2 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-muted-foreground/50"
-                  />
-                </div>
-                <div className="flex-1">
-                  <label htmlFor="message" className="text-foreground block mb-2 text-sm font-medium">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    id="message"
-                    required
-                    rows={5}
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder="Your message..."
-                    className="w-full bg-background/50 border border-border rounded px-4 py-2 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-muted-foreground/50 resize-none"
-                  ></textarea>
-                </div>
-              </div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-primary text-primary-foreground font-bold py-3 rounded flex items-center justify-center gap-2 hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
-              >
-                {loading ? <Loader2 className="animate-spin" /> : <Send className="group-hover:translate-x-1 transition-transform" size={18} />}
-                {loading ? "Sending..." : "Send Message"}
-              </button>
-            </form>
           </div>
+
+          <ScrollReveal animation="animate-in fade-in slide-in-from-right-8 duration-1000" className="h-full">
+            <TiltCard className="h-full">
+              <div className="glass-card glass-hover rounded-2xl overflow-hidden flex flex-col h-full transition-all duration-500 group relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                
+                <form ref={formRef} onSubmit={handleSubmit} className="p-8 space-y-6 flex-1 flex flex-col relative z-10" style={{ transform: 'translateZ(20px)' }}>
+                  <div className="space-y-6 flex-1">
+                    <div>
+                      <label htmlFor="name" className="text-foreground/70 block mb-2 font-display text-[13px] tracking-wide font-medium">
+                        Name
+                      </label>
+                      <input
+                        name="name"
+                        type="text"
+                        id="name"
+                        required
+                        value={form.name}
+                        onChange={handleChange}
+                        placeholder="Your name"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-display text-sm text-foreground focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 placeholder:text-foreground/30 transition-all shadow-inner"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="text-foreground/70 block mb-2 font-display text-[13px] tracking-wide font-medium">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        value={form.email}
+                        onChange={handleChange}
+                        placeholder="your.email@example.com"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-display text-sm text-foreground focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 placeholder:text-foreground/30 transition-all shadow-inner"
+                      />
+                    </div>
+                    <div className="flex-1 flex flex-col">
+                      <label htmlFor="message" className="text-foreground/70 block mb-2 font-display text-[13px] tracking-wide font-medium">
+                        Message
+                      </label>
+                      <textarea
+                        name="message"
+                        id="message"
+                        required
+                        rows={6}
+                        value={form.message}
+                        onChange={handleChange}
+                        placeholder="Your message..."
+                        className="w-full flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-display text-sm text-foreground focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 placeholder:text-foreground/30 resize-none transition-all shadow-inner"
+                      ></textarea>
+                    </div>
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-white/10 text-foreground border border-white/20 font-display font-medium tracking-wide py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group/btn shadow-sm"
+                  >
+                    {loading ? <Loader2 className="animate-spin" /> : <Send className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-300" size={18} />}
+                    {loading ? "Sending..." : "Send Message"}
+                  </button>
+                </form>
+              </div>
+            </TiltCard>
           </ScrollReveal>
         </div>
       </div>
@@ -201,9 +212,11 @@ const Contact = () => {
           background: 'hsl(var(--card))',
           color: 'hsl(var(--foreground))',
           border: '1px solid hsl(var(--border))',
+          fontFamily: 'monospace'
         }
       }} />
     </section>
   );
 };
+
 export default Contact;

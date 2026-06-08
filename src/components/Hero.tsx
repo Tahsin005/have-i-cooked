@@ -22,10 +22,6 @@ const Hero = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8">
                     <div className="glass-card glass-hover p-8 md:p-12 flex flex-col justify-between rounded-2xl animate-in fade-in slide-in-from-left-8 duration-1000">
                         <div>
-                            <div className="hero-tag mb-6 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-300 fill-mode-both">
-                                <span className="inline-block w-8 h-px bg-primary"></span>
-                                Engineering Portfolio
-                            </div>
                              <h1 className="font-display text-[clamp(44px,8vw,64px)] font-bold tracking-[-0.02em] leading-[1.05] mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500 fill-mode-both">
                                 MD. Tahsin<br />Ferdous
                             </h1>

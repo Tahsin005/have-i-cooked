@@ -6,27 +6,27 @@ const Skills = () => {
   const categories = [
     {
       title: "Languages",
-      icon: <Code2 className="text-primary" size={24} />,
+      icon: <Code2 className="text-foreground/60" size={24} />,
       skills: ["Python", "JavaScript", "GoLang", "C++", "Java", "C", "TypeScript"],
     },
     {
       title: "Backend",
-      icon: <Server className="text-primary" size={24} />,
+      icon: <Server className="text-foreground/60" size={24} />,
       skills: ["Django", "DRF", "Node.js", "Express.js", "Gin", "Gorm"],
     },
     {
       title: "Frontend",
-      icon: <Layout className="text-primary" size={24} />,
+      icon: <Layout className="text-foreground/60" size={24} />,
       skills: ["React", "Next.js", "Tailwind CSS", "HTML5/CSS3", "Redux"],
     },
     {
       title: "Databases",
-      icon: <Database className="text-primary" size={24} />,
+      icon: <Database className="text-foreground/60" size={24} />,
       skills: ["PostgreSQL", "MongoDB", "Redis"],
     },
     {
       title: "DevOps & Tools",
-      icon: <Wrench className="text-primary" size={24} />,
+      icon: <Wrench className="text-foreground/60" size={24} />,
       skills: ["Docker", "CI/CD", "Nginx", "AWS", "Linux", "Git", "GitHub"],
     },
   ];

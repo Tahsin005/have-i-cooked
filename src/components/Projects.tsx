@@ -24,6 +24,7 @@ import northwind3 from '@/assets/project-ss/northwind3.png'
 import northwind4 from '@/assets/project-ss/northwind4.png'
 import northwind5 from '@/assets/project-ss/northwind5.png'
 import northwind6 from '@/assets/project-ss/northwind6.png'
+import ecommerceMicroservices from '@/assets/project-ss/ecommerce-microservices.png'
 
 
 interface ProjectImageSliderProps {
@@ -130,6 +131,14 @@ const Projects = () => {
         "AffPilot is an AI-powered content automation platform for creators and agencies. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot's suite of products.",
       link: "https://affpilot.com/",
       images: [affpilot1, affpilot2]
+    },
+    {
+      name: "E-Commerce Microservices",
+      tech: ["express", "gRPC", "redis", "rabbitmq", "docker", "node.js"],
+      description:
+        "A production-grade E-Commerce backend built with a Node.js microservices architecture. Features gRPC for high-performance inter-service communication, RabbitMQ for async event-driven messaging, Redis caching for low-latency responses, and a centralized API Gateway — all containerized with Docker for seamless deployment.",
+      source: "https://github.com/Tahsin005/ecommerce-microservices",
+      images: [ecommerceMicroservices]
     },
     {
       name: "Northwind",
@@ -284,15 +293,17 @@ const Projects = () => {
                           <Github size={20} />
                         </a>
                       )}
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                        title="Live Demo"
-                      >
-                        <ExternalLink size={20} />
-                      </a>
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          title="Live Demo"
+                        >
+                          <ExternalLink size={20} />
+                        </a>
+                      )}
                     </div>
                   </div>
 

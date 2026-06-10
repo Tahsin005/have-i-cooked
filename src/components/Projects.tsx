@@ -24,7 +24,7 @@ import northwind3 from '@/assets/project-ss/northwind3.png'
 import northwind4 from '@/assets/project-ss/northwind4.png'
 import northwind5 from '@/assets/project-ss/northwind5.png'
 import northwind6 from '@/assets/project-ss/northwind6.png'
-import ecommerceMicroservices from '@/assets/project-ss/ecommerce-microservices.png'
+import ecommerceMicroservices from '@/assets/project-ss/ecommicroservices.jpg'
 
 
 interface ProjectImageSliderProps {

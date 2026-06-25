@@ -25,6 +25,7 @@ import northwind4 from '@/assets/project-ss/northwind4.png'
 import northwind5 from '@/assets/project-ss/northwind5.png'
 import northwind6 from '@/assets/project-ss/northwind6.png'
 import ecommerceMicroservices from '@/assets/project-ss/ecommicroservices.jpg'
+import ragSearchEngine from '@/assets/project-ss/rag-search-engine.png'
 
 
 interface ProjectImageSliderProps {
@@ -141,11 +142,19 @@ const Projects = () => {
       images: [ecommerceMicroservices]
     },
     {
+      name: "RAG Search Engine",
+      tech: ["python", "sentence-transformers", "google-genai", "nltk", "numpy", "pillow"],
+      description:
+        "A comprehensive Retrieval-Augmented Generation search engine implementing keyword (BM25/TF-IDF), semantic (sentence-transformers), and hybrid (Reciprocal Rank Fusion) search paradigms. Integrates Google GenAI (Gemini/Gemma) and CLIP embeddings for multimodal image-to-text queries and context-aware conversational responses with accurate source citations.",
+      source: "https://github.com/Tahsin005/rag-search-engine",
+      images: [ragSearchEngine]
+    },
+    {
       name: "Northwind",
       tech: ["react", "tailwind", "express", "postgres", "polar payment", "stream"],
       description:
         "Northwind is a high-performance, full-stack e-commerce platform designed for modern retail. It seamlessly integrates product management, secure checkout, and real-time customer support via chat and video calls, providing a premium experience for both customers and administrators.",
-      link: "https://northwind-4967.onrender.com/",
+      link: "https://northwind-kappa.vercel.app/",
       source: "https://github.com/Tahsin005/northwind",
       images: [northwind, northwind1, northwind2, northwind3, northwind4, northwind5, northwind6]
     },
@@ -197,6 +206,18 @@ const Projects = () => {
   ];
 
   const funProjects = [
+    {
+      name: "Leet-Daemon",
+      description: "A scalable, LeetCode-style microservices platform for securely evaluating untrusted user code. Features three Node.js/TypeScript microservices communicating via gRPC, MongoDB persistence, BullMQ with Redis for async job queuing, and a highly secure Docker-based evaluation worker with strict CPU, memory, and network constraints.",
+      source: "https://github.com/Tahsin005/leet-daemon",
+      tech: ["Node.js", "TypeScript", "Docker", "gRPC", "Redis", "MongoDB"]
+    },
+    {
+      name: "Somewhat Simple AI Agent",
+      description: "A lightweight, autonomous AI agent that interprets natural language prompts to independently navigate codebases, find bugs, and execute code fixes using the Google GenAI SDK (Gemini 2.5 Flash) with a robust tool-calling architecture.",
+      source: "https://github.com/Tahsin005/somewhat-simple-ai-agent",
+      tech: ["Python", "Google GenAI SDK", "Gemini API"]
+    },
     {
       name: "Database Backup Tool",
       description: "A command-line utility written in Go for backing up, restoring, and monitoring PostgreSQL databases",

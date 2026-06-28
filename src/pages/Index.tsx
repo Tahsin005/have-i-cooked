@@ -11,6 +11,7 @@ import Courses from "@/components/Courses";
 import Achievements from "@/components/Achievements";
 import ScrollToTop from "@/components/ScrollToTop";
 import AmbientBackground from "@/components/AmbientBackground";
+import Chatbot from "@/components/Chatbot";
 
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -97,6 +98,7 @@ const Index = () => {
         </div>
       </footer>
       <ScrollToTop />
+      <Chatbot />
     </div>
   );
 };

@@ -11,12 +11,10 @@ const AmbientBackground = () => {
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1] mix-blend-screen">
-      {/* Giant blurred orbs floating in background */}
       <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/20 rounded-full blur-[100px] md:blur-[150px] animate-blob" />
       <div className="absolute top-[20%] right-[-10%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-accent-2/20 rounded-full blur-[100px] md:blur-[140px] animate-blob" style={{ animationDelay: '2s' }} />
       <div className="absolute bottom-[-20%] left-[20%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] bg-blue-500/15 rounded-full blur-[100px] md:blur-[160px] animate-blob" style={{ animationDelay: '4s' }} />
       
-      {/* Subtle noise overlay */}
       <div 
         className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
         style={{

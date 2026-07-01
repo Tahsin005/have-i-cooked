@@ -25,7 +25,6 @@ const Hero = () => {
             <div className="w-full max-w-6xl relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8">
                     <div className="glass-card glass-hover p-8 md:p-12 flex flex-col justify-between rounded-2xl animate-in fade-in slide-in-from-left-8 duration-1000 relative overflow-hidden">
-                        {/* Decorative glitch lines */}
                         <div className="absolute -left-10 top-20 w-32 h-[1px] bg-primary/40 rotate-45"></div>
                         <div className="absolute -left-10 top-24 w-24 h-[1px] bg-accent-3/40 rotate-45"></div>
                         
@@ -107,11 +106,9 @@ const Hero = () => {
                     <div className="flex flex-col gap-6">
                         <div className="glass-panel glass-hover p-8 md:p-10 flex flex-col items-center justify-center text-center rounded-2xl animate-in fade-in slide-in-from-right-8 duration-1000 group">
                             <div className="mb-6 relative">
-                                {/* Decorative Glow Background */}
                                 <div className="absolute -inset-10 bg-primary/10 blur-[80px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"></div>
                                 <div className="absolute -inset-4 bg-accent-2/5 blur-[40px] rounded-full opacity-30 group-hover:opacity-60 transition-opacity duration-700 delay-100 pointer-events-none"></div>
 
-                                {/* Floating Badges */}
                                 <div className="absolute -top-4 -right-8 z-20 animate-float delay-100">
                                     <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 text-[12px] font-display font-medium tracking-wide border-white/10 shadow-xl scale-90 md:scale-100 text-foreground/90">
                                         <Code size={14} className="text-foreground/70" />
@@ -134,7 +131,6 @@ const Hero = () => {
                                 </div>
 
                                 <div className="w-52 h-52 md:w-60 md:h-60 rounded-3xl bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 p-8 shadow-2xl shadow-primary/20 hover:scale-[1.02] transition-all duration-700 group-hover:border-primary/30 relative overflow-hidden">
-                                     {/* Inner glow effect on hover */}
                                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent-2/10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
                                     <img
                                         src={tahsinPhoto}
@@ -144,7 +140,7 @@ const Hero = () => {
                                 </div>
                             </div>
                             <span className="inline-flex items-center px-4 py-2 rounded-full text-[11px] font-display uppercase tracking-[0.3em] bg-secondary/80 text-primary border border-border/70 mt-4">
-                                Portfolio 2026
+                                Am i the GOAT?
                             </span>
                         </div>
 

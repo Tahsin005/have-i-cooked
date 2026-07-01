@@ -18,7 +18,6 @@ const About = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Main About Card */}
           <ScrollReveal delay="delay-100" className="col-span-1 md:col-span-2">
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
@@ -41,7 +40,6 @@ const About = () => {
             </TiltCard>
           </ScrollReveal>
 
-          {/* Work Experience - Affpilot */}
           <ScrollReveal delay="delay-200">
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
@@ -66,7 +64,6 @@ const About = () => {
             </TiltCard>
           </ScrollReveal>
 
-          {/* Internship - Lexaeon */}
           <ScrollReveal delay="delay-300">
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
@@ -91,7 +88,6 @@ const About = () => {
             </TiltCard>
           </ScrollReveal>
 
-          {/* Interests */}
           <ScrollReveal delay="delay-400">
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
@@ -119,7 +115,6 @@ const About = () => {
             </TiltCard>
           </ScrollReveal>
 
-          {/* Resume */}
           <ScrollReveal delay="delay-500" className="col-span-1 md:col-span-2 lg:col-span-1">
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group flex flex-col justify-between rounded-2xl h-full overflow-hidden">

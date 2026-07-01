@@ -374,8 +374,7 @@ function renderMarkdown(text: string): string {
 function BotAvatar() {
   return (
     <div
-      className="w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-xs shrink-0 mt-0.5"
-      style={{ background: "linear-gradient(135deg, hsl(272,80%,55%), hsl(258,90%,70%))" }}
+      className="w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-xs shrink-0 mt-0.5 bg-gradient-to-br from-white/20 to-white/5 border border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-md"
     >
       T
     </div>
@@ -388,20 +387,11 @@ function ChatMessage({ msg }: { msg: Message }) {
     <div className={`flex gap-2 ${isUser ? "flex-row-reverse" : "flex-row"}`}>
       {!isUser && <BotAvatar />}
       <div
-        className={`max-w-[78%] px-3 py-2.5 rounded-2xl text-[13px] leading-relaxed ${
-          isUser ? "rounded-tr-sm text-white" : "rounded-tl-sm text-white/85"
+        className={`max-w-[78%] px-3 py-2.5 rounded-2xl text-[13px] leading-relaxed backdrop-blur-md shadow-sm ${
+          isUser 
+            ? "rounded-tr-sm text-white bg-white/20 border border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)]" 
+            : "rounded-tl-sm text-white/90 bg-black/20 border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
         }`}
-        style={
-          isUser
-            ? {
-                background: "linear-gradient(135deg, hsl(272,80%,45%), hsl(258,90%,58%))",
-                boxShadow: "0 2px 12px hsl(272 80% 55% / 0.3)",
-              }
-            : {
-                background: "hsl(246 45% 14% / 0.8)",
-                border: "1px solid hsl(255 30% 30% / 0.4)",
-              }
-        }
         dangerouslySetInnerHTML={{ __html: renderMarkdown(msg.text) }}
       />
     </div>
@@ -413,16 +403,12 @@ function TypingIndicator() {
     <div className="flex gap-2 items-end">
       <BotAvatar />
       <div
-        className="px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-1"
-        style={{
-          background: "hsl(246 45% 14% / 0.8)",
-          border: "1px solid hsl(255 30% 30% / 0.4)",
-        }}
+        className="px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-1 bg-black/20 border border-white/10 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
       >
         {[0, 1, 2].map((i) => (
           <span
             key={i}
-            className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block animate-bounce"
+            className="w-1.5 h-1.5 rounded-full bg-white/50 inline-block animate-bounce"
             style={{ animationDelay: `${i * 150}ms`, animationDuration: "0.8s" }}
           />
         ))}
@@ -443,13 +429,10 @@ function OptionButton({
   return (
     <button
       onClick={onClick}
-      className="w-full text-left text-[12.5px] px-3 py-2 rounded-xl flex items-center gap-2
-        text-purple-200/80 border transition-all duration-200
-        hover:text-white hover:border-purple-500/50 hover:bg-purple-500/10 active:scale-[0.98]"
-      style={{
-        borderColor: "hsl(272 80% 55% / 0.25)",
-        background: "hsl(272 80% 55% / 0.05)",
-      }}
+      className="w-full text-left text-[12.5px] px-3 py-2.5 rounded-xl flex items-center gap-2
+        text-white/80 transition-all duration-300
+        bg-white/5 border border-white/10 hover:bg-white/15 hover:border-white/30 hover:text-white
+        hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] active:scale-[0.98] backdrop-blur-md"
     >
       {emoji && <span className="text-base leading-none shrink-0">{emoji}</span>}
       <span className="leading-tight">{label}</span>
@@ -555,7 +538,7 @@ const Chatbot = () => {
             </p>
             <button
               onClick={() => setView({ type: "topics" })}
-              className="text-[10.5px] text-purple-400/60 hover:text-purple-300 transition-colors"
+              className="text-[10.5px] text-white/60 hover:text-white/90 transition-colors"
             >
               ← All topics
             </button>
@@ -620,13 +603,11 @@ const Chatbot = () => {
           fixed bottom-6 right-6 z-[200]
           w-14 h-14 rounded-full
           flex items-center justify-center
-          transition-all duration-300 ease-out
-          ${isOpen ? "scale-90 rotate-12" : "scale-100 rotate-0 hover:scale-110"}
-          shadow-[0_8px_32px_hsl(272_80%_55%/0.5)]
+          transition-all duration-500 ease-out backdrop-blur-xl
+          bg-white/10 border border-white/20
+          ${isOpen ? "scale-90 rotate-12" : "scale-100 rotate-0 hover:scale-105"}
+          shadow-[0_8px_32px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]
         `}
-        style={{
-          background: "linear-gradient(135deg, hsl(272,80%,55%), hsl(258,90%,70%))",
-        }}
       >
         {isOpen ? (
           <X className="w-6 h-6 text-white" strokeWidth={2.5} />
@@ -635,8 +616,8 @@ const Chatbot = () => {
         )}
         {hasNotification && !isOpen && (
           <>
-            <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-background animate-ping" />
-            <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-background" />
+            <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-transparent animate-ping" />
+            <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-transparent" />
           </>
         )}
       </button>
@@ -646,46 +627,37 @@ const Chatbot = () => {
           fixed bottom-24 right-6 z-[199]
           w-[360px] sm:w-[400px]
           flex flex-col
-          rounded-2xl overflow-hidden
-          transition-all duration-300 ease-out
+          rounded-[24px] overflow-hidden
+          transition-all duration-500 ease-out backdrop-blur-2xl
+          bg-white/10 border border-white/20
+          shadow-[0_24px_48px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.4)]
           ${
             isOpen
               ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
-              : "opacity-0 translate-y-6 scale-95 pointer-events-none"
+              : "opacity-0 translate-y-8 scale-95 pointer-events-none"
           }
         `}
         style={{
           maxHeight: "580px",
-          background: "hsl(248 50% 8% / 0.95)",
-          backdropFilter: "blur(60px)",
-          border: "1px solid hsl(255 30% 30% / 0.6)",
-          boxShadow:
-            "inset 0 1.5px 1px rgba(255,255,255,0.12), 0 24px 64px rgba(0,0,0,0.65), 0 0 0 1px hsl(272 80% 55% / 0.15)",
         }}
       >
         <div
-          className="flex items-center gap-3 px-4 py-3 border-b shrink-0"
-          style={{
-            background: "linear-gradient(135deg, hsl(272,80%,15%), hsl(258,70%,12%))",
-            borderBottomColor: "hsl(255 30% 30% / 0.4)",
-          }}
+          className="flex items-center gap-3 px-4 py-3 border-b border-white/10 shrink-0 bg-black/10 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
         >
           <div className="relative">
             <div
-              className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm"
-              style={{ background: "linear-gradient(135deg, hsl(272,80%,55%), hsl(258,90%,70%))" }}
+              className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm bg-gradient-to-br from-white/20 to-white/5 border border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-md"
             >
               T
             </div>
             <span
-              className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2"
-              style={{ borderColor: "hsl(272,80%,15%)" }}
+              className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-transparent"
             />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-[13px] font-semibold text-white/90 leading-tight">TahBot</p>
-            <p className="text-[11px] text-white/40 leading-tight flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-purple-400" />
+            <p className="text-[11px] text-white/50 leading-tight flex items-center gap-1">
+              <Sparkles className="w-3 h-3 text-white/70" />
               Tahsin's assistant · Always online
             </p>
           </div>
@@ -720,9 +692,8 @@ const Chatbot = () => {
 
         {!isTyping && (
           <div
-            className="px-4 py-3 overflow-y-auto"
+            className="px-4 py-3 overflow-y-auto border-t border-white/10 bg-black/5"
             style={{
-              borderTop: "1px solid hsl(255 30% 30% / 0.25)",
               maxHeight: "260px",
             }}
           >

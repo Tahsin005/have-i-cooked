@@ -186,7 +186,7 @@ const Projects = () => {
       images: [rtwd]
     },
     {
-      name: "World Explorer",
+      name: "World Atlas",
       tech: ["react", "tailwindcss", "country-rest-api"],
       description:
         "A high-performance, modern cartographic dashboard built with React and the REST Countries API. This application provides a comprehensive geographic registry with technical data modules, visual identifiers, and optimized orbital scanning (search).",

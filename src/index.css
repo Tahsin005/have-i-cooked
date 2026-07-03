@@ -259,7 +259,6 @@
     text-shadow: 0 0 30px hsl(var(--primary) / 0.6);
   }
   
-  /* Float animation for Hero badges */
   @keyframes float {
     0%   { transform: translateY(0px); }
     50%  { transform: translateY(-10px); }
@@ -272,13 +271,28 @@
   .animate-float.delay-300 { animation-delay: 0.9s; }
   .animate-float.delay-500 { animation-delay: 1.5s; }
 
-  /* Shimmer sweep for glass cards on hover */
   @keyframes shimmer {
     0%   { transform: translateX(-100%) skewX(-15deg); }
     100% { transform: translateX(200%) skewX(-15deg); }
   }
   .animate-shimmer {
     animation: shimmer 1.8s ease-in-out infinite;
+  }
+
+  @keyframes skeleton-sweep {
+    0%   { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+  }
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--card) / 0.6) 25%,
+      hsl(var(--primary) / 0.07) 50%,
+      hsl(var(--card) / 0.6) 75%
+    );
+    background-size: 800px 100%;
+    animation: skeleton-sweep 1.6s ease-in-out infinite;
+    border-radius: 8px;
   }
 
   @keyframes marquee {
@@ -306,7 +320,6 @@
   }
 }
 
-/* ─── Scrollbar ───────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -326,7 +339,6 @@
   scrollbar-color: hsl(var(--primary) / 0.25) transparent;
 }
 
-/* ─── Glass shimmer helper ───────────────────────── */
 .glass-shimmer {
   position: relative;
   overflow: hidden;

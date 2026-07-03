@@ -49,7 +49,6 @@ const Skills = () => {
           </p>
         </div>
 
-        {/* Infinite Marquee Section */}
         <div className="w-full overflow-hidden mb-24 relative py-4 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <div className="flex w-[300%] animate-marquee gap-4 mb-6 hover:[animation-play-state:paused]">
             {marqueeSkills1.map((skill, i) => (
@@ -67,7 +66,6 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Detailed Categories */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {categories.map((category, index) => (
             <ScrollReveal key={index} delay={`delay-${(index % 5 + 1) * 100}`}>

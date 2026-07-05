@@ -1,5 +1,21 @@
-import { useState, useRef, useEffect, useCallback } from "react";
-import { MessageSquare, X, Sparkles, ChevronDown, RotateCcw } from "lucide-react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import {
+  MessageSquare,
+  X,
+  Sparkles,
+  ChevronDown,
+  RotateCcw,
+  User,
+  Briefcase,
+  Rocket,
+  Wrench,
+  CreditCard,
+  Database,
+  Trophy,
+  Target,
+  Users,
+  Dices,
+} from "lucide-react";
 
 // ─── Q&A Knowledge Base ─────────────────────────────────────────────────────
 interface QA {
@@ -300,55 +316,55 @@ const QA_MAP: Record<string, QA> = {
   },
 };
 
-const TOPICS: { label: string; emoji: string; questionIds: string[] }[] = [
+const TOPICS: { label: string; icon: React.ElementType; questionIds: string[] }[] = [
   {
     label: "About Me",
-    emoji: "👋",
+    icon: User,
     questionIds: ["about_yourself", "about_dev_type", "about_stack"],
   },
   {
     label: "Experience",
-    emoji: "💼",
+    icon: Briefcase,
     questionIds: ["exp_affpilot", "exp_contribution", "exp_challenges"],
   },
   {
     label: "Projects",
-    emoji: "🚀",
+    icon: Rocket,
     questionIds: ["proj_proud", "proj_northwind", "proj_microservices"],
   },
   {
     label: "Backend & Tools",
-    emoji: "🛠️",
+    icon: Wrench,
     questionIds: ["backend_django", "backend_rabbitmq", "backend_redis", "backend_docker"],
   },
   {
     label: "APIs & Payments",
-    emoji: "💳",
+    icon: CreditCard,
     questionIds: ["payments_gateways", "payments_security", "api_third_party", "api_rest"],
   },
   {
     label: "Databases",
-    emoji: "🗄️",
+    icon: Database,
     questionIds: ["db_which"],
   },
   {
     label: "Competitive Programming",
-    emoji: "🏆",
+    icon: Trophy,
     questionIds: ["cp_achievements", "cp_how_helped"],
   },
   {
     label: "Career & Goals",
-    emoji: "🎯",
+    icon: Target,
     questionIds: ["career_hire", "career_role", "career_5years", "career_strength"],
   },
   {
     label: "Working Style",
-    emoji: "🤝",
+    icon: Users,
     questionIds: ["work_team", "work_debug", "work_clean_code"],
   },
   {
     label: "Personal",
-    emoji: "🎲",
+    icon: Dices,
     questionIds: ["personal_lang", "personal_back_vs_front", "learn_currently"],
   },
 ];
@@ -420,11 +436,11 @@ function TypingIndicator() {
 function OptionButton({
   label,
   onClick,
-  emoji,
+  icon: Icon,
 }: {
   label: string;
   onClick: () => void;
-  emoji?: string;
+  icon?: React.ElementType;
 }) {
   return (
     <button
@@ -434,7 +450,7 @@ function OptionButton({
         bg-white/5 border border-white/10 hover:bg-white/15 hover:border-white/30 hover:text-white
         hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] active:scale-[0.98] backdrop-blur-md"
     >
-      {emoji && <span className="text-base leading-none shrink-0">{emoji}</span>}
+      {Icon && <Icon className="w-4 h-4 shrink-0" />}
       <span className="leading-tight">{label}</span>
     </button>
   );
@@ -519,7 +535,7 @@ const Chatbot = () => {
               <OptionButton
                 key={i}
                 label={topic.label}
-                emoji={topic.emoji}
+                icon={topic.icon}
                 onClick={() => setView({ type: "questions", topicIndex: i })}
               />
             ))}
@@ -530,11 +546,12 @@ const Chatbot = () => {
 
     if (view.type === "questions") {
       const topic = TOPICS[view.topicIndex];
+      const Icon = topic.icon;
       return (
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <p className="text-[10.5px] text-white/30 font-medium tracking-wider uppercase px-0.5">
-              {topic.emoji} {topic.label}
+            <p className="flex items-center gap-1.5 text-[10.5px] text-white/30 font-medium tracking-wider uppercase px-0.5">
+              <Icon className="w-3.5 h-3.5" /> {topic.label}
             </p>
             <button
               onClick={() => setView({ type: "topics" })}

@@ -12,7 +12,7 @@ const Skills = () => {
     {
       title: "Backend",
       icon: <Server className="text-foreground/60" size={24} />,
-      skills: ["Django", "DRF", "Node.js", "Express.js", "Gin", "Gorm"],
+      skills: ["Django", "DRF", "Node.js", "Express.js", "Gin", "Gorm", "RabbitMQ", "gRPC"],
     },
     {
       title: "Frontend",

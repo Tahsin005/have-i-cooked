@@ -117,12 +117,13 @@ const About = () => {
 
           <ScrollReveal delay="delay-500" className="col-span-1 md:col-span-2 lg:col-span-1">
             <TiltCard className="h-full">
-              <div className="glass-card glass-shimmer glass-hover p-8 relative group flex flex-col justify-between rounded-2xl h-full overflow-hidden">
-                <div className="mb-6">
-                  <div className="bg-white/5 w-fit p-3 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors duration-300 mb-4">
-                    <FileText className="text-foreground/70" size={24} strokeWidth={1.5} />
+              <div className="glass-card glass-shimmer p-8 relative group flex flex-col justify-between rounded-2xl h-full overflow-hidden border-primary/30 bg-gradient-to-br from-primary/5 to-transparent hover:border-primary/50 hover:from-primary/10 hover:-translate-y-1.5 transition-all duration-500 ease-out shadow-[0_0_30px_hsl(var(--primary)/0.05)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.55),0_0_40px_hsl(var(--primary)/0.15)]">
+                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                <div className="relative z-10 mb-6">
+                  <div className="bg-primary/10 w-fit p-3 rounded-full border border-primary/20 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 mb-4 text-primary">
+                    <FileText size={24} strokeWidth={1.5} />
                   </div>
-                  <h3 className="font-display text-[20px] font-semibold tracking-tight text-foreground/90 mb-4">Resume</h3>
+                  <h3 className="font-display text-[20px] font-semibold tracking-tight text-foreground/90 mb-4 group-hover:text-primary transition-colors duration-300">Resume</h3>
                   <p className="font-display text-foreground/50 text-[14px] mb-8 leading-relaxed">
                     Check out my full resume for more details on my projects and experience.
                   </p>
@@ -131,7 +132,7 @@ const About = () => {
                   href="https://drive.google.com/file/d/1RM7AtJX7fXWBWjQuWxbM03gUSak7_L1k/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center font-display text-[14px] font-medium text-foreground/70 hover:text-foreground transition-all duration-300 group-hover:translate-x-1"
+                  className="relative z-10 inline-flex items-center justify-center font-display text-[14px] font-semibold text-primary-foreground bg-primary hover:bg-primary/90 px-6 py-3 rounded-full transition-all duration-300 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] group-hover:-translate-y-0.5"
                 >
                   View Resume <ArrowUpRight className="ml-2" size={18} />
                 </a>

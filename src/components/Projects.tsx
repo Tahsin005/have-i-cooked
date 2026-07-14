@@ -294,7 +294,7 @@ const Projects = () => {
           {projects.map((project, index) => (
             <ScrollReveal key={index} delay={`delay-${(index % 5 + 1) * 100}`}>
               <TiltCard className="h-full">
-                <div className="glass-card glass-shimmer glass-hover flex flex-col group rounded-xl h-full overflow-hidden border border-white/10 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] transition-all duration-500">
+                <div className="glass-card glass-shimmer glass-hover flex flex-col group rounded-xl h-full overflow-hidden border border-white/10 transition-all duration-500">
                   <ProjectImageSlider images={project.images} projectName={project.name} />
 
                   <div className="flex flex-col flex-1 p-5" style={{ transform: 'translateZ(30px)' }}>
@@ -365,11 +365,10 @@ const Projects = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
           {funProjects.map((project, index) => (
             <ScrollReveal key={index} delay={`delay-${(index % 3 + 1) * 100}`}>
-              <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 hover:border-yellow-500/50 hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] transition-all duration-500 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 transition-all duration-500 relative overflow-hidden">
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="flex justify-between items-start mb-4">
-                    <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground group-hover:text-yellow-500 transition-colors">
+                    <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground transition-colors">
                       {project.name}
                     </h4>
                     <div className="flex gap-2">
@@ -377,14 +376,14 @@ const Projects = () => {
                         href={project.source}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-yellow-500 transition-colors bg-yellow-500/10 p-2 rounded-full border border-yellow-500/20"
+                        className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
                         title="View Source Code"
                       >
                         <Github size={18} />
                       </a>
                     </div>
                   </div>
-                  <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 group-hover:text-foreground/80 transition-colors">
+                  <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 transition-colors">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -419,11 +418,10 @@ const Projects = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {openSourceProjects.map((project, index) => (
             <ScrollReveal key={index} delay={`delay-${(index % 3 + 1) * 100}`}>
-              <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all duration-500 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 transition-all duration-500 relative overflow-hidden">
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="flex justify-between items-start mb-4">
-                    <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground group-hover:text-blue-500 transition-colors">
+                    <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground transition-colors">
                       {project.name}
                     </h4>
                     <div className="flex gap-2">
@@ -431,14 +429,14 @@ const Projects = () => {
                         href={project.source}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-blue-500 transition-colors bg-blue-500/10 p-2 rounded-full border border-blue-500/20"
+                        className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
                         title="View Source Code"
                       >
                         <Github size={18} />
                       </a>
                     </div>
                   </div>
-                  <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 group-hover:text-foreground/80 transition-colors">
+                  <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 transition-colors">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">

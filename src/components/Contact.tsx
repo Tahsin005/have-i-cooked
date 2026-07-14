@@ -63,8 +63,7 @@ const Contact = () => {
           <div className="space-y-8 h-full flex flex-col">
             <ScrollReveal animation="animate-in fade-in slide-in-from-left-8 duration-700" delay="delay-200" className="flex-1">
               <TiltCard className="h-full">
-                <div className="glass-card glass-hover p-8 rounded-2xl h-full border border-white/5 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] transition-all duration-500 overflow-hidden relative group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="glass-card glass-hover p-8 rounded-2xl h-full border border-white/5 transition-all duration-500 overflow-hidden relative group">
                   <div style={{ transform: 'translateZ(30px)' }}>
                     <h3 className="text-2xl font-display font-bold mb-8 tracking-wider text-foreground transition-colors">
                       Contact Information

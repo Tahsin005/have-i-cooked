@@ -264,9 +264,9 @@ const Projects = () => {
       tech: ["Node.js", "JavaScript", "CLI"]
     },
     {
-      name: "nmclean (Node Modules Cleaner)",
-      description: "A simple and efficient Node.js CLI tool to recursively find and delete node_modules directories from your project and its subdirectories.",
-      source: "https://github.com/mdsiaofficial/nmclean",
+      name: "Node Snap",
+      description: "A simple and efficient CLI tool to recursively find and delete node_modules directories from your project and its subdirectories.",
+      source: "https://github.com/Tahsin005/node-snap",
       tech: ["NPM", "CLI"]
     },
     {

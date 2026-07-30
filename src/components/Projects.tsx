@@ -254,7 +254,19 @@ const Projects = () => {
       source: "https://github.com/Tahsin005/minigit-vcs",
       tech: ["JavaScript", "CLI"]
     },
-    
+    {
+      name: "Cyberdeck",
+      description: "A physical-style macro deck that repurposes an Android phone into a Stream Deck for Linux desktops.",
+      source: "https://github.com/Tahsin005/cyberdeck",
+      tech: ["Android", "Linux", "Bash", "Waybar"]
+    },
+    {
+      name: "Monochrome Emojis",
+      description: "A tiny Next.js API that serves customizable monochrome SVG and Lucide icons on demand, built for embedding in GitHub READMEs.",
+      source: "https://github.com/Tahsin005/monochrome-emojis",
+      link: "https://monochrome-emojis.vercel.app/",
+      tech: ["Next.js", "API", "SVG"]
+    },
   ];
   const openSourceProjects = [
     {
@@ -372,15 +384,28 @@ const Projects = () => {
                       {project.name}
                     </h4>
                     <div className="flex gap-2">
-                      <a
-                        href={project.source}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
-                        title="View Source Code"
-                      >
-                        <Github size={18} />
-                      </a>
+                      {project.source && (
+                        <a
+                          href={project.source}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                          title="View Source Code"
+                        >
+                          <Github size={18} />
+                        </a>
+                      )}
+                      {(project as any).link && (
+                        <a
+                          href={(project as any).link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                          title="Live Demo"
+                        >
+                          <ExternalLink size={18} />
+                        </a>
+                      )}
                     </div>
                   </div>
                   <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 transition-colors">
@@ -425,15 +450,28 @@ const Projects = () => {
                       {project.name}
                     </h4>
                     <div className="flex gap-2">
-                      <a
-                        href={project.source}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
-                        title="View Source Code"
-                      >
-                        <Github size={18} />
-                      </a>
+                      {project.source && (
+                        <a
+                          href={project.source}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                          title="View Source Code"
+                        >
+                          <Github size={18} />
+                        </a>
+                      )}
+                      {(project as any).link && (
+                        <a
+                          href={(project as any).link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                          title="Live Demo"
+                        >
+                          <ExternalLink size={18} />
+                        </a>
+                      )}
                     </div>
                   </div>
                   <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 transition-colors">

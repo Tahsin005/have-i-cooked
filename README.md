@@ -17,4 +17,3 @@
      Competitive Programmer, ICPC Dhaka Regional Contestant - 2024, 2025, Full Stack Developer
     </div>
 </div>
-

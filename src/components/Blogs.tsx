@@ -1,7 +1,12 @@
 import { ExternalLink, ArrowRight, PenTool, Clock } from "lucide-react";
-import ScrollReveal from "./ScrollReveal";
 import { TiltCard } from "./TiltCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { prefersReducedMotion } from "@/hooks/useGSAP";
+import SectionHeader from "./SectionHeader";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Post {
   slug: string;
@@ -36,6 +41,9 @@ const Blogs = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
     setLoading(true);
@@ -56,19 +64,76 @@ const Blogs = () => {
       });
   }, []);
 
+  // Animate blog cards after they're loaded
+  useEffect(() => {
+    if (loading || error || posts.length === 0 || hasAnimated.current || prefersReducedMotion()) return;
+
+    hasAnimated.current = true;
+
+    const ctx = gsap.context(() => {
+      if (gridRef.current) {
+        const cards = gridRef.current.querySelectorAll('.blog-card');
+        cards.forEach((card, i) => {
+          // Alternating left/right offset
+          const xOffset = i % 2 === 0 ? -40 : 40;
+
+          gsap.fromTo(
+            card,
+            {
+              y: 60,
+              x: xOffset,
+              opacity: 0,
+              scale: 0.95,
+            },
+            {
+              y: 0,
+              x: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              delay: i * 0.12,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 88%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        });
+      }
+
+      // CTA button
+      if (ctaRef.current) {
+        gsap.fromTo(
+          ctaRef.current,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: ctaRef.current,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+    });
+
+    return () => ctx.revert();
+  }, [loading, error, posts]);
+
   return (
     <section className="section-shell relative overflow-hidden border-none" id="blogs">
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="mb-16 text-center">
-          <div className="section-label mb-3"></div>
-          <h2 className="font-display text-[clamp(40px,8vw,80px)] font-bold tracking-tighter mb-4">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">Blogs &amp; </span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary/80 to-primary/40">Articles</span>
-          </h2>
-          <p className="font-display text-[18px] md:text-[22px] text-foreground/70 max-w-2xl mx-auto">
-            Thoughts and insights on software development.
-          </p>
-        </div>
+        <SectionHeader
+          title="Blogs &"
+          titleHighlight="Articles"
+          subtitle="Thoughts and insights on software development."
+        />
 
         {loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
@@ -78,22 +143,18 @@ const Blogs = () => {
                 className="glass-card p-8 rounded-2xl flex flex-col justify-between h-full border border-white/5"
                 style={{ minHeight: "260px", animationDelay: `${i * 80}ms` }}
               >
-                {/* top row: icon + external link */}
                 <div className="flex justify-between items-start mb-6">
                   <div className="skeleton w-11 h-11 rounded-full" />
                   <div className="skeleton w-5 h-5 rounded" />
                 </div>
 
-                {/* title */}
                 <div className="skeleton h-5 w-4/5 mb-2" />
                 <div className="skeleton h-5 w-3/5 mb-6" />
 
-                {/* description lines */}
                 <div className="skeleton h-3.5 w-full mb-2" />
                 <div className="skeleton h-3.5 w-full mb-2" />
                 <div className="skeleton h-3.5 w-2/3 mb-8" />
 
-                {/* footer */}
                 <div className="flex items-center gap-3 mt-auto">
                   <div className="skeleton h-7 w-16 rounded-full" />
                   <div className="skeleton h-3 w-3 rounded-full" />
@@ -113,9 +174,9 @@ const Blogs = () => {
         )}
 
         {!loading && !error && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {posts.map((post, index) => (
-              <ScrollReveal key={post.slug} delay={`delay-${(index + 1) * 100}`}>
+              <div key={post.slug} className="blog-card" style={{ opacity: 0 }}>
                 <TiltCard className="h-full">
                   <a
                     href={`${POST_BASE_URL}/${post.slug}`}
@@ -152,23 +213,21 @@ const Blogs = () => {
                     </div>
                   </a>
                 </TiltCard>
-              </ScrollReveal>
+              </div>
             ))}
           </div>
         )}
 
-        <div className="flex justify-center">
-          <ScrollReveal delay="delay-300">
-            <a
-              href="https://purpleonion.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center font-display tracking-wide text-foreground/80 font-medium hover:text-foreground transition-all duration-300 group text-[14px] px-8 py-4 glass-card rounded-full"
-            >
-              <span>View all posts</span>
-              <ArrowRight size={18} className="ml-3 group-hover:translate-x-2 transition-transform duration-300" />
-            </a>
-          </ScrollReveal>
+        <div ref={ctaRef} className="flex justify-center" style={{ opacity: 0 }}>
+          <a
+            href="https://purpleonion.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center font-display tracking-wide text-foreground/80 font-medium hover:text-foreground transition-all duration-300 group text-[14px] px-8 py-4 glass-card rounded-full"
+          >
+            <span>View all posts</span>
+            <ArrowRight size={18} className="ml-3 group-hover:translate-x-2 transition-transform duration-300" />
+          </a>
         </div>
       </div>
     </section>

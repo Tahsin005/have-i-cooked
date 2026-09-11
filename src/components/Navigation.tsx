@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Home, Code, FolderGit2, BookOpen, Mail, Menu, X } from "lucide-react";
 import tahsinLogo from '@/assets/tahsin-logo.png';
+import gsap from 'gsap';
+import { prefersReducedMotion } from '@/hooks/useGSAP';
 
 type NavigationProps = {
   isMenuOpen: boolean;
@@ -9,6 +11,8 @@ type NavigationProps = {
 
 const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
   const [scrolled, setScrolled] = useState(false);
+  const dockRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +20,54 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // GSAP dock entrance animation
+  useEffect(() => {
+    if (!dockRef.current || hasAnimated.current || prefersReducedMotion()) return;
+    hasAnimated.current = true;
+
+    const ctx = gsap.context(() => {
+      const dock = dockRef.current!;
+      const icons = dock.querySelectorAll('.dock-icon');
+
+      // Dock springs up from bottom
+      gsap.fromTo(
+        dock,
+        {
+          y: 80,
+          opacity: 0,
+          scale: 0.8,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          delay: 1.5, // Delay to let hero animations play first
+          ease: 'elastic.out(1, 0.6)',
+        }
+      );
+
+      // Icons stagger in with scale
+      gsap.fromTo(
+        icons,
+        {
+          scale: 0,
+          opacity: 0,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.06,
+          delay: 1.8,
+          ease: 'back.out(2)',
+        }
+      );
+    });
+
+    return () => ctx.revert();
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -44,26 +96,30 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
 
   return (
     <>
-      {/* Desktop Bottom Dock */}
-      <nav className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 animate-in fade-in slide-in-from-bottom-12 duration-1000 hidden md:block ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-100'}`}>
-        <div className="glass-card px-4 py-3 rounded-full flex items-center gap-2 border border-primary/20 hover:border-primary/50 transition-colors shadow-2xl backdrop-blur-2xl bg-background/60">
-          
-          <div 
-            className="cursor-pointer group flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 hover:bg-primary/20 transition-all hover:-translate-y-2 duration-300"
+      <nav className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 hidden md:block ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-100'}`}>
+        <div
+          ref={dockRef}
+          className="glass-card px-4 py-3 rounded-full flex items-center gap-2 border border-primary/20 hover:border-primary/50 transition-colors shadow-2xl backdrop-blur-2xl bg-background/60"
+          style={{ opacity: 0 }}
+        >
+          <div
+            className="dock-icon cursor-pointer group flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 hover:bg-primary/20 transition-all hover:-translate-y-2 duration-300"
             onClick={() => scrollToSection("hero")}
+            style={{ opacity: 0 }}
           >
             <img src={tahsinLogo} alt="MTF" className="h-6 w-auto object-contain brightness-110 group-hover:scale-110 transition-transform" />
           </div>
-          
+
           <div className="w-px h-8 bg-border/50 mx-2" />
-          
+
           {menuItems.map((item) => {
             const Icon = item.icon;
             return (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="group relative flex flex-col items-center justify-center w-12 h-12 rounded-2xl hover:bg-white/5 transition-all hover:-translate-y-3 hover:scale-110 duration-300"
+                className="dock-icon group relative flex flex-col items-center justify-center w-12 h-12 rounded-2xl hover:bg-white/5 transition-all hover:-translate-y-3 hover:scale-110 duration-300"
+                style={{ opacity: 0 }}
               >
                 <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 <span className="absolute -top-12 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all bg-popover text-popover-foreground text-[10px] py-1 px-3 rounded-full font-display tracking-widest pointer-events-none border border-border whitespace-nowrap shadow-xl">
@@ -76,7 +132,6 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
         </div>
       </nav>
 
-      {/* Mobile Top Bar */}
       <nav className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-white/5">
         <div className="px-6 h-16 flex items-center justify-between">
           <div
@@ -94,7 +149,6 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="md:hidden fixed inset-0 z-40" onClick={() => setIsMenuOpen(false)}>
           <div className="absolute inset-0 bg-background/90 backdrop-blur-xl animate-in fade-in" />

@@ -1,24 +1,117 @@
 import { Briefcase, GraduationCap, Code, Gamepad2, Music, FileText, ArrowUpRight, Activity as ActivityIcon, Cuboid as Cube } from 'lucide-react';
-import ScrollReveal from './ScrollReveal';
 import { TiltCard } from "./TiltCard";
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { prefersReducedMotion } from '@/hooks/useGSAP';
+import SectionHeader from './SectionHeader';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const resumeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      if (!gridRef.current) return;
+
+      const cards = gridRef.current.querySelectorAll('.about-card');
+
+      // Cards fly in from different directions with stagger
+      const directions = [
+        { x: -60, y: 40, rotation: -3 },   // bio card (from left)
+        { x: 0, y: 60, rotation: 2 },       // work 1 (from below)
+        { x: 60, y: 40, rotation: 3 },      // work 2 (from right)
+        { x: -40, y: 60, rotation: -2 },    // interests (from left-below)
+        { x: 0, y: 80, rotation: 0 },       // resume (from below)
+      ];
+
+      cards.forEach((card, i) => {
+        const dir = directions[i] || { x: 0, y: 60, rotation: 0 };
+
+        gsap.fromTo(
+          card,
+          {
+            x: dir.x,
+            y: dir.y,
+            opacity: 0,
+            rotation: dir.rotation,
+          },
+          {
+            x: 0,
+            y: 0,
+            opacity: 1,
+            rotation: 0,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+
+        // Tech tags pop in one by one
+        const tags = card.querySelectorAll('.tech-tag');
+        if (tags.length > 0) {
+          gsap.fromTo(
+            tags,
+            { scale: 0, opacity: 0 },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 0.4,
+              stagger: 0.05,
+              ease: 'back.out(2)',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 80%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+      });
+
+      // Resume card special glow pulse
+      if (resumeRef.current) {
+        gsap.fromTo(
+          resumeRef.current.querySelector('.resume-glow'),
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 1.5,
+            repeat: 2,
+            yoyo: true,
+            ease: 'power1.inOut',
+            scrollTrigger: {
+              trigger: resumeRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className="section-shell relative overflow-hidden" id="about">
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="mb-16 text-center">
-          <div className="section-label mb-3"></div>
-          <h2 className="font-display text-[clamp(40px,8vw,80px)] font-bold tracking-tighter mb-4">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">About </span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary/80 to-primary/40">Me</span>
-          </h2>
-          <p className="font-display text-[18px] md:text-[22px] text-foreground/60 max-w-2xl mx-auto">
-            Passionate about building innovative solutions and solving complex problems.
-          </p>
-        </div>
+        <SectionHeader
+          title="About"
+          titleHighlight="Me"
+          subtitle="Passionate about building innovative solutions and solving complex problems."
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <ScrollReveal delay="delay-100" className="col-span-1 md:col-span-2">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="about-card col-span-1 md:col-span-2" style={{ opacity: 0 }}>
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
                 <div className="mb-6 flex items-center gap-4">
@@ -38,9 +131,9 @@ const About = () => {
                 </div>
               </div>
             </TiltCard>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal delay="delay-200">
+          <div className="about-card" style={{ opacity: 0 }}>
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
                 <div className="mb-6">
@@ -55,16 +148,16 @@ const About = () => {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {["Python", "Django", "Golang", "Reactjs", "PostgreSQL", "Docker", "Redis"].map(tech => (
-                    <span key={tech} className="font-display text-[12px] font-medium tracking-wide bg-white/5 text-foreground/70 px-4 py-1.5 rounded-full border border-white/10 shadow-sm">
+                    <span key={tech} className="tech-tag font-display text-[12px] font-medium tracking-wide bg-white/5 text-foreground/70 px-4 py-1.5 rounded-full border border-white/10 shadow-sm">
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
             </TiltCard>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal delay="delay-300">
+          <div className="about-card" style={{ opacity: 0 }}>
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
                 <div className="mb-6">
@@ -79,16 +172,16 @@ const About = () => {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {["Python", "Django", "DRF", "PostgreSQL"].map(tech => (
-                    <span key={tech} className="font-display text-[12px] font-medium tracking-wide bg-white/5 text-foreground/70 px-4 py-1.5 rounded-full border border-white/10 shadow-sm">
+                    <span key={tech} className="tech-tag font-display text-[12px] font-medium tracking-wide bg-white/5 text-foreground/70 px-4 py-1.5 rounded-full border border-white/10 shadow-sm">
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
             </TiltCard>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal delay="delay-400">
+          <div className="about-card" style={{ opacity: 0 }}>
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
                 <div className="mb-6">
@@ -113,12 +206,12 @@ const About = () => {
                 </ul>
               </div>
             </TiltCard>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal delay="delay-500" className="col-span-1 md:col-span-2 lg:col-span-1">
+          <div ref={resumeRef} className="about-card col-span-1 md:col-span-2 lg:col-span-1" style={{ opacity: 0 }}>
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer p-8 relative group flex flex-col justify-between rounded-2xl h-full overflow-hidden border-primary/30 bg-gradient-to-br from-primary/5 to-transparent hover:border-primary/50 hover:from-primary/10 hover:-translate-y-1.5 transition-all duration-500 ease-out shadow-[0_0_30px_hsl(var(--primary)/0.05)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.55),0_0_40px_hsl(var(--primary)/0.15)]">
-                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                <div className="resume-glow absolute inset-0 bg-primary/5 opacity-0 transition-opacity duration-500 blur-xl"></div>
                 <div className="relative z-10 mb-6">
                   <div className="bg-primary/10 w-fit p-3 rounded-full border border-primary/20 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 mb-4 text-primary">
                     <FileText size={24} strokeWidth={1.5} />
@@ -129,7 +222,7 @@ const About = () => {
                   </p>
                 </div>
                 <a
-                  href="https://drive.google.com/file/d/1RM7AtJX7fXWBWjQuWxbM03gUSak7_L1k/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1v5OKvPZwllgYbNnGKYQsa92aj30r-hnD/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative z-10 inline-flex items-center justify-center font-display text-[14px] font-semibold text-primary-foreground bg-primary hover:bg-primary/90 px-6 py-3 rounded-full transition-all duration-300 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] group-hover:-translate-y-0.5"
@@ -138,7 +231,7 @@ const About = () => {
                 </a>
               </div>
             </TiltCard>
-          </ScrollReveal>
+          </div>
         </div>
       </div>
     </section>

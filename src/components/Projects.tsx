@@ -1,6 +1,9 @@
 import { ExternalLink, Github } from 'lucide-react';
-import ScrollReveal from './ScrollReveal';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { prefersReducedMotion } from '@/hooks/useGSAP';
+import SectionHeader from './SectionHeader';
 import affpilot1 from '@/assets/project-ss/affpilot-1.png'
 import affpilot2 from '@/assets/project-ss/affpilot-2.png'
 import country1 from '@/assets/project-ss/country-1.png'
@@ -27,19 +30,12 @@ import northwind6 from '@/assets/project-ss/northwind6.png'
 import ecommerceMicroservices from '@/assets/project-ss/ecommicroservices.jpg'
 import ragSearchEngine from '@/assets/project-ss/rag.png'
 
+gsap.registerPlugin(ScrollTrigger);
 
 interface ProjectImageSliderProps {
   images: string[];
   projectName: string;
 }
-
-const TiltCard = ({ children, className }: { children: React.ReactNode, className?: string }) => {
-  return (
-    <div className={`relative ${className || ''}`}>
-      {children}
-    </div>
-  );
-};
 
 const ProjectImageSlider = ({ images, projectName }: ProjectImageSliderProps) => {
   const [current, setCurrent] = useState(0);
@@ -58,7 +54,7 @@ const ProjectImageSlider = ({ images, projectName }: ProjectImageSliderProps) =>
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{ height: '180px', transform: 'translateZ(20px)' }}
+      style={{ height: '180px' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -106,6 +102,12 @@ const ProjectImageSlider = ({ images, projectName }: ProjectImageSliderProps) =>
 };
 
 const Projects = () => {
+  const mainGridRef = useRef<HTMLDivElement>(null);
+  const funGridRef = useRef<HTMLDivElement>(null);
+  const openSourceGridRef = useRef<HTMLDivElement>(null);
+  const funHeaderRef = useRef<HTMLDivElement>(null);
+  const osHeaderRef = useRef<HTMLDivElement>(null);
+
   const projects = [
     {
       name: "Socially",
@@ -268,6 +270,7 @@ const Projects = () => {
       tech: ["Next.js", "API", "SVG"]
     },
   ];
+
   const openSourceProjects = [
     {
       name: "Folderly",
@@ -289,35 +292,183 @@ const Projects = () => {
     }
   ];
 
+  // GSAP grid reveals for all project sections
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      // Main projects grid — each card reveals individually
+      if (mainGridRef.current) {
+        const cards = mainGridRef.current.querySelectorAll('.project-card');
+        cards.forEach((card, i) => {
+          // Alternate fly-in direction based on column position (3-col grid)
+          const col = i % 3;
+          const fromX = col === 0 ? -50 : col === 2 ? 50 : 0;
+          const fromRotation = col === 0 ? -3 : col === 2 ? 3 : 0;
+
+          gsap.fromTo(
+            card,
+            {
+              y: 60,
+              x: fromX,
+              opacity: 0,
+              scale: 0.92,
+              rotation: fromRotation,
+            },
+            {
+              y: 0,
+              x: 0,
+              opacity: 1,
+              scale: 1,
+              rotation: 0,
+              duration: 0.8,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+
+          // Tech tags pop in with bounce
+          const tags = card.querySelectorAll('.tech-tag');
+          if (tags.length > 0) {
+            gsap.fromTo(
+              tags,
+              { scale: 0, opacity: 0 },
+              {
+                scale: 1,
+                opacity: 1,
+                duration: 0.35,
+                stagger: 0.04,
+                ease: 'back.out(2.5)',
+                scrollTrigger: {
+                  trigger: card,
+                  start: 'top 82%',
+                  toggleActions: 'play none none none',
+                },
+              }
+            );
+          }
+        });
+      }
+
+      // Fun projects stagger fly-up
+      if (funGridRef.current) {
+        const funCards = funGridRef.current.querySelectorAll('.fun-card');
+        funCards.forEach((card, i) => {
+          gsap.fromTo(
+            card,
+            { y: 50, opacity: 0, scale: 0.95 },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.7,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        });
+      }
+
+      // Fun section header
+      if (funHeaderRef.current) {
+        gsap.fromTo(
+          funHeaderRef.current,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: funHeaderRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      // Open source projects stagger fly-up
+      if (openSourceGridRef.current) {
+        const osCards = openSourceGridRef.current.querySelectorAll('.os-card');
+        osCards.forEach((card) => {
+          gsap.fromTo(
+            card,
+            { y: 50, opacity: 0, scale: 0.95 },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.7,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        });
+      }
+
+      // OS section header
+      if (osHeaderRef.current) {
+        gsap.fromTo(
+          osHeaderRef.current,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: osHeaderRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className="section-shell relative overflow-hidden border-none" id="projects">
       <div className="max-w-6xl mx-auto relative z-10">
-        {}
-        <div className="mb-16 text-center">
-          <div className="section-label mb-3"></div>
-          <h2 className="font-display text-[clamp(40px,8vw,80px)] font-bold tracking-tighter mb-4">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">Projects</span>
-          </h2>
-          <p className="font-display text-[18px] md:text-[22px] text-foreground/70 max-w-2xl mx-auto">
-            A collection of projects I've built and contributed to.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <ScrollReveal key={index} delay={`delay-${(index % 5 + 1) * 100}`}>
-              <TiltCard className="h-full">
-                <div className="glass-card glass-shimmer glass-hover flex flex-col group rounded-xl h-full overflow-hidden border border-white/10 transition-all duration-500">
-                  <ProjectImageSlider images={project.images} projectName={project.name} />
+        <SectionHeader
+          title="Projects"
+          subtitle="A collection of projects I've built and contributed to."
+        />
 
-                  <div className="flex flex-col flex-1 p-5" style={{ transform: 'translateZ(30px)' }}>
+        <div ref={mainGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="project-card"
+              style={{ opacity: 0 }}
+            >
+              <div className="glass-card glass-shimmer glass-hover flex flex-col group rounded-xl h-full overflow-hidden border border-white/10 transition-all duration-500">
+                <ProjectImageSlider images={project.images} projectName={project.name} />
+
+                <div className="flex flex-col flex-1 p-5">
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="font-display text-[18px] font-semibold leading-[1.3] text-foreground group-hover:text-primary transition-colors">
                       {project.name}
                     </h3>
                     <div className="flex gap-2 shrink-0 ml-2">
-                      {project.source && (
+                      {(project as any).source && (
                         <a
-                          href={project.source}
+                          href={(project as any).source}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-muted-foreground hover:text-primary transition-colors"
@@ -348,7 +499,8 @@ const Projects = () => {
                     {project.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="font-display text-[12px] font-medium tracking-wide bg-white/5 text-foreground/80 px-4 py-1.5 rounded-full border border-white/10 shadow-sm"
+                        className="tech-tag font-display text-[12px] font-medium tracking-wide bg-white/5 text-foreground/80 px-4 py-1.5 rounded-full border border-white/10 shadow-sm"
+                        style={{ opacity: 0, transform: 'scale(0)' }}
                       >
                         {tech}
                       </span>
@@ -356,13 +508,14 @@ const Projects = () => {
                   </div>
                 </div>
               </div>
-              </TiltCard>
-            </ScrollReveal>
+            </div>
           ))}
         </div>
+      </div>
 
-        <div className="mt-24 mb-16 text-center">
-          <ScrollReveal>
+      <div className="section-shell">
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div ref={funHeaderRef} className="mt-8 mb-16 text-center" style={{ opacity: 0 }}>
             <div className="section-label mb-3"></div>
             <h3 className="font-display text-[clamp(30px,6vw,60px)] font-bold tracking-tighter mb-4">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">Fun & Cool </span>
@@ -371,64 +524,62 @@ const Projects = () => {
             <p className="font-display text-[18px] md:text-[22px] text-foreground/70 max-w-2xl mx-auto">
               Smaller projects, CLI tools, and creative experiments I've worked on.
             </p>
-          </ScrollReveal>
-        </div>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
-          {funProjects.map((project, index) => (
-            <ScrollReveal key={index} delay={`delay-${(index % 3 + 1) * 100}`}>
-              <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 transition-all duration-500 relative overflow-hidden">
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex justify-between items-start mb-4">
-                    <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground transition-colors">
-                      {project.name}
-                    </h4>
-                    <div className="flex gap-2">
-                      {project.source && (
-                        <a
-                          href={project.source}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
-                          title="View Source Code"
-                        >
-                          <Github size={18} />
-                        </a>
-                      )}
-                      {(project as any).link && (
-                        <a
-                          href={(project as any).link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
-                          title="Live Demo"
-                        >
-                          <ExternalLink size={18} />
-                        </a>
-                      )}
+          <div ref={funGridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+            {funProjects.map((project, index) => (
+              <div key={index} className="fun-card" style={{ opacity: 0 }}>
+                <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 transition-all duration-500 relative overflow-hidden">
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex justify-between items-start mb-4">
+                      <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground transition-colors">
+                        {project.name}
+                      </h4>
+                      <div className="flex gap-2">
+                        {project.source && (
+                          <a
+                            href={project.source}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                            title="View Source Code"
+                          >
+                            <Github size={18} />
+                          </a>
+                        )}
+                        {(project as any).link && (
+                          <a
+                            href={(project as any).link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                            title="Live Demo"
+                          >
+                            <ExternalLink size={18} />
+                          </a>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 transition-colors">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="font-display text-[11px] font-medium tracking-wide bg-white/5 text-foreground/80 px-3 py-1 rounded-full border border-white/10 shadow-sm"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 transition-colors">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="font-display text-[11px] font-medium tracking-wide bg-white/5 text-foreground/80 px-3 py-1 rounded-full border border-white/10 shadow-sm"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <div className="mt-20 mb-16 text-center">
-          <ScrollReveal>
+          <div ref={osHeaderRef} className="mt-20 mb-16 text-center" style={{ opacity: 0 }}>
             <div className="section-label mb-3"></div>
             <h3 className="font-display text-[clamp(30px,6vw,60px)] font-bold tracking-tighter mb-4">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">Open </span>
@@ -437,60 +588,60 @@ const Projects = () => {
             <p className="font-display text-[18px] md:text-[22px] text-foreground/70 max-w-2xl mx-auto">
               Open-source tools and widgets I've contributed to.
             </p>
-          </ScrollReveal>
-        </div>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {openSourceProjects.map((project, index) => (
-            <ScrollReveal key={index} delay={`delay-${(index % 3 + 1) * 100}`}>
-              <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 transition-all duration-500 relative overflow-hidden">
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex justify-between items-start mb-4">
-                    <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground transition-colors">
-                      {project.name}
-                    </h4>
-                    <div className="flex gap-2">
-                      {project.source && (
-                        <a
-                          href={project.source}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
-                          title="View Source Code"
-                        >
-                          <Github size={18} />
-                        </a>
-                      )}
-                      {(project as any).link && (
-                        <a
-                          href={(project as any).link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
-                          title="Live Demo"
-                        >
-                          <ExternalLink size={18} />
-                        </a>
-                      )}
+          <div ref={openSourceGridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {openSourceProjects.map((project, index) => (
+              <div key={index} className="os-card" style={{ opacity: 0 }}>
+                <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 transition-all duration-500 relative overflow-hidden">
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex justify-between items-start mb-4">
+                      <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground transition-colors">
+                        {project.name}
+                      </h4>
+                      <div className="flex gap-2">
+                        {project.source && (
+                          <a
+                            href={project.source}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                            title="View Source Code"
+                          >
+                            <Github size={18} />
+                          </a>
+                        )}
+                        {(project as any).link && (
+                          <a
+                            href={(project as any).link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                            title="Live Demo"
+                          >
+                            <ExternalLink size={18} />
+                          </a>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 transition-colors">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="font-display text-[11px] font-medium tracking-wide bg-white/5 text-foreground/80 px-3 py-1 rounded-full border border-white/10 shadow-sm"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 transition-colors">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="font-display text-[11px] font-medium tracking-wide bg-white/5 text-foreground/80 px-3 py-1 rounded-full border border-white/10 shadow-sm"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

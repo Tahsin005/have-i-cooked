@@ -318,6 +318,37 @@
   .animate-blob {
     animation: blob 15s infinite alternate ease-in-out;
   }
+
+  /* GPU-accelerated animation hints */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  /* Split-text helpers for GSAP text reveals */
+  .split-word {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  .split-line {
+    display: block;
+    overflow: hidden;
+  }
+
+  /* Reduced motion: disable animations */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 ::-webkit-scrollbar {
@@ -358,4 +389,11 @@
 }
 .glass-shimmer:hover::after {
   animation: shimmer 0.9s ease forwards;
+}
+
+@media (min-width: 768px) {
+  body.has-custom-cursor,
+  body.has-custom-cursor *:not(input):not(textarea) {
+    cursor: none !important;
+  }
 }

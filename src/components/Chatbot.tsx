@@ -390,7 +390,7 @@ function renderMarkdown(text: string): string {
 function BotAvatar() {
   return (
     <div
-      className="w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-xs shrink-0 mt-0.5 bg-gradient-to-br from-white/20 to-white/5 border border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-md"
+      className="w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-xs shrink-0 mt-0.5 bg-gradient-to-br from-primary/80 to-purple-800 border border-primary/50 shadow-[0_0_10px_rgba(168,85,247,0.4)]"
     >
       T
     </div>
@@ -403,10 +403,10 @@ function ChatMessage({ msg }: { msg: Message }) {
     <div className={`flex gap-2 ${isUser ? "flex-row-reverse" : "flex-row"}`}>
       {!isUser && <BotAvatar />}
       <div
-        className={`max-w-[78%] px-3 py-2.5 rounded-2xl text-[13px] leading-relaxed backdrop-blur-md shadow-sm ${
+        className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-[13px] leading-relaxed shadow-md ${
           isUser 
-            ? "rounded-tr-sm text-white bg-white/20 border border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)]" 
-            : "rounded-tl-sm text-white/90 bg-black/20 border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
+            ? "rounded-tr-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 border border-purple-400/30 shadow-[0_2px_12px_rgba(168,85,247,0.3)]" 
+            : "rounded-tl-sm text-white/95 bg-[#19162f] border border-white/15 shadow-[0_2px_8px_rgba(0,0,0,0.4)]"
         }`}
         dangerouslySetInnerHTML={{ __html: renderMarkdown(msg.text) }}
       />
@@ -419,7 +419,7 @@ function TypingIndicator() {
     <div className="flex gap-2 items-end">
       <BotAvatar />
       <div
-        className="px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-1 bg-black/20 border border-white/10 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
+        className="px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-1 bg-[#19162f] border border-white/15 shadow-[0_2px_8px_rgba(0,0,0,0.4)]"
       >
         {[0, 1, 2].map((i) => (
           <span
@@ -445,12 +445,12 @@ function OptionButton({
   return (
     <button
       onClick={onClick}
-      className="w-full text-left text-[12.5px] px-3 py-2.5 rounded-xl flex items-center gap-2
-        text-white/80 transition-all duration-300
-        bg-white/5 border border-white/10 hover:bg-white/15 hover:border-white/30 hover:text-white
-        hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] active:scale-[0.98] backdrop-blur-md"
+      className="w-full text-left text-[12.5px] px-3.5 py-2.5 rounded-xl flex items-center gap-2.5
+        text-white/90 transition-all duration-300
+        bg-[#18162e] border border-white/15 hover:bg-[#252243] hover:border-primary/50 hover:text-white
+        hover:shadow-[0_4px_16px_rgba(168,85,247,0.2)] active:scale-[0.98] shadow-sm"
     >
-      {Icon && <Icon className="w-4 h-4 shrink-0" />}
+      {Icon && <Icon className="w-4 h-4 shrink-0 text-primary" />}
       <span className="leading-tight">{label}</span>
     </button>
   );
@@ -527,7 +527,7 @@ const Chatbot = () => {
     if (view.type === "topics") {
       return (
         <div className="space-y-2">
-          <p className="text-[10.5px] text-white/30 font-medium tracking-wider uppercase px-0.5">
+          <p className="text-[11px] text-white/55 font-semibold tracking-wider uppercase px-0.5">
             Choose a topic
           </p>
           <div className="grid grid-cols-2 gap-1.5">
@@ -550,12 +550,12 @@ const Chatbot = () => {
       return (
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <p className="flex items-center gap-1.5 text-[10.5px] text-white/30 font-medium tracking-wider uppercase px-0.5">
-              <Icon className="w-3.5 h-3.5" /> {topic.label}
+            <p className="flex items-center gap-1.5 text-[11px] text-white/55 font-semibold tracking-wider uppercase px-0.5">
+              <Icon className="w-3.5 h-3.5 text-primary" /> {topic.label}
             </p>
             <button
               onClick={() => setView({ type: "topics" })}
-              className="text-[10.5px] text-white/60 hover:text-white/90 transition-colors"
+              className="text-[11px] text-white/70 hover:text-white hover:underline transition-colors"
             >
               ← All topics
             </button>
@@ -585,7 +585,7 @@ const Chatbot = () => {
 
       return (
         <div className="space-y-2">
-          <p className="text-[10.5px] text-white/30 font-medium tracking-wider uppercase px-0.5">
+          <p className="text-[11px] text-white/55 font-semibold tracking-wider uppercase px-0.5">
             You might also ask…
           </p>
           <div className="flex flex-col gap-1.5">
@@ -599,7 +599,7 @@ const Chatbot = () => {
           </div>
           <button
             onClick={() => setView({ type: "topics" })}
-            className="w-full text-[11px] text-white/25 hover:text-white/50 transition-colors py-1 flex items-center justify-center gap-1"
+            className="w-full text-[11.5px] text-white/45 hover:text-white/80 transition-colors py-1 flex items-center justify-center gap-1"
           >
             <RotateCcw className="w-3 h-3" /> Browse all topics
           </button>
@@ -621,9 +621,10 @@ const Chatbot = () => {
           w-14 h-14 rounded-full
           flex items-center justify-center
           transition-all duration-500 ease-out backdrop-blur-xl
-          bg-white/10 border border-white/20
+          bg-[#0d0b1e]/95 border border-white/20
+          hover:border-primary/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]
           ${isOpen ? "scale-90 rotate-12" : "scale-100 rotate-0 hover:scale-105"}
-          shadow-[0_8px_32px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]
+          shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)]
         `}
       >
         {isOpen ? (
@@ -646,8 +647,8 @@ const Chatbot = () => {
           flex flex-col
           rounded-[24px] overflow-hidden
           transition-all duration-500 ease-out backdrop-blur-2xl
-          bg-white/10 border border-white/20
-          shadow-[0_24px_48px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.4)]
+          bg-[#0d0b1e]/98 border border-white/20
+          shadow-[0_24px_64px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.08),inset_0_1px_1px_rgba(255,255,255,0.2)]
           ${
             isOpen
               ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
@@ -659,11 +660,11 @@ const Chatbot = () => {
         }}
       >
         <div
-          className="flex items-center gap-3 px-4 py-3 border-b border-white/10 shrink-0 bg-black/10 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
+          className="flex items-center gap-3 px-4 py-3.5 border-b border-white/10 shrink-0 bg-[#090714] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
         >
           <div className="relative">
             <div
-              className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm bg-gradient-to-br from-white/20 to-white/5 border border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-md"
+              className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm bg-gradient-to-br from-primary/80 to-purple-800 border border-primary/40 shadow-[0_0_10px_rgba(168,85,247,0.4)]"
             >
               T
             </div>
@@ -673,8 +674,8 @@ const Chatbot = () => {
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-[13px] font-semibold text-white/90 leading-tight">TahBot</p>
-            <p className="text-[11px] text-white/50 leading-tight flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-white/70" />
+            <p className="text-[11px] text-white/60 leading-tight flex items-center gap-1">
+              <Sparkles className="w-3 h-3 text-primary/80" />
               Tahsin's assistant · Always online
             </p>
           </div>
@@ -682,13 +683,13 @@ const Chatbot = () => {
             <button
               onClick={handleReset}
               title="Restart"
-              className="w-7 h-7 rounded-lg flex items-center justify-center text-white/30 hover:text-white/70 hover:bg-white/10 transition-colors"
+              className="w-7 h-7 rounded-lg flex items-center justify-center text-white/40 hover:text-white/80 hover:bg-white/10 transition-colors"
             >
               <RotateCcw className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={() => setIsOpen(false)}
-              className="w-7 h-7 rounded-lg flex items-center justify-center text-white/40 hover:text-white/80 hover:bg-white/10 transition-colors"
+              className="w-7 h-7 rounded-lg flex items-center justify-center text-white/50 hover:text-white/90 hover:bg-white/10 transition-colors"
             >
               <ChevronDown className="w-4 h-4" />
             </button>
@@ -697,7 +698,7 @@ const Chatbot = () => {
 
         <div
           ref={scrollContainerRef}
-          className="overflow-y-auto px-4 py-3 space-y-3"
+          className="overflow-y-auto px-4 py-3.5 space-y-3 bg-[#0d0b1e]/60"
           style={{ maxHeight: "240px", minHeight: "100px" }}
           id="chatbot-messages"
         >
@@ -709,7 +710,7 @@ const Chatbot = () => {
 
         {!isTyping && (
           <div
-            className="px-4 py-3 overflow-y-auto border-t border-white/10 bg-black/5"
+            className="px-4 py-3 overflow-y-auto border-t border-white/10 bg-[#090714]/90"
             style={{
               maxHeight: "260px",
             }}

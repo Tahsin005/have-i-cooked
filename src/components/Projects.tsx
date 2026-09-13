@@ -16,8 +16,6 @@ import ibuiltthis1 from '@/assets/project-ss/ibuiltthis-1.png'
 import ibuiltthis2 from '@/assets/project-ss/ibuiltthis-2.png'
 import ibuiltthis3 from '@/assets/project-ss/ibuiltthis-3.png'
 import rtwd from '@/assets/project-ss/rtwd.png'
-import job1 from '@/assets/project-ss/job-application-1.png'
-import job2 from '@/assets/project-ss/job-application-2.png'
 import storeit1 from '@/assets/project-ss/storeit-1.png'
 import storeit2 from '@/assets/project-ss/storeit-2.png'
 import northwind from '@/assets/project-ss/northwind.png'
@@ -168,15 +166,6 @@ const Projects = () => {
       link: "https://storeit-jet.vercel.app/",
       source: "https://github.com/Tahsin005/store-it",
       images: [storeit1, storeit2]
-    },
-    {
-      name: "Job Application Tracker",
-      tech: ["nextjs", "better-auth", "mongodb", "dnd-kit"],
-      description:
-        "A high-performance, real-time Kanban board tailored specifically for organizing, tracking, and prioritizing your job hunting lifecycle. Built with the bleeding-edge Next.js 16 architecture, this platform allows developers and professionals to seamlessly drag-and-drop applications across custom pipelines natively.",
-      link: "https://job-application-tracker-six-taupe.vercel.app/",
-      source: "https://github.com/Tahsin005/job-application-tracker",
-      images: [job2, job1]
     },
     {
       name: "Realtime Weather Dashboard",

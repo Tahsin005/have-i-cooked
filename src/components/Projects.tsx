@@ -111,9 +111,9 @@ const Projects = () => {
   const projects = [
     {
       name: "Socially",
-      tech: ["nextjs", "tailwindcss", "postgresql", "prisma", "typescript"],
+      tech: ["nextjs", "tailwindcss", "postgresql", "prisma", "tanstack-query","typescript"],
       description:
-        "A full-stack social media platform built with Next.js App Router, TypeScript, PostgreSQL, and Prisma ORM. Features include Google authentication (Clerk), profile management, follow/unfollow system, media posts, real-time notifications, and secure API routes with JWT.",
+        "A modern, feature-rich social network and direct messaging app built with Next.js 16 App Router, React 19, Prisma, and PostgreSQL. Features real-time DMs with read receipts, dual cursor-paginated feeds, interactive polls, multi-emoji reactions, @mentions, global search, and Clerk authentication.",
       link: "https://socially-orcin.vercel.app/",
       source: "https://github.com/Tahsin005/Socially",
       images: [socially1, socially2]

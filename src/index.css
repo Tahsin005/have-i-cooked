@@ -54,6 +54,17 @@
     @apply border-border;
   }
 
+  canvas {
+    background-color: transparent !important;
+  }
+
+  .page-is-unloading canvas,
+  .page-is-unloading [data-lanyard] {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);

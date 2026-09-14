@@ -123,7 +123,7 @@ const Index = () => {
       <div
         ref={splashRef}
         className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 backdrop-blur-3xl overflow-hidden"
-        style={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+        style={{ clipPath: 'inset(0% 0% 0% 0%)', backgroundColor: '#090716' }}
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '3s' }} />
 

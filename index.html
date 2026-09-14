@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="background-color: #090716; color-scheme: dark;">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
@@ -14,10 +14,42 @@
     <meta property="og:title" content="MD. Tahsin Ferdous | Full Stack Developer" />
     <meta property="og:description" content="Portfolio of MD. Tahsin Ferdous, Full Stack Developer specializing in Django, Golang, React, and modern web technologies." />
     <meta property="og:type" content="website" />
+
+    <style>
+      html, body, #root {
+        background-color: #090716 !important;
+        color-scheme: dark;
+      }
+      .page-is-unloading canvas,
+      .page-is-unloading [data-lanyard] {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        display: none !important;
+      }
+    </style>
+    <script>
+      (function() {
+        function hideCanvases() {
+          document.documentElement.classList.add('page-is-unloading');
+          var canvases = document.querySelectorAll('canvas');
+          for (var i = 0; i < canvases.length; i++) {
+            canvases[i].style.opacity = '0';
+            canvases[i].style.visibility = 'hidden';
+          }
+          var lanyards = document.querySelectorAll('[data-lanyard]');
+          for (var j = 0; j < lanyards.length; j++) {
+            lanyards[j].style.opacity = '0';
+            lanyards[j].style.visibility = 'hidden';
+          }
+        }
+        window.addEventListener('beforeunload', hideCanvases, { capture: true });
+        window.addEventListener('pagehide', hideCanvases, { capture: true });
+      })();
+    </script>
   </head>
 
-  <body>
-    <div id="root"></div>
+  <body style="background-color: #090716;">
+    <div id="root" style="background-color: #090716; min-height: 100vh;"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -73,6 +73,8 @@ export default function Lanyard({
   segmentLength = 1,
   cardScale = 3.1
 }: LanyardProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState<boolean>(() => typeof window !== 'undefined' && window.innerWidth < 768);
 
   useEffect(() => {
@@ -81,14 +83,55 @@ export default function Lanyard({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Hide canvas immediately on page unload / reload before WebGL context teardown
+  useEffect(() => {
+    const handleUnload = () => {
+      if (containerRef.current) {
+        containerRef.current.style.opacity = '0';
+        containerRef.current.style.visibility = 'hidden';
+        containerRef.current.style.display = 'none';
+      }
+    };
+    window.addEventListener('beforeunload', handleUnload, { capture: true });
+    window.addEventListener('pagehide', handleUnload, { capture: true });
+    return () => {
+      window.removeEventListener('beforeunload', handleUnload, { capture: true });
+      window.removeEventListener('pagehide', handleUnload, { capture: true });
+    };
+  }, []);
+
   return (
-    <div className={className} style={style}>
+    <div
+      ref={containerRef}
+      data-lanyard="true"
+      className={`${className} transition-opacity duration-500`}
+      style={{
+        ...style,
+        opacity: isLoaded ? 1 : 0,
+        backgroundColor: 'transparent',
+      }}
+    >
       <Canvas
         camera={{ position, fov }}
         dpr={[1, isMobile ? 1.5 : 2]}
-        gl={{ alpha: transparent }}
-        onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
-        style={{ pointerEvents: 'auto' }}
+        gl={{ alpha: transparent, antialias: true, powerPreference: 'high-performance' }}
+        onCreated={({ gl }) => {
+          gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1);
+          const canvas = gl.domElement;
+          if (canvas) {
+            canvas.style.backgroundColor = 'transparent';
+            canvas.addEventListener('webglcontextlost', (e) => {
+              e.preventDefault();
+              canvas.style.opacity = '0';
+              if (containerRef.current) containerRef.current.style.opacity = '0';
+            });
+            canvas.addEventListener('webglcontextrestored', () => {
+              canvas.style.opacity = '1';
+              if (containerRef.current) containerRef.current.style.opacity = '1';
+            });
+          }
+        }}
+        style={{ pointerEvents: 'auto', backgroundColor: 'transparent' }}
       >
         <ambientLight intensity={Math.PI} />
         <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
@@ -102,6 +145,7 @@ export default function Lanyard({
             anchorPosition={anchorPosition}
             segmentLength={segmentLength}
             cardScale={cardScale}
+            onReady={() => setIsLoaded(true)}
           />
         </Physics>
         <Environment blur={0.75}>
@@ -151,6 +195,7 @@ interface BandProps {
   anchorPosition?: [number, number, number];
   segmentLength?: number;
   cardScale?: number;
+  onReady?: () => void;
 }
 
 type LanyardRigidBody = RapierRigidBody & {
@@ -168,7 +213,8 @@ function Band({
   lanyardWidth = 1,
   anchorPosition = [0, 4, 0],
   segmentLength = 1,
-  cardScale = 3.1
+  cardScale = 3.1,
+  onReady,
 }: BandProps) {
   const scaleRatio = cardScale / 2.25;
   const band = useRef<THREE.Mesh<InstanceType<typeof MeshLineGeometry>, InstanceType<typeof MeshLineMaterial>>>(null!);
@@ -276,6 +322,10 @@ function Band({
       };
     }
   }, [hovered, dragged]);
+
+  useEffect(() => {
+    onReady?.();
+  }, [onReady]);
 
   useFrame((state, delta) => {
     if (dragged && typeof dragged !== 'boolean') {

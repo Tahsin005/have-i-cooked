@@ -1,5 +1,8 @@
 import { Github, Linkedin, Mail, MapPin, ArrowRight, Code, Sparkles, Cpu } from 'lucide-react';
-import tahsinPhoto from '@/assets/hero-image.png';
+import tahsinPhoto from '@/assets/lanyard/lanyard-card.png';
+import tahsinPhoto2 from '@/assets/hero-image.png';
+import tahsinLogo from '@/assets/tahsin-logo-white-bg.png';
+import Lanyard from '@/components/ui/Lanyard';
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,24 +10,10 @@ import { prefersReducedMotion } from '@/hooks/useGSAP';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Hero = () => {
+const TypedSubtitle = () => {
     const [typedText, setTypedText] = useState("");
     const fullText = "Full Stack Engineer & Creative Developer";
 
-    const sectionRef = useRef<HTMLElement>(null);
-    const nameRef = useRef<HTMLHeadingElement>(null);
-    const subtitleRef = useRef<HTMLDivElement>(null);
-    const ctaRef = useRef<HTMLDivElement>(null);
-    const socialsRef = useRef<HTMLDivElement>(null);
-    const statusRef = useRef<HTMLDivElement>(null);
-    const photoCardRef = useRef<HTMLDivElement>(null);
-    const taglineRef = useRef<HTMLSpanElement>(null);
-    const descCardRef = useRef<HTMLDivElement>(null);
-    const badge1Ref = useRef<HTMLDivElement>(null);
-    const badge2Ref = useRef<HTMLDivElement>(null);
-    const badge3Ref = useRef<HTMLDivElement>(null);
-
-    // Typing effect
     useEffect(() => {
         let i = 0;
         const typingInterval = setInterval(() => {
@@ -34,8 +23,49 @@ const Hero = () => {
             } else {
                 clearInterval(typingInterval);
             }
-        }, 50);
+        }, 45);
         return () => clearInterval(typingInterval);
+    }, []);
+
+    return <span>{typedText}</span>;
+};
+
+const Hero = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const nameRef = useRef<HTMLHeadingElement>(null);
+    const subtitleRef = useRef<HTMLDivElement>(null);
+    const ctaRef = useRef<HTMLDivElement>(null);
+    const socialsRef = useRef<HTMLDivElement>(null);
+    const statusRef = useRef<HTMLDivElement>(null);
+    const photoCardRef = useRef<HTMLDivElement>(null);
+    const mobileCardRef = useRef<HTMLDivElement>(null);
+    const badge1Ref = useRef<HTMLDivElement>(null);
+    const badge2Ref = useRef<HTMLDivElement>(null);
+    const badge3Ref = useRef<HTMLDivElement>(null);
+    const taglineRef = useRef<HTMLSpanElement>(null);
+    const descCardRef = useRef<HTMLDivElement>(null);
+    const [canvasTopOffset, setCanvasTopOffset] = useState(160);
+
+    useEffect(() => {
+        const updateOffset = () => {
+            if (sectionRef.current) {
+                const offset = sectionRef.current.offsetTop;
+                if (offset > 0) {
+                    setCanvasTopOffset(offset);
+                }
+            }
+        };
+        updateOffset();
+        window.addEventListener('resize', updateOffset);
+        const timer1 = setTimeout(updateOffset, 100);
+        const timer2 = setTimeout(updateOffset, 600);
+        const timer3 = setTimeout(updateOffset, 1400);
+        return () => {
+            window.removeEventListener('resize', updateOffset);
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            clearTimeout(timer3);
+        };
     }, []);
 
     // GSAP entrance animation
@@ -45,10 +75,10 @@ const Hero = () => {
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({
                 defaults: { ease: 'power3.out' },
-                delay: 0.2,
+                delay: 0.1,
             });
 
-            // Name split-text fly-in
+            // Name split-text fly-in (hardware accelerated translateY + opacity)
             if (nameRef.current) {
                 const firstNameSpan = nameRef.current.querySelector('.hero-firstname');
                 const lastNameSpan = nameRef.current.querySelector('.hero-lastname');
@@ -56,17 +86,17 @@ const Hero = () => {
                 if (firstNameSpan) {
                     tl.fromTo(
                         firstNameSpan,
-                        { y: 80, opacity: 0, rotateX: -40 },
-                        { y: 0, opacity: 1, rotateX: 0, duration: 1 },
+                        { y: 45, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 0.75, ease: 'power3.out' },
                         0
                     );
                 }
                 if (lastNameSpan) {
                     tl.fromTo(
                         lastNameSpan,
-                        { y: 80, opacity: 0, rotateX: -40 },
-                        { y: 0, opacity: 1, rotateX: 0, duration: 1 },
-                        0.15
+                        { y: 45, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 0.75, ease: 'power3.out' },
+                        0.1
                     );
                 }
             }
@@ -75,9 +105,9 @@ const Hero = () => {
             if (subtitleRef.current) {
                 tl.fromTo(
                     subtitleRef.current,
-                    { y: 30, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 0.8 },
-                    0.5
+                    { y: 20, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.6 },
+                    0.35
                 );
             }
 
@@ -86,9 +116,9 @@ const Hero = () => {
                 const buttons = ctaRef.current.querySelectorAll('a');
                 tl.fromTo(
                     buttons,
-                    { y: 20, opacity: 0, scale: 0.9 },
-                    { y: 0, opacity: 1, scale: 1, duration: 0.6, stagger: 0.12, ease: 'back.out(1.7)' },
-                    0.7
+                    { y: 15, opacity: 0, scale: 0.95 },
+                    { y: 0, opacity: 1, scale: 1, duration: 0.5, stagger: 0.08, ease: 'back.out(1.7)' },
+                    0.5
                 );
             }
 
@@ -97,48 +127,39 @@ const Hero = () => {
                 const links = socialsRef.current.querySelectorAll('a');
                 tl.fromTo(
                     links,
-                    { x: -30, opacity: 0 },
-                    { x: 0, opacity: 1, duration: 0.5, stagger: 0.08 },
-                    0.9
+                    { x: -20, opacity: 0 },
+                    { x: 0, opacity: 1, duration: 0.45, stagger: 0.06 },
+                    0.65
                 );
             }
 
-            // Status bar slide up with mask
+            // Status bar slide up
             if (statusRef.current) {
                 tl.fromTo(
                     statusRef.current,
-                    { y: 30, opacity: 0, clipPath: 'inset(100% 0% 0% 0%)' },
-                    { y: 0, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 0.8 },
-                    1.0
+                    { y: 20, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.6 },
+                    0.7
                 );
             }
 
-            // Photo card - 3D rotate in
-            if (photoCardRef.current) {
+            // Photo card - smooth fade-up & subtle scale
+            const cardsToAnimate = [photoCardRef.current, mobileCardRef.current].filter(Boolean);
+            if (cardsToAnimate.length > 0) {
                 tl.fromTo(
-                    photoCardRef.current,
-                    { x: 60, opacity: 0, rotateY: 15, scale: 0.9 },
-                    { x: 0, opacity: 1, rotateY: 0, scale: 1, duration: 1, ease: 'power2.out' },
-                    0.3
+                    cardsToAnimate,
+                    { y: 40, opacity: 0, scale: 0.96 },
+                    { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: 'power3.out' },
+                    0.2
                 );
             }
 
-            // Tagline
-            if (taglineRef.current) {
-                tl.fromTo(
-                    taglineRef.current,
-                    { y: 15, opacity: 0, scale: 0.8 },
-                    { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)' },
-                    0.8
-                );
-            }
-
-            // Floating badges fly in from off-screen
+            // Floating badges fly in from off-screen (for mobile card)
             const badges = [badge1Ref.current, badge2Ref.current, badge3Ref.current];
             const badgeFromPositions = [
-                { x: 60, y: -40, rotation: 15 },
-                { x: -70, y: 20, rotation: -10 },
-                { x: 50, y: 50, rotation: 20 },
+                { x: 40, y: -30, rotation: 10 },
+                { x: -50, y: 15, rotation: -8 },
+                { x: 35, y: 35, rotation: 12 },
             ];
 
             badges.forEach((badge, i) => {
@@ -158,21 +179,31 @@ const Hero = () => {
                             opacity: 1,
                             scale: 1,
                             rotation: 0,
-                            duration: 0.7,
-                            ease: 'elastic.out(1, 0.5)',
+                            duration: 0.55,
+                            ease: 'back.out(1.7)',
                         },
-                        0.9 + i * 0.12
+                        0.6 + i * 0.1
                     );
                 }
             });
+
+            // Tagline
+            if (taglineRef.current) {
+                tl.fromTo(
+                    taglineRef.current,
+                    { y: 12, opacity: 0, scale: 0.9 },
+                    { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: 'power3.out' },
+                    0.6
+                );
+            }
 
             // Description card
             if (descCardRef.current) {
                 tl.fromTo(
                     descCardRef.current,
-                    { y: 40, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 0.8 },
-                    0.6
+                    { y: 30, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.6 },
+                    0.45
                 );
             }
 
@@ -215,11 +246,10 @@ const Hero = () => {
     return (
         <section
             ref={sectionRef}
-            className="section-shell min-h-screen flex items-center justify-center pt-24 md:pt-28 relative overflow-hidden border-none"
-            style={{ perspective: '1000px' }}
+            className="section-shell min-h-screen flex items-center justify-center pt-24 md:pt-28 relative border-none"
         >
             <div className="w-full max-w-6xl relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8">
+                <div className="grid grid-cols-1 min-[1250px]:grid-cols-[1.1fr_0.9fr] gap-8">
                     <div className="hero-left-card glass-card glass-hover p-8 md:p-12 flex flex-col justify-between rounded-2xl relative overflow-hidden">
                         <div className="absolute -left-10 top-20 w-32 h-[1px] bg-primary/40 rotate-45"></div>
                         <div className="absolute -left-10 top-24 w-24 h-[1px] bg-accent-3/40 rotate-45"></div>
@@ -228,12 +258,11 @@ const Hero = () => {
                             <h1
                                 ref={nameRef}
                                 className="font-display text-[clamp(60px,10vw,120px)] font-bold tracking-tighter leading-[0.9] mb-4"
-                                style={{ perspective: '600px' }}
                             >
-                                <span className="hero-firstname block -mb-2 md:-mb-4 text-foreground/90" style={{ opacity: 0, transformOrigin: 'center bottom' }}>
+                                <span className="hero-firstname block -mb-2 md:-mb-4 text-foreground/90 will-change-transform" style={{ opacity: 0 }}>
                                     Tahsin
                                 </span>
-                                <span className="hero-lastname block bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/40" style={{ opacity: 0, transformOrigin: 'center bottom' }}>
+                                <span className="hero-lastname block bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/40 will-change-transform" style={{ opacity: 0 }}>
                                     Ferdous
                                 </span>
                             </h1>
@@ -242,7 +271,7 @@ const Hero = () => {
                                 className="font-display text-[18px] md:text-[22px] font-medium text-foreground/80 mb-8 flex items-center gap-3"
                                 style={{ opacity: 0 }}
                             >
-                                <span>{typedText}</span>
+                                <TypedSubtitle />
                             </div>
                         </div>
                         <div ref={ctaRef} className="mt-10 flex flex-wrap items-center gap-4">
@@ -322,29 +351,29 @@ const Hero = () => {
                     </div>
                     <div className="hero-right-col flex flex-col gap-6">
                         <div
-                            ref={photoCardRef}
-                            className="glass-panel glass-hover p-8 md:p-10 flex flex-col items-center justify-center text-center rounded-2xl group"
+                            ref={mobileCardRef}
+                            className="min-[1250px]:hidden glass-panel glass-hover p-8 md:p-10 flex flex-col items-center justify-center text-center rounded-2xl group relative"
                             style={{ opacity: 0 }}
                         >
                             <div className="mb-6 relative">
                                 <div className="absolute -inset-10 bg-primary/10 blur-[80px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"></div>
                                 <div className="absolute -inset-4 bg-accent-2/5 blur-[40px] rounded-full opacity-30 group-hover:opacity-60 transition-opacity duration-700 delay-100 pointer-events-none"></div>
 
-                                <div ref={badge1Ref} className="absolute -top-4 -right-8 z-20" style={{ opacity: 0 }}>
+                                <div ref={badge1Ref} className="absolute -top-4 -right-4 md:-right-8 z-20" style={{ opacity: 0 }}>
                                     <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 text-[12px] font-display font-medium tracking-wide border-white/10 shadow-xl scale-90 md:scale-100 text-foreground/90 animate-float">
                                         <Code size={14} className="text-foreground/70" />
                                         Full Stack
                                     </div>
                                 </div>
 
-                                <div ref={badge2Ref} className="absolute top-1/2 -left-12 -translate-y-1/2 z-20" style={{ opacity: 0 }}>
+                                <div ref={badge2Ref} className="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 z-20" style={{ opacity: 0 }}>
                                     <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 text-[12px] font-display font-medium tracking-wide border-white/10 shadow-xl scale-90 md:scale-100 text-foreground/90 animate-float delay-500">
                                         <Sparkles size={14} className="text-foreground/70" />
                                         Problem Solver
                                     </div>
                                 </div>
 
-                                <div ref={badge3Ref} className="absolute -bottom-4 -right-10 z-20" style={{ opacity: 0 }}>
+                                <div ref={badge3Ref} className="absolute -bottom-4 -right-4 md:-right-10 z-20" style={{ opacity: 0 }}>
                                     <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 text-[12px] font-display font-medium tracking-wide border-white/10 shadow-xl scale-90 md:scale-100 text-foreground/90 animate-float delay-300">
                                         <Cpu size={14} className="text-foreground/70" />
                                         Architecture
@@ -354,15 +383,31 @@ const Hero = () => {
                                 <div className="w-52 h-52 md:w-60 md:h-60 rounded-3xl bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 p-8 shadow-2xl shadow-primary/20 hover:scale-[1.02] transition-all duration-700 group-hover:border-primary/30 relative overflow-hidden">
                                     <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent-2/10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
                                     <img
-                                        src={tahsinPhoto}
-                                        alt="MTF Logo"
+                                        src={tahsinPhoto2}
+                                        alt="MD. Tahsin Ferdous"
                                         className="w-full h-full object-contain brightness-110 drop-shadow-[0_0_15px_rgba(147,51,234,0.3)] transition-transform duration-700 group-hover:scale-110"
                                     />
                                 </div>
                             </div>
                             <span
-                                ref={taglineRef}
                                 className="inline-flex items-center px-4 py-2 rounded-full text-[11px] font-display uppercase tracking-[0.3em] bg-secondary/80 text-primary border border-border/70 mt-4"
+                            >
+                                Am i the GOAT?
+                            </span>
+                        </div>
+
+                        <div
+                            ref={photoCardRef}
+                            className="hidden min-[1250px]:flex flex-col items-center justify-center text-center relative py-4"
+                            style={{ opacity: 0 }}
+                        >
+                            <div className="relative w-full flex items-center justify-center min-h-[420px] md:min-h-[460px]">
+                                <div className="absolute -inset-10 bg-primary/10 blur-[80px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"></div>
+                                <div className="absolute -inset-4 bg-accent-2/5 blur-[40px] rounded-full opacity-30 group-hover:opacity-60 transition-opacity duration-700 delay-100 pointer-events-none"></div>
+                            </div>
+                            <span
+                                ref={taglineRef}
+                                className="inline-flex items-center px-4 py-2 rounded-full text-[11px] font-display tracking-[0.3em] bg-secondary/80 text-primary border border-border/70 mt-2 relative z-20"
                                 style={{ opacity: 0 }}
                             >
                                 Am i the GOAT?
@@ -390,6 +435,26 @@ const Hero = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="hidden min-[1250px]:block">
+                <Lanyard
+                    position={[0, 0, 25]}
+                    gravity={[0, -40, 0]}
+                    frontImage={tahsinPhoto}
+                    backImage={tahsinLogo}
+                    imageFit="cover"
+                    lanyardWidth={0.8}
+                    anchorPosition={[0, 4.2, 0]}
+                    cardScale={2.1}
+                    className="!absolute z-30"
+                    style={{
+                        top: -canvasTopOffset,
+                        left: 325,
+                        width: '100%',
+                        height: `calc(100% + ${canvasTopOffset}px)`,
+                        pointerEvents: 'none',
+                    }}
+                />
             </div>
         </section>
     );

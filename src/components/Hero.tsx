@@ -44,24 +44,34 @@ const Hero = () => {
     const badge3Ref = useRef<HTMLDivElement>(null);
     const taglineRef = useRef<HTMLSpanElement>(null);
     const descCardRef = useRef<HTMLDivElement>(null);
-    const [canvasTopOffset, setCanvasTopOffset] = useState(160);
+    const [lanyardRestX, setLanyardRestX] = useState(3.2);
 
     useEffect(() => {
-        const updateOffset = () => {
-            if (sectionRef.current) {
-                const offset = sectionRef.current.offsetTop;
-                if (offset > 0) {
-                    setCanvasTopOffset(offset);
+        const updateRestX = () => {
+            if (photoCardRef.current && sectionRef.current) {
+                const photoRect = photoCardRef.current.getBoundingClientRect();
+                const sectionRect = sectionRef.current.getBoundingClientRect();
+                if (sectionRect.width > 0) {
+                    const photoCenterX = photoRect.left + photoRect.width / 2;
+                    const sectionCenterX = sectionRect.left + sectionRect.width / 2;
+                    const pixelOffset = photoCenterX - sectionCenterX;
+
+                    const vHeight = 2 * Math.tan((20 * Math.PI) / 360) * 25; // 8.8163
+                    const vWidth = vHeight * (sectionRect.width / (sectionRect.height || window.innerHeight));
+                    const worldX = (pixelOffset / (sectionRect.width / 2)) * (vWidth / 2);
+                    if (!isNaN(worldX) && isFinite(worldX)) {
+                        setLanyardRestX(worldX);
+                    }
                 }
             }
         };
-        updateOffset();
-        window.addEventListener('resize', updateOffset);
-        const timer1 = setTimeout(updateOffset, 100);
-        const timer2 = setTimeout(updateOffset, 600);
-        const timer3 = setTimeout(updateOffset, 1400);
+        updateRestX();
+        window.addEventListener('resize', updateRestX);
+        const timer1 = setTimeout(updateRestX, 100);
+        const timer2 = setTimeout(updateRestX, 600);
+        const timer3 = setTimeout(updateRestX, 1400);
         return () => {
-            window.removeEventListener('resize', updateOffset);
+            window.removeEventListener('resize', updateRestX);
             clearTimeout(timer1);
             clearTimeout(timer2);
             clearTimeout(timer3);
@@ -436,7 +446,7 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
-            <div className="hidden min-[1250px]:block">
+            <div className="hidden min-[1250px]:block absolute inset-0 w-full h-full pointer-events-none z-30 overflow-visible">
                 <Lanyard
                     position={[0, 0, 25]}
                     gravity={[0, -40, 0]}
@@ -444,15 +454,15 @@ const Hero = () => {
                     backImage={tahsinLogo}
                     imageFit="cover"
                     lanyardWidth={0.8}
-                    anchorPosition={[0, 4.2, 0]}
+                    anchorPosition={[lanyardRestX, 4.4, 0]}
                     cardScale={2.1}
-                    className="!absolute z-30"
+                    className="w-full h-full"
                     style={{
-                        top: -canvasTopOffset,
-                        left: 325,
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
                         width: '100%',
-                        height: `calc(100% + ${canvasTopOffset}px)`,
-                        pointerEvents: 'none',
+                        height: '100%',
                     }}
                 />
             </div>

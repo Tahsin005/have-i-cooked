@@ -84,24 +84,29 @@ const SectionHeader = ({ title, titleHighlight, subtitle, className = '' }: Sect
       const words = part.trim().split(/\s+/);
       const isHighlight = titleHighlight && partIndex === 1;
 
-      return words.map((word, wordIndex) => (
-        <span
-          key={`${partIndex}-${wordIndex}`}
-          style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'top' }}
-        >
-          <span
-            className={`header-word-inner ${
-              isHighlight
-                ? 'bg-clip-text text-transparent bg-gradient-to-r from-primary/80 to-primary/40'
-                : 'bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50'
-            }`}
-            style={{ display: 'inline-block', transform: 'translateY(110%)' }}
-          >
-            {word}
-          </span>
-          {wordIndex < words.length - 1 && <>&nbsp;</>}
+      return (
+        <span key={`part-${partIndex}`}>
+          {words.map((word, wordIndex) => (
+            <span
+              key={`${partIndex}-${wordIndex}`}
+              style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'top' }}
+            >
+              <span
+                className={`header-word-inner ${
+                  isHighlight
+                    ? 'bg-clip-text text-transparent bg-gradient-to-r from-primary/80 to-primary/40'
+                    : 'bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50'
+                }`}
+                style={{ display: 'inline-block', transform: 'translateY(110%)' }}
+              >
+                {word}
+              </span>
+              {wordIndex < words.length - 1 && <>&nbsp;</>}
+            </span>
+          ))}
+          {partIndex < parts.length - 1 && <>&nbsp;</>}
         </span>
-      ));
+      );
     });
   };
 

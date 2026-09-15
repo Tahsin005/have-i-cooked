@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 // Rubik's Cube Face Definitions (Standard Western Color Scheme)
 const FACES = [
@@ -189,11 +190,19 @@ const CustomCursor = () => {
     };
   }, []);
 
-  return (
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || typeof document === 'undefined') return null;
+
+  return createPortal(
     <>
       <div
         ref={cubeWrapperRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999] hidden md:block"
+        className="fixed top-0 left-0 pointer-events-none z-[999999] hidden md:block"
         style={{
           width: 28,
           height: 28,
@@ -224,7 +233,7 @@ const CustomCursor = () => {
 
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 pointer-events-none z-[10000] hidden md:block"
+        className="fixed top-0 left-0 pointer-events-none z-[1000000] hidden md:block"
         style={{
           width: isHovering ? 6 : 4,
           height: isHovering ? 6 : 4,
@@ -240,7 +249,8 @@ const CustomCursor = () => {
           willChange: 'transform',
         }}
       />
-    </>
+    </>,
+    document.body
   );
 };
 

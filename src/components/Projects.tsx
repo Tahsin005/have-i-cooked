@@ -180,9 +180,9 @@ const Projects = () => {
       name: "World Atlas",
       tech: ["react", "tailwindcss", "country-rest-api"],
       description:
-        "A high-performance, modern cartographic dashboard built with React and the REST Countries API. This application provides a comprehensive geographic registry with technical data modules, visual identifiers, and optimized orbital scanning (search).",
-      link: "https://country-rest-api-react.vercel.app/",
-      source: "https://github.com/Tahsin005/country-rest-api",
+        "A high-performance, modern cartographic intelligence dashboard built with React and the REST Countries API. Engineered with a futuristic Liquid Glass design language, World Atlas delivers an immersive planetary registry featuring real-time atmospheric telemetry, multi-node currency exchange dynamics, interactive geospatial coordinate mapping, and zero-latency orbital scanning with offline resilience.",
+      link: "https://wrldatlas.vercel.app/",
+      source: "https://github.com/Tahsin005/world-atlas",
       images: [country1, country2]
     },
     {

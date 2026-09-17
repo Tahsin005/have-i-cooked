@@ -115,7 +115,7 @@ export default function Lanyard({
     <div
       ref={containerRef}
       data-lanyard="true"
-      className={`${className} transition-opacity duration-500`}
+      className={`${className} transition-opacity duration-700 ease-out`}
       style={{
         ...style,
         opacity: isLoaded ? 1 : 0,
@@ -418,22 +418,17 @@ function Band({
   }, [gl, onHoverChange]);
 
   useFrame((state, delta) => {
-    // Notify on first rendered frame and execute initial gentle swing
     if (!readyFired.current && card.current && band.current) {
       readyFired.current = true;
+      if (card.current) {
+        card.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+        card.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+      }
       requestAnimationFrame(() => {
         onReady?.();
-        // Playful natural swing to show interactivity immediately upon load
-        setTimeout(() => {
-          if (card.current) {
-            card.current.wakeUp();
-            card.current.applyImpulse({ x: 1.8, y: -0.15, z: 0 }, true);
-          }
-        }, 350);
       });
     }
 
-    // Update card screen bounds every frame using exact camera projection
     if (card.current && gl.domElement) {
       const cPos = card.current.translation();
       vec.set(cPos.x, cPos.y - 0.5 * scaleRatio, cPos.z).project(state.camera);

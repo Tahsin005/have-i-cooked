@@ -56,6 +56,11 @@ export interface LanyardProps {
   anchorPosition?: [number, number, number];
   segmentLength?: number;
   cardScale?: number;
+  onLoaded?: () => void;
+  onDragStart?: () => void;
+  onDragEnd?: () => void;
+  onHoverChange?: (hovered: boolean) => void;
+  nudgeRef?: React.MutableRefObject<(() => void) | null>;
 }
 
 export default function Lanyard({
@@ -72,7 +77,12 @@ export default function Lanyard({
   style,
   anchorPosition = [0, 4.4, 0],
   segmentLength = 1.15,
-  cardScale = 2.1
+  cardScale = 2.1,
+  onLoaded,
+  onDragStart,
+  onDragEnd,
+  onHoverChange,
+  nudgeRef,
 }: LanyardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -148,7 +158,14 @@ export default function Lanyard({
             anchorPosition={anchorPosition}
             segmentLength={segmentLength}
             cardScale={cardScale}
-            onReady={() => setIsLoaded(true)}
+            onReady={() => {
+              setIsLoaded(true);
+              onLoaded?.();
+            }}
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd}
+            onHoverChange={onHoverChange}
+            nudgeRef={nudgeRef}
           />
         </Physics>
         <Environment blur={0.75}>
@@ -199,11 +216,17 @@ interface BandProps {
   segmentLength?: number;
   cardScale?: number;
   onReady?: () => void;
+  onDragStart?: () => void;
+  onDragEnd?: () => void;
+  onHoverChange?: (hovered: boolean) => void;
+  nudgeRef?: React.MutableRefObject<(() => void) | null>;
 }
 
 type LanyardRigidBody = RapierRigidBody & {
   lerped?: THREE.Vector3;
-}; function Band({
+};
+
+function Band({
   maxSpeed = 50,
   minSpeed = 0,
   isMobile = false,
@@ -216,6 +239,10 @@ type LanyardRigidBody = RapierRigidBody & {
   segmentLength = 1.15,
   cardScale = 2.1,
   onReady,
+  onDragStart,
+  onDragEnd,
+  onHoverChange,
+  nudgeRef,
 }: BandProps) {
   const scaleRatio = cardScale / 2.25;
   const band = useRef<THREE.Mesh<InstanceType<typeof MeshLineGeometry>, InstanceType<typeof MeshLineMaterial>>>(null!);
@@ -339,10 +366,23 @@ type LanyardRigidBody = RapierRigidBody & {
     }
   }, [hovered, dragged]);
 
+  // Handle external nudge via ref
   useEffect(() => {
-    onReady?.();
-  }, [onReady]);
+    if (nudgeRef) {
+      nudgeRef.current = () => {
+        if (card.current) {
+          card.current.wakeUp();
+          const dir = Math.random() > 0.5 ? 1 : -1;
+          const forceX = dir * (2.2 + Math.random() * 1.6);
+          const forceY = -(0.25 + Math.random() * 0.35);
+          card.current.applyImpulse({ x: forceX, y: forceY, z: 0 }, true);
+        }
+      };
+    }
+  }, [nudgeRef]);
 
+  const readyFired = useRef(false);
+  const isHoveredRef = useRef(false);
   const cardScreenBounds = useRef({ minX: 0, maxX: 0, minY: 0, maxY: 0 });
   const { gl } = useThree();
 
@@ -362,15 +402,37 @@ type LanyardRigidBody = RapierRigidBody & {
         if (domCanvas.style.pointerEvents !== targetPE) {
           domCanvas.style.pointerEvents = targetPE;
         }
+        if (domCanvas.dataset.interactive !== (isOver ? 'true' : 'false')) {
+          domCanvas.dataset.interactive = isOver ? 'true' : 'false';
+        }
         hover(isOver);
+        if (isHoveredRef.current !== isOver) {
+          isHoveredRef.current = isOver;
+          onHoverChange?.(isOver);
+        }
       }
     };
 
     window.addEventListener('pointermove', onWindowPointerMove, { passive: true });
     return () => window.removeEventListener('pointermove', onWindowPointerMove);
-  }, [gl]);
+  }, [gl, onHoverChange]);
 
   useFrame((state, delta) => {
+    // Notify on first rendered frame and execute initial gentle swing
+    if (!readyFired.current && card.current && band.current) {
+      readyFired.current = true;
+      requestAnimationFrame(() => {
+        onReady?.();
+        // Playful natural swing to show interactivity immediately upon load
+        setTimeout(() => {
+          if (card.current) {
+            card.current.wakeUp();
+            card.current.applyImpulse({ x: 1.8, y: -0.15, z: 0 }, true);
+          }
+        }, 350);
+      });
+    }
+
     // Update card screen bounds every frame using exact camera projection
     if (card.current && gl.domElement) {
       const cPos = card.current.translation();
@@ -554,12 +616,21 @@ type LanyardRigidBody = RapierRigidBody & {
           <group
             scale={cardScale}
             position={[0, -1.2 * scaleRatio, -0.05]}
-            onPointerOver={() => hover(true)}
+            onPointerOver={() => {
+              hover(true);
+              isHoveredRef.current = true;
+              onHoverChange?.(true);
+            }}
             onPointerOut={() => {
-              if (!isDraggingRef.current) hover(false);
+              if (!isDraggingRef.current) {
+                hover(false);
+                isHoveredRef.current = false;
+                onHoverChange?.(false);
+              }
             }}
             onPointerUp={(e: ThreeEvent<PointerEvent>) => {
               isDraggingRef.current = false;
+              onDragEnd?.();
               (e.target as Element).releasePointerCapture(e.pointerId);
               drag(false);
               // Apply kinetic throw velocity
@@ -577,6 +648,7 @@ type LanyardRigidBody = RapierRigidBody & {
             }}
             onPointerDown={(e: ThreeEvent<PointerEvent>) => {
               isDraggingRef.current = true;
+              onDragStart?.();
               const domCanvas = document.querySelector('[data-lanyard] canvas') as HTMLCanvasElement | null;
               if (domCanvas) domCanvas.style.pointerEvents = 'auto';
               (e.target as Element).setPointerCapture(e.pointerId);

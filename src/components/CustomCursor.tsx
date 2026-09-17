@@ -115,7 +115,7 @@ const CustomCursor = () => {
     const onMouseOverInteractive = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const interactive = target.closest(
-        'a, button, [role="button"], input, textarea, select, .glass-hover, .glass-card, [tabindex], label'
+        'a, button, [role="button"], input, textarea, select, .glass-hover, .glass-card, [tabindex], label, [data-interactive]'
       );
       setIsHovering(!!interactive);
     };

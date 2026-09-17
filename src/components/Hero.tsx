@@ -3,6 +3,8 @@ import tahsinPhoto from '@/assets/lanyard/lanyard-card.png';
 import tahsinPhoto2 from '@/assets/hero-image.png';
 import tahsinLogo from '@/assets/tahsin-logo-white-bg.png';
 import Lanyard from '@/components/ui/Lanyard';
+import LanyardLoader from '@/components/LanyardLoader';
+import LanyardInteractiveHint from '@/components/LanyardInteractiveHint';
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -45,6 +47,11 @@ const Hero = () => {
     const taglineRef = useRef<HTMLSpanElement>(null);
     const descCardRef = useRef<HTMLDivElement>(null);
     const [lanyardRestX, setLanyardRestX] = useState(3.2);
+    const [isLanyardLoaded, setIsLanyardLoaded] = useState(false);
+    const [isLanyardHovered, setIsLanyardHovered] = useState(false);
+    const [isLanyardDragged, setIsLanyardDragged] = useState(false);
+    const [hasLanyardInteracted, setHasLanyardInteracted] = useState(false);
+    const lanyardNudgeRef = useRef<(() => void) | null>(null);
 
     useEffect(() => {
         const updateRestX = () => {
@@ -414,7 +421,22 @@ const Hero = () => {
                             <div className="relative w-full flex items-center justify-center min-h-[420px] md:min-h-[460px]">
                                 <div className="absolute -inset-10 bg-primary/10 blur-[80px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"></div>
                                 <div className="absolute -inset-4 bg-accent-2/5 blur-[40px] rounded-full opacity-30 group-hover:opacity-60 transition-opacity duration-700 delay-100 pointer-events-none"></div>
+
+
+                                <LanyardLoader isLoaded={isLanyardLoaded} />
+
+
+                                <LanyardInteractiveHint
+                                    isLoaded={isLanyardLoaded}
+                                    isDragging={isLanyardDragged}
+                                    hasInteracted={hasLanyardInteracted}
+                                    onNudge={() => {
+                                        setHasLanyardInteracted(true);
+                                        lanyardNudgeRef.current?.();
+                                    }}
+                                />
                             </div>
+
                             <span
                                 ref={taglineRef}
                                 className="inline-flex items-center px-4 py-2 rounded-full text-[11px] font-display tracking-[0.3em] bg-secondary/80 text-primary border border-border/70 mt-2 relative z-20"
@@ -457,6 +479,14 @@ const Hero = () => {
                     anchorPosition={[lanyardRestX, 4.4, 0]}
                     cardScale={2.1}
                     className="w-full h-full"
+                    onLoaded={() => setIsLanyardLoaded(true)}
+                    onHoverChange={(hovered) => setIsLanyardHovered(hovered)}
+                    onDragStart={() => {
+                        setIsLanyardDragged(true);
+                        setHasLanyardInteracted(true);
+                    }}
+                    onDragEnd={() => setIsLanyardDragged(false)}
+                    nudgeRef={lanyardNudgeRef}
                     style={{
                         position: 'absolute',
                         top: 0,

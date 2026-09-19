@@ -15,6 +15,9 @@ import socially2 from '@/assets/project-ss/socially-2.png'
 import ibuiltthis1 from '@/assets/project-ss/ibuiltthis-1.png'
 import ibuiltthis2 from '@/assets/project-ss/ibuiltthis-2.png'
 import ibuiltthis3 from '@/assets/project-ss/ibuiltthis-3.png'
+import jat1 from '@/assets/project-ss/jat-1.png'
+import jat2 from '@/assets/project-ss/jat-2.png'
+import jat3 from '@/assets/project-ss/jat-3.png'
 import rtwd from '@/assets/project-ss/rtwd.png'
 import storeit1 from '@/assets/project-ss/storeit-1.png'
 import storeit2 from '@/assets/project-ss/storeit-2.png'
@@ -117,6 +120,23 @@ const Projects = () => {
       images: [socially1, socially2]
     },
     {
+      name: "AffPilot",
+      tech: ["react", "tailwindcss", "django", "postgresql"],
+      description:
+        "AffPilot is an AI-powered content automation platform for creators and agencies. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot's suite of products.",
+      link: "https://affpilot.com/",
+      images: [affpilot1, affpilot2]
+    },
+    {
+      name: "Job Application Tracker",
+      tech: ["nextjs", "tailwindcss", "mongodb", "redis", "recaptcha"],
+      description:
+        "An all-in-one AI career workspace designed to streamline the job hunt from lead discovery to offer negotiation. Built on Next.js 16, React 19, and MongoDB, it features interactive drag-and-drop pipelines, ATS compatibility scoring, instant AI generation of cover letters and LinkedIn outreach, interview journey logging, pipeline velocity analytics, and a tiered credit system with local payment integration.",
+      link: "https://job-application-tracker-site.vercel.app",
+      source: "https://github.com/Tahsin005/job-application-tracker",
+      images: [jat1, jat2, jat3]
+    },
+    {
       name: "iBuiltThis",
       tech: ["nextjs", "tailwindcss", "postgresql", "clerk", "drizzle"],
       description:
@@ -124,14 +144,6 @@ const Projects = () => {
       link: "https://ibuiltthis-three.vercel.app/",
       source: "https://github.com/Tahsin005/ibuiltthis",
       images: [ibuiltthis1, ibuiltthis2, ibuiltthis3]
-    },
-    {
-      name: "AffPilot",
-      tech: ["react", "tailwindcss", "django", "postgresql"],
-      description:
-        "AffPilot is an AI-powered content automation platform for creators and agencies. I worked on backend and integrations, implementing Shopify publishing and building a centralized payment system to handle transactions across AffPilot's suite of products.",
-      link: "https://affpilot.com/",
-      images: [affpilot1, affpilot2]
     },
     {
       name: "E-Commerce Microservices",

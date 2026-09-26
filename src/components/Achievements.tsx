@@ -166,8 +166,9 @@ const Achievements = () => {
     <section className="section-shell relative overflow-hidden border-none" id="achievements">
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeader
-          title="Achievements"
-          subtitle="Milestones and accomplishments in competitive programming & hackathons."
+          title="Key"
+          titleHighlight="Achievements"
+          subtitle="Milestones and competitive accomplishments in programming & hackathons."
         />
 
         <div
@@ -177,8 +178,9 @@ const Achievements = () => {
           {achievements.map((achievement, index) => (
             <div
               key={index}
-              className={`achievement-card h-full ${index === 6 ? "md:col-span-2 lg:col-span-3 max-w-md mx-auto w-full" : ""
-                }`}
+              className={`achievement-card h-full ${
+                index === 6 ? "md:col-span-2 lg:col-span-1 lg:col-start-2 max-w-md mx-auto w-full" : ""
+              }`}
               style={{ opacity: 0 }}
             >
               <TiltCard className="h-full">
@@ -188,17 +190,18 @@ const Achievements = () => {
                       setSelectedCert(achievement);
                     }
                   }}
-                  className={`glass-card glass-hover p-6 rounded-2xl flex flex-col items-center justify-center text-center group h-full transition-all duration-500 min-h-[170px] relative overflow-hidden ${achievement.certificate ? "cursor-pointer" : ""
-                    }`}
+                  className={`glass-card glass-hover p-6 rounded-2xl flex flex-col items-center justify-center text-center group h-full transition-all duration-500 min-h-[170px] relative overflow-hidden ${
+                    achievement.certificate ? "cursor-pointer" : ""
+                  }`}
                 >
                   <div
-                    className="achievement-icon bg-white/5 p-4 rounded-full mb-3 border border-white/10 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-500 z-10"
+                    className="card-icon-box mb-4 z-10"
                     style={{ transform: "translateZ(20px)" }}
                   >
                     {achievement.icon}
                   </div>
                   <span
-                    className="font-display text-[16px] font-medium tracking-wide text-foreground/70 group-hover:text-foreground transition-colors z-10"
+                    className="font-display text-[16px] font-medium tracking-wide text-foreground/80 group-hover:text-foreground transition-colors z-10"
                     style={{ transform: "translateZ(30px)" }}
                   >
                     {achievement.title}
@@ -206,7 +209,7 @@ const Achievements = () => {
 
                   {achievement.subtitle && (
                     <span
-                      className="font-display text-[12px] text-foreground/50 tracking-wide mt-1 z-10"
+                      className="font-body text-[13px] text-muted-foreground mt-1 z-10"
                       style={{ transform: "translateZ(25px)" }}
                     >
                       {achievement.subtitle}
@@ -215,10 +218,10 @@ const Achievements = () => {
 
                   {achievement.certificate && (
                     <span
-                      className="mt-3 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/5 group-hover:bg-primary/20 text-foreground/70 group-hover:text-foreground text-[11px] font-display font-medium border border-white/10 group-hover:border-primary/40 transition-all duration-300 z-10 shadow-sm"
+                      className="mt-4 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 group-hover:bg-primary/20 text-foreground/80 group-hover:text-primary text-[12px] font-display font-medium border border-white/10 group-hover:border-primary/40 transition-all duration-300 z-10 shadow-sm"
                       style={{ transform: "translateZ(25px)" }}
                     >
-                      <Eye size={12} className="text-primary group-hover:scale-110 transition-transform" />
+                      <Eye size={13} className="text-primary group-hover:scale-110 transition-transform" />
                       <span>View Certificate</span>
                     </span>
                   )}
@@ -258,13 +261,13 @@ const Achievements = () => {
                   </DialogDescription>
                 </div>
 
-                <div className="flex items-center gap-2 shrink-0 flex-wrap">
+                <div className="flex items-center gap-2.5 shrink-0 flex-wrap">
                   {selectedCert.certificate.postUrl && (
                     <a
                       href={selectedCert.certificate.postUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-foreground/80 hover:text-foreground text-xs font-display border border-white/10 hover:border-white/20 transition-all"
+                      className="btn-secondary !text-xs !px-4 !py-1.5"
                     >
                       <ExternalLink size={13} />
                       <span>{selectedCert.certificate.postLabel || "Official Post"}</span>
@@ -274,7 +277,7 @@ const Achievements = () => {
                     href={selectedCert.certificate.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-foreground/80 hover:text-foreground text-xs font-display border border-white/10 hover:border-white/20 transition-all"
+                    className="btn-secondary !text-xs !px-4 !py-1.5"
                   >
                     <ExternalLink size={13} />
                     <span>Open in Tab</span>
@@ -282,7 +285,7 @@ const Achievements = () => {
                   <a
                     href={selectedCert.certificate.url}
                     download={selectedCert.certificate.fileName}
-                    className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-display font-semibold transition-all shadow-[0_0_15px_rgba(147,51,234,0.3)]"
+                    className="btn-primary !text-xs !px-4 !py-1.5"
                   >
                     <Download size={13} />
                     <span>Download</span>

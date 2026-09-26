@@ -294,18 +294,18 @@ const Hero = () => {
                         <div ref={ctaRef} className="mt-10 flex flex-wrap items-center gap-4">
                             <a
                                 href="#projects"
-                                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors"
+                                className="btn-primary"
                                 style={{ opacity: 0 }}
                             >
-                                View Projects
+                                <span>View Projects</span>
                                 <ArrowRight size={16} />
                             </a>
                             <a
                                 href="#contact"
-                                className="inline-flex items-center gap-2 border border-border/70 text-foreground px-4 py-2 rounded-full text-sm font-semibold hover:border-primary/60 hover:text-primary transition-colors"
+                                className="btn-secondary"
                                 style={{ opacity: 0 }}
                             >
-                                Let's Talk
+                                <span>Let's Talk</span>
                             </a>
                         </div>
                         <div ref={socialsRef} className="mt-8 flex items-center gap-4 flex-wrap">
@@ -355,12 +355,12 @@ const Hero = () => {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3 group/status">
-                                    <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center border border-green-500/20 group-hover/status:border-green-500/40 transition-all duration-300">
-                                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                    <div className="w-10 h-10 rounded-xl bg-emerald-400/10 flex items-center justify-center border border-emerald-400/20 group-hover/status:border-emerald-400/40 transition-all duration-300">
+                                        <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
                                     </div>
                                     <div className="flex flex-col">
-                                        <span className="text-[10px] uppercase tracking-[0.1em] font-bold opacity-40 text-green-500/70">Availability</span>
-                                        <span className="text-sm font-medium text-green-400">Available for innovative projects</span>
+                                        <span className="text-[10px] uppercase tracking-[0.1em] font-bold opacity-40 text-emerald-400/70">Availability</span>
+                                        <span className="text-sm font-medium text-emerald-400">Available for innovative projects</span>
                                     </div>
                                 </div>
                             </div>

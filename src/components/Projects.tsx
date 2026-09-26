@@ -447,8 +447,9 @@ const Projects = () => {
     <section className="section-shell relative overflow-hidden border-none" id="projects">
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeader
-          title="Projects"
-          subtitle="A collection of projects I've built and contributed to."
+          title="Featured"
+          titleHighlight="Projects"
+          subtitle="A collection of production applications, systems, and platforms I've built."
         />
 
         <div ref={mainGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -458,12 +459,12 @@ const Projects = () => {
               className="project-card"
               style={{ opacity: 0 }}
             >
-              <div className="glass-card glass-shimmer glass-hover flex flex-col group rounded-xl h-full overflow-hidden border border-white/10 transition-all duration-500">
+              <div className="glass-card glass-shimmer glass-hover flex flex-col group rounded-2xl h-full overflow-hidden border border-white/10 transition-all duration-500">
                 <ProjectImageSlider images={project.images} projectName={project.name} />
 
-                <div className="flex flex-col flex-1 p-5">
+                <div className="flex flex-col flex-1 p-6">
                   <div className="flex justify-between items-start mb-3">
-                    <h3 className="font-display text-[18px] font-semibold leading-[1.3] text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="font-display text-[18px] md:text-[19px] font-semibold leading-[1.3] text-foreground group-hover:text-primary transition-colors">
                       {project.name}
                     </h3>
                     <div className="flex gap-2 shrink-0 ml-2">
@@ -472,10 +473,10 @@ const Projects = () => {
                           href={(project as any).source}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition-colors"
+                          className="btn-icon"
                           title="View Source Code"
                         >
-                          <Github size={20} />
+                          <Github size={17} />
                         </a>
                       )}
                       {project.link && (
@@ -483,16 +484,16 @@ const Projects = () => {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition-colors"
+                          className="btn-icon"
                           title="Live Demo"
                         >
-                          <ExternalLink size={20} />
+                          <ExternalLink size={17} />
                         </a>
                       )}
                     </div>
                   </div>
 
-                  <p className="font-body text-[14px] font-normal leading-[1.7] text-muted-foreground mb-4 flex-1">
+                  <p className="font-body text-[14px] font-normal leading-relaxed text-muted-foreground mb-5 flex-1">
                     {project.description}
                   </p>
 
@@ -500,7 +501,7 @@ const Projects = () => {
                     {project.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="tech-tag font-display text-[12px] font-medium tracking-wide bg-white/5 text-foreground/80 px-4 py-1.5 rounded-full border border-white/10 shadow-sm"
+                        className="tech-tag"
                         style={{ opacity: 0, transform: 'scale(0)' }}
                       >
                         {tech}
@@ -517,12 +518,12 @@ const Projects = () => {
       <div className="section-shell">
         <div className="max-w-6xl mx-auto relative z-10">
           <div ref={funHeaderRef} className="mt-8 mb-16 text-center" style={{ opacity: 0 }}>
-            <div className="section-label mb-3"></div>
-            <h3 className="font-display text-[clamp(30px,6vw,60px)] font-bold tracking-tighter mb-4">
+            <h3 className="font-display text-[clamp(32px,6vw,56px)] font-bold tracking-tight mb-4">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">Fun & Cool </span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary/80 to-primary/40">Experiments</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary/90 to-primary/50">Experiments</span>
             </h3>
-            <p className="font-display text-[18px] md:text-[22px] text-foreground/70 max-w-2xl mx-auto">
+            <div className="w-16 h-[2px] mx-auto mb-4 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+            <p className="font-display text-[17px] md:text-[20px] text-foreground/60 max-w-2xl mx-auto">
               Smaller projects, CLI tools, and creative experiments I've worked on.
             </p>
           </div>
@@ -530,10 +531,10 @@ const Projects = () => {
           <div ref={funGridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
             {funProjects.map((project, index) => (
               <div key={index} className="fun-card" style={{ opacity: 0 }}>
-                <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 transition-all duration-500 relative overflow-hidden">
+                <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/10 transition-all duration-500 relative overflow-hidden">
                   <div className="relative z-10 flex flex-col h-full">
                     <div className="flex justify-between items-start mb-4">
-                      <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground transition-colors">
+                      <h4 className="font-display text-[18px] md:text-[20px] font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
                         {project.name}
                       </h4>
                       <div className="flex gap-2">
@@ -542,10 +543,10 @@ const Projects = () => {
                             href={project.source}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                            className="btn-icon"
                             title="View Source Code"
                           >
-                            <Github size={18} />
+                            <Github size={17} />
                           </a>
                         )}
                         {(project as any).link && (
@@ -553,22 +554,22 @@ const Projects = () => {
                             href={(project as any).link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                            className="btn-icon"
                             title="Live Demo"
                           >
-                            <ExternalLink size={18} />
+                            <ExternalLink size={17} />
                           </a>
                         )}
                       </div>
                     </div>
-                    <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 transition-colors">
+                    <p className="font-body text-[14px] leading-relaxed text-muted-foreground mb-6 flex-1">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className="font-display text-[11px] font-medium tracking-wide bg-white/5 text-foreground/80 px-3 py-1 rounded-full border border-white/10 shadow-sm"
+                          className="tech-tag"
                         >
                           {tech}
                         </span>
@@ -581,23 +582,23 @@ const Projects = () => {
           </div>
 
           <div ref={osHeaderRef} className="mt-20 mb-16 text-center" style={{ opacity: 0 }}>
-            <div className="section-label mb-3"></div>
-            <h3 className="font-display text-[clamp(30px,6vw,60px)] font-bold tracking-tighter mb-4">
+            <h3 className="font-display text-[clamp(32px,6vw,56px)] font-bold tracking-tight mb-4">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">Open </span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary/80 to-primary/40">Source</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary/90 to-primary/50">Source</span>
             </h3>
-            <p className="font-display text-[18px] md:text-[22px] text-foreground/70 max-w-2xl mx-auto">
-              Open-source tools and widgets I've contributed to.
+            <div className="w-16 h-[2px] mx-auto mb-4 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+            <p className="font-display text-[17px] md:text-[20px] text-foreground/60 max-w-2xl mx-auto">
+              Open-source tools, developer utilities, and community contributions.
             </p>
           </div>
 
           <div ref={openSourceGridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {openSourceProjects.map((project, index) => (
               <div key={index} className="os-card" style={{ opacity: 0 }}>
-                <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/5 transition-all duration-500 relative overflow-hidden">
+                <div className="glass-card glass-hover p-6 rounded-2xl h-full flex flex-col group border border-white/10 transition-all duration-500 relative overflow-hidden">
                   <div className="relative z-10 flex flex-col h-full">
                     <div className="flex justify-between items-start mb-4">
-                      <h4 className="font-display text-[20px] font-bold uppercase tracking-wider text-foreground transition-colors">
+                      <h4 className="font-display text-[18px] md:text-[20px] font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
                         {project.name}
                       </h4>
                       <div className="flex gap-2">
@@ -606,10 +607,10 @@ const Projects = () => {
                             href={project.source}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                            className="btn-icon"
                             title="View Source Code"
                           >
-                            <Github size={18} />
+                            <Github size={17} />
                           </a>
                         )}
                         {(project as any).link && (
@@ -617,22 +618,22 @@ const Projects = () => {
                             href={(project as any).link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-muted-foreground hover:text-foreground transition-colors bg-white/5 p-2 rounded-full border border-white/10"
+                            className="btn-icon"
                             title="Live Demo"
                           >
-                            <ExternalLink size={18} />
+                            <ExternalLink size={17} />
                           </a>
                         )}
                       </div>
                     </div>
-                    <p className="font-mono text-[13px] leading-[1.6] text-muted-foreground mb-6 flex-1 transition-colors">
+                    <p className="font-body text-[14px] leading-relaxed text-muted-foreground mb-6 flex-1">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className="font-display text-[11px] font-medium tracking-wide bg-white/5 text-foreground/80 px-3 py-1 rounded-full border border-white/10 shadow-sm"
+                          className="tech-tag"
                         >
                           {tech}
                         </span>

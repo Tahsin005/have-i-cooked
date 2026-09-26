@@ -182,25 +182,25 @@ const Blogs = () => {
                     href={`${POST_BASE_URL}/${post.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="glass-card glass-shimmer glass-hover p-8 rounded-2xl flex flex-col justify-between h-full border border-white/5 hover:border-white/15 transition-all duration-500 relative overflow-hidden group"
+                    className="glass-card glass-shimmer glass-hover p-8 rounded-2xl flex flex-col justify-between h-full border border-white/10 hover:border-primary/40 transition-all duration-500 relative overflow-hidden group"
                   >
                     <div className="z-10 relative">
                       <div className="flex justify-between items-start mb-6">
-                        <div className="bg-white/5 p-3 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors duration-300">
-                          <PenTool size={20} className="text-foreground/70" />
+                        <div className="card-icon-box">
+                          <PenTool size={20} />
                         </div>
-                        <ExternalLink size={20} className="text-foreground/30 group-hover:text-foreground/70 transition-colors flex-shrink-0" />
+                        <ExternalLink size={18} className="text-foreground/30 group-hover:text-primary transition-colors flex-shrink-0" />
                       </div>
                       <h3 className="font-display text-[20px] font-semibold tracking-tight text-foreground/90 group-hover:text-foreground transition-colors mb-3">
                         {cleanTitle(post.title)}
                       </h3>
-                      <p className="font-display text-[14px] text-foreground/50 leading-relaxed mb-8 group-hover:text-foreground/70 transition-colors line-clamp-3">
+                      <p className="font-body text-[14px] text-muted-foreground leading-relaxed mb-8 group-hover:text-foreground/80 transition-colors line-clamp-3">
                         {post.excerpt}
                       </p>
                     </div>
 
                     <div className="flex items-center gap-3 text-[12px] font-display text-foreground/70 mt-auto z-10 relative flex-wrap" style={{ transform: "translateZ(30px)" }}>
-                      <span className="bg-white/5 text-foreground/80 px-3 py-1.5 rounded-full border border-white/10 tracking-wide font-medium shadow-sm">
+                      <span className="tech-tag">
                         Article
                       </span>
                       <span className="text-foreground/30">•</span>
@@ -223,10 +223,10 @@ const Blogs = () => {
             href="https://purpleonion.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center font-display tracking-wide text-foreground/80 font-medium hover:text-foreground transition-all duration-300 group text-[14px] px-8 py-4 glass-card rounded-full"
+            className="btn-secondary px-8 py-3.5 group"
           >
             <span>View all posts</span>
-            <ArrowRight size={18} className="ml-3 group-hover:translate-x-2 transition-transform duration-300" />
+            <ArrowRight size={17} className="ml-1 group-hover:translate-x-1 transition-transform duration-300" />
           </a>
         </div>
       </div>

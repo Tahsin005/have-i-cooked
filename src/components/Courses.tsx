@@ -120,13 +120,13 @@ const Courses = () => {
 
           <div className="course-card h-full" style={{ opacity: 0 }}>
             <TiltCard className="h-full">
-              <div className="glass-card glass-hover p-6 md:p-8 rounded-2xl h-full border border-white/5 relative overflow-hidden group flex flex-col justify-between">
+              <div className="glass-card glass-hover p-6 md:p-8 rounded-2xl h-full border border-white/10 relative overflow-hidden group flex flex-col justify-between">
                 <div className="relative z-10 space-y-6">
 
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                     <div className="flex items-start gap-4">
-                      <div className="bg-primary/10 p-3 rounded-full border border-primary/20 text-primary group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 flex-shrink-0">
-                        <Award size={24} />
+                      <div className="card-icon-box">
+                        <Award size={22} />
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-1.5 flex-wrap">
@@ -150,12 +150,11 @@ const Courses = () => {
                     </div>
                   </div>
 
-
                   <div className="space-y-3 pt-1">
                     <h4 className="font-display text-[11px] font-medium uppercase tracking-[0.15em] text-muted-foreground">
                       Core Curriculum & Competencies
                     </h4>
-                    <div className="space-y-3 font-mono text-[13px] leading-[1.6]">
+                    <div className="space-y-3 font-body text-[14px]">
                       {courseData.learnings.map((item, i) => (
                         <div
                           key={i}
@@ -166,7 +165,7 @@ const Courses = () => {
                             size={16}
                             className="text-primary mt-0.5 mr-3 flex-shrink-0"
                           />
-                          <span className="font-display text-[14px] leading-relaxed">
+                          <span className="leading-relaxed">
                             {item}
                           </span>
                         </div>
@@ -174,12 +173,11 @@ const Courses = () => {
                     </div>
                   </div>
 
-
                   <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 group-hover:border-primary/30 transition-colors flex items-start gap-3">
                     <div className="p-1.5 rounded-lg bg-primary/10 text-primary border border-primary/20 flex-shrink-0 mt-0.5">
                       <Zap size={15} />
                     </div>
-                    <p className="font-mono text-[13px] leading-[1.6] text-foreground/80">
+                    <p className="font-body text-[13.5px] leading-relaxed text-foreground/80">
                       <span className="font-display font-semibold text-foreground mr-1.5">
                         Key Milestone:
                       </span>
@@ -188,12 +186,11 @@ const Courses = () => {
                   </div>
                 </div>
 
-
                 <div className="relative z-10 pt-6 border-t border-white/5 mt-6 flex flex-wrap items-center gap-3">
                   <button
                     type="button"
                     onClick={() => setIsPdfOpen(true)}
-                    className="inline-flex items-center gap-2 font-display text-[13px] sm:text-[14px] font-semibold text-primary-foreground bg-primary hover:bg-primary/90 px-6 py-2.5 rounded-full transition-all duration-300 shadow-[0_0_20px_hsl(var(--primary)/0.35)] hover:shadow-[0_0_25px_hsl(var(--primary)/0.5)] hover:-translate-y-0.5 active:translate-y-0"
+                    className="btn-primary"
                   >
                     <Eye size={15} />
                     <span>View Certificate</span>
@@ -202,7 +199,7 @@ const Courses = () => {
                   <a
                     href={phitronCertificate}
                     download="Mohammad_Tahsin_Ferdous_Phitron_Certificate.pdf"
-                    className="inline-flex items-center gap-2 font-display text-[13px] sm:text-[14px] font-medium text-foreground/80 hover:text-foreground bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/40 px-5 py-2.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+                    className="btn-secondary"
                   >
                     <Download size={14} />
                     <span>Download PDF</span>
@@ -217,16 +214,15 @@ const Courses = () => {
             </TiltCard>
           </div>
 
-
           <div className="course-card h-full" style={{ opacity: 0 }}>
             <TiltCard className="h-full">
-              <div className="glass-card glass-hover p-6 md:p-8 rounded-2xl h-full border border-white/5 relative overflow-hidden group flex flex-col justify-between">
+              <div className="glass-card glass-hover p-6 md:p-8 rounded-2xl h-full border border-white/10 relative overflow-hidden group flex flex-col justify-between">
                 <div className="relative z-10 space-y-4">
 
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="bg-primary/10 p-3 rounded-full border border-primary/20 text-primary group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 flex-shrink-0">
-                        <Youtube size={22} />
+                      <div className="card-icon-box">
+                        <Youtube size={20} />
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-1 flex-wrap">

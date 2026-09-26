@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Home, Code, FolderGit2, BookOpen, Mail, Menu, X } from "lucide-react";
+import { Home, User, Code, FolderGit2, GraduationCap, Trophy, BookOpen, Mail, Menu, X } from "lucide-react";
 import tahsinLogo from '@/assets/tahsin-logo.png';
 import gsap from 'gsap';
 import { prefersReducedMotion } from '@/hooks/useGSAP';
@@ -60,7 +60,7 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
           scale: 1,
           opacity: 1,
           duration: 0.5,
-          stagger: 0.06,
+          stagger: 0.05,
           delay: 1.8,
           ease: 'back.out(2)',
         }
@@ -87,9 +87,11 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: NavigationProps) => {
   };
 
   const menuItems = [
-    { label: "INTRO", id: "hero", icon: Home },
-    { label: "SKILLS", id: "skills", icon: Code },
+    { label: "ABOUT", id: "about", icon: User },
     { label: "PROJECTS", id: "projects", icon: FolderGit2 },
+    { label: "SKILLS", id: "skills", icon: Code },
+    { label: "COURSES", id: "courses", icon: GraduationCap },
+    { label: "AWARDS", id: "achievements", icon: Trophy },
     { label: "BLOGS", id: "blogs", icon: BookOpen },
     { label: "CONTACT", id: "contact", icon: Mail },
   ];

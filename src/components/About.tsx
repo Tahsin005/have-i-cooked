@@ -115,18 +115,18 @@ const About = () => {
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
                 <div className="mb-6 flex items-center gap-4">
-                  <div className="bg-white/5 p-3 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors duration-300">
-                    <Briefcase className="text-foreground/70" size={28} strokeWidth={1.5} />
+                  <div className="card-icon-box">
+                    <Briefcase size={22} strokeWidth={1.8} />
                   </div>
                   <h3 className="font-display text-[22px] font-semibold tracking-tight text-foreground/90">Who is MD. Tahsin Ferdous?</h3>
                 </div>
-                <div className="font-display text-[15px] font-normal leading-[1.9] text-foreground/60 space-y-4">
+                <div className="font-body text-[15px] font-normal leading-[1.8] text-muted-foreground space-y-4">
                   <p>
-                    I am a <span className="text-foreground/90 font-medium">Full Stack Engineer</span> focused on building clean, accessible, and maintainable web applications.
+                    I am a <span className="text-foreground font-semibold">Full Stack Engineer</span> focused on building clean, accessible, and maintainable web applications.
                     I thrive on problem-solving and am constantly learning new things to improve my craft.
                   </p>
                   <p>
-                    My journey involves working with modern tech stacks, from building robust backends with <span className="text-foreground/80">Javascript, Golang & Python</span> to creating dynamic frontends with <span className="text-foreground/80">React, Next.js & Tailwind</span>.
+                    My journey involves working with modern tech stacks, from building robust backends with <span className="text-foreground/90 font-medium">JavaScript, Golang & Python</span> to creating dynamic frontends with <span className="text-foreground/90 font-medium">React, Next.js & Tailwind</span>.
                   </p>
                 </div>
               </div>
@@ -137,18 +137,18 @@ const About = () => {
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
                 <div className="mb-6">
-                  <div className="bg-white/5 w-fit p-3 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors duration-300 mb-4">
-                    <Code className="text-foreground/70" size={24} strokeWidth={1.5} />
+                  <div className="card-icon-box mb-4">
+                    <Code size={20} strokeWidth={1.8} />
                   </div>
                   <h3 className="font-display text-[20px] font-semibold tracking-tight text-foreground/90">Affpilot</h3>
                   <p className="font-display text-[12px] font-medium text-foreground/40 mt-1">Apr 2025 — Feb 2026</p>
                 </div>
-                <p className="font-display text-[14px] text-foreground/50 mb-6">
+                <p className="font-body text-[14px] text-muted-foreground mb-6">
                   Jr. Software Engineer
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {["Python", "Django", "Golang", "Reactjs", "PostgreSQL", "Docker", "Redis"].map(tech => (
-                    <span key={tech} className="tech-tag font-display text-[12px] font-medium tracking-wide bg-white/5 text-foreground/70 px-4 py-1.5 rounded-full border border-white/10 shadow-sm">
+                    <span key={tech} className="tech-tag">
                       {tech}
                     </span>
                   ))}
@@ -161,18 +161,18 @@ const About = () => {
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
                 <div className="mb-6">
-                  <div className="bg-white/5 w-fit p-3 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors duration-300 mb-4">
-                    <GraduationCap className="text-foreground/70" size={24} strokeWidth={1.5} />
+                  <div className="card-icon-box mb-4">
+                    <GraduationCap size={20} strokeWidth={1.8} />
                   </div>
                   <h3 className="font-display text-[20px] font-semibold tracking-tight text-foreground/90">Lexaeon</h3>
                   <p className="font-display text-[12px] font-medium text-foreground/40 mt-1">Oct 2024 — Nov 2024</p>
                 </div>
-                <p className="font-display text-[14px] text-foreground/50 mb-6">
+                <p className="font-body text-[14px] text-muted-foreground mb-6">
                   Python Developer Intern
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {["Python", "Django", "DRF", "PostgreSQL"].map(tech => (
-                    <span key={tech} className="tech-tag font-display text-[12px] font-medium tracking-wide bg-white/5 text-foreground/70 px-4 py-1.5 rounded-full border border-white/10 shadow-sm">
+                    <span key={tech} className="tech-tag">
                       {tech}
                     </span>
                   ))}
@@ -185,22 +185,22 @@ const About = () => {
             <TiltCard className="h-full">
               <div className="glass-card glass-shimmer glass-hover p-8 relative group rounded-2xl h-full overflow-hidden">
                 <div className="mb-6">
-                  <div className="bg-white/5 w-fit p-3 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors duration-300 mb-4">
-                    <Gamepad2 className="text-foreground/70" size={24} strokeWidth={1.5} />
+                  <div className="card-icon-box mb-4">
+                    <Gamepad2 size={20} strokeWidth={1.8} />
                   </div>
                   <h3 className="font-display text-[20px] font-semibold tracking-tight text-foreground/90">Interests</h3>
                 </div>
-                <ul className="space-y-4 font-display text-[15px]">
-                  <li className="flex items-center text-foreground/60 group-hover:text-foreground/80 transition-colors">
-                    <Cube className="mr-4 text-foreground/40" size={18} />
+                <ul className="space-y-4 font-body text-[14px]">
+                  <li className="flex items-center text-muted-foreground group-hover:text-foreground/90 transition-colors">
+                    <Cube className="mr-3 text-primary" size={17} />
                     Speedcubing
                   </li>
-                  <li className="flex items-center text-foreground/60 group-hover:text-foreground/80 transition-colors">
-                    <ActivityIcon className="mr-4 text-foreground/40" size={18} />
+                  <li className="flex items-center text-muted-foreground group-hover:text-foreground/90 transition-colors">
+                    <ActivityIcon className="mr-3 text-primary" size={17} />
                     Football
                   </li>
-                  <li className="flex items-center text-foreground/60 group-hover:text-foreground/80 transition-colors">
-                    <Music className="mr-4 text-foreground/40" size={18} />
+                  <li className="flex items-center text-muted-foreground group-hover:text-foreground/90 transition-colors">
+                    <Music className="mr-3 text-primary" size={17} />
                     Beatboxing
                   </li>
                 </ul>
@@ -213,21 +213,22 @@ const About = () => {
               <div className="glass-card glass-shimmer p-8 relative group flex flex-col justify-between rounded-2xl h-full overflow-hidden border-primary/30 bg-gradient-to-br from-primary/5 to-transparent hover:border-primary/50 hover:from-primary/10 hover:-translate-y-1.5 transition-all duration-500 ease-out shadow-[0_0_30px_hsl(var(--primary)/0.05)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.55),0_0_40px_hsl(var(--primary)/0.15)]">
                 <div className="resume-glow absolute inset-0 bg-primary/5 opacity-0 transition-opacity duration-500 blur-xl"></div>
                 <div className="relative z-10 mb-6">
-                  <div className="bg-primary/10 w-fit p-3 rounded-full border border-primary/20 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 mb-4 text-primary">
-                    <FileText size={24} strokeWidth={1.5} />
+                  <div className="card-icon-box mb-4">
+                    <FileText size={20} strokeWidth={1.8} />
                   </div>
-                  <h3 className="font-display text-[20px] font-semibold tracking-tight text-foreground/90 mb-4 group-hover:text-primary transition-colors duration-300">Resume</h3>
-                  <p className="font-display text-foreground/50 text-[14px] mb-8 leading-relaxed">
-                    Check out my full resume for more details on my projects and experience.
+                  <h3 className="font-display text-[20px] font-semibold tracking-tight text-foreground/90 mb-3 group-hover:text-primary transition-colors duration-300">Resume</h3>
+                  <p className="font-body text-muted-foreground text-[14px] leading-relaxed">
+                    Check out my full resume for more details on my projects, achievements, and technical experience.
                   </p>
                 </div>
                 <a
                   href="https://drive.google.com/file/d/1v5OKvPZwllgYbNnGKYQsa92aj30r-hnD/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative z-10 inline-flex items-center justify-center font-display text-[14px] font-semibold text-primary-foreground bg-primary hover:bg-primary/90 px-6 py-3 rounded-full transition-all duration-300 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] group-hover:-translate-y-0.5"
+                  className="relative z-10 btn-primary w-full"
                 >
-                  View Resume <ArrowUpRight className="ml-2" size={18} />
+                  <span>View Resume</span>
+                  <ArrowUpRight size={17} />
                 </a>
               </div>
             </TiltCard>

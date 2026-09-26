@@ -173,13 +173,12 @@ const Index = () => {
           <Contact />
         </div>
       </main>
-      {}
-      <footer ref={footerRef} className="py-12 relative z-10 border-t border-white/5">
+      <footer ref={footerRef} className="pt-14 pb-44 relative z-10 border-t border-white/5">
         <div className="max-w-4xl mx-auto px-8 text-center space-y-3">
-          <p className="font-display text-[14px] text-foreground/40 tracking-wide" style={{ opacity: 0 }}>
-            Designed & built by <span className="text-foreground/70 font-medium">MD. Tahsin Ferdous</span>
+          <p className="font-display text-[14px] text-foreground/50 tracking-wide" style={{ opacity: 0 }}>
+            Designed & built by <span className="text-foreground/80 font-medium">MD. Tahsin Ferdous</span>
           </p>
-          <p className="font-display text-[12px] text-foreground/25 tracking-widest uppercase" style={{ opacity: 0 }}>
+          <p className="font-display text-[12px] text-foreground/30 tracking-widest uppercase" style={{ opacity: 0 }}>
             © {new Date().getFullYear()} · All rights reserved
           </p>
         </div>

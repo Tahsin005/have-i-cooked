@@ -162,29 +162,29 @@ const Contact = () => {
           <div ref={leftColRef} className="space-y-8 h-full flex flex-col">
             <div className="contact-left-card flex-1" style={{ opacity: 0 }}>
               <TiltCard className="h-full">
-                <div className="glass-card glass-hover p-8 rounded-2xl h-full border border-white/5 transition-all duration-500 overflow-hidden relative group">
+                <div className="glass-card glass-hover p-8 rounded-2xl h-full border border-white/10 transition-all duration-500 overflow-hidden relative group">
                   <div style={{ transform: 'translateZ(30px)' }}>
                     <h3 className="text-2xl font-display font-bold mb-8 tracking-wider text-foreground transition-colors">
                       Contact Information
                     </h3>
                     <div className="space-y-8">
                       <div className="flex items-start">
-                        <div className="bg-white/5 p-3 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors duration-300 mr-5">
-                          <Mail className="text-foreground/80 group-hover:text-foreground" size={24} />
+                        <div className="card-icon-box mr-5">
+                          <Mail size={22} />
                         </div>
                         <div>
-                          <p className="font-display text-[12px] uppercase tracking-wide text-foreground/50 mb-2">Email</p>
-                          <a href="mailto:tahsin.ferdous3546@gmail.com" className="font-display text-[14px] md:text-[16px] leading-[1.6] text-foreground/80 hover:text-foreground transition-colors font-medium">
+                          <p className="font-display text-[12px] uppercase tracking-wide text-foreground/50 mb-1.5">Email</p>
+                          <a href="mailto:tahsin.ferdous3546@gmail.com" className="font-display text-[14px] md:text-[16px] leading-[1.6] text-foreground/80 hover:text-primary transition-colors font-medium">
                             tahsin.ferdous3546@gmail.com
                           </a>
                         </div>
                       </div>
                       <div className="flex items-start">
-                        <div className="bg-white/5 p-3 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors duration-300 mr-5">
-                          <MapPin className="text-foreground/80 group-hover:text-foreground" size={24} />
+                        <div className="card-icon-box mr-5">
+                          <MapPin size={22} />
                         </div>
                         <div>
-                          <p className="font-display text-[12px] uppercase tracking-wide text-foreground/50 mb-2">Location</p>
+                          <p className="font-display text-[12px] uppercase tracking-wide text-foreground/50 mb-1.5">Location</p>
                           <p className="font-display text-[14px] md:text-[16px] leading-[1.6] text-foreground/80 font-medium transition-colors">Dhaka, Bangladesh (UTC+6)</p>
                         </div>
                       </div>
@@ -196,38 +196,38 @@ const Contact = () => {
 
             <div className="contact-left-card flex-1" style={{ opacity: 0 }}>
               <TiltCard className="h-full">
-                <div className="glass-card glass-hover p-8 rounded-2xl h-full border border-white/5 transition-all duration-500 overflow-hidden relative group">
+                <div className="glass-card glass-hover p-8 rounded-2xl h-full border border-white/10 transition-all duration-500 overflow-hidden relative group">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div style={{ transform: 'translateZ(30px)' }}>
                     <h3 className="text-2xl font-display font-bold mb-8 tracking-wider text-foreground transition-colors">
                       Social Links
                     </h3>
-                    <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-wrap gap-3">
                       <a
                         href="https://github.com/tahsin005"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-display text-[13px] tracking-wide font-medium flex items-center gap-3 bg-white/5 text-foreground/80 px-5 py-3 rounded-full border border-white/10 hover:bg-white/10 hover:text-foreground transition-all duration-300 shadow-sm"
+                        className="btn-secondary !px-5 !py-2.5"
                       >
-                        <Github size={18} />
+                        <Github size={17} />
                         <span>GitHub</span>
                       </a>
                       <a
                         href="https://www.linkedin.com/in/md-tahsin-ferdous/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-display text-[13px] tracking-wide font-medium flex items-center gap-3 bg-white/5 text-foreground/80 px-5 py-3 rounded-full border border-white/10 hover:bg-white/10 hover:text-foreground transition-all duration-300 shadow-sm"
+                        className="btn-secondary !px-5 !py-2.5"
                       >
-                        <Linkedin size={18} />
+                        <Linkedin size={17} />
                         <span>LinkedIn</span>
                       </a>
                       <a
                         href="https://purpleonion.vercel.app/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-display text-[13px] tracking-wide font-medium flex items-center gap-3 bg-white/5 text-foreground/80 px-5 py-3 rounded-full border border-white/10 hover:bg-white/10 hover:text-foreground transition-all duration-300 shadow-sm"
+                        className="btn-secondary !px-5 !py-2.5"
                       >
-                        <BookOpen size={18} />
+                        <BookOpen size={17} />
                         <span>Blog</span>
                       </a>
                     </div>
@@ -239,13 +239,13 @@ const Contact = () => {
 
           <div ref={formCardRef} className="h-full" style={{ opacity: 0 }}>
             <TiltCard className="h-full">
-              <div className="glass-card glass-hover rounded-2xl overflow-hidden flex flex-col h-full transition-all duration-500 group relative">
+              <div className="glass-card glass-hover rounded-2xl overflow-hidden flex flex-col h-full border border-white/10 transition-all duration-500 group relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 <form ref={formRef} onSubmit={handleSubmit} className="p-8 space-y-6 flex-1 flex flex-col relative z-10" style={{ transform: 'translateZ(20px)' }}>
                   <div className="space-y-6 flex-1">
                     <div className="form-field" style={{ opacity: 0 }}>
-                      <label htmlFor="name" className="text-foreground/70 block mb-2 font-display text-[13px] tracking-wide font-medium">
+                      <label htmlFor="name" className="text-foreground/80 block mb-2 font-display text-[13px] tracking-wide font-medium">
                         Name
                       </label>
                       <input
@@ -256,11 +256,11 @@ const Contact = () => {
                         value={form.name}
                         onChange={handleChange}
                         placeholder="Your name"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-display text-sm text-foreground focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 placeholder:text-foreground/30 transition-all shadow-inner"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-body text-sm text-foreground focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/20 placeholder:text-foreground/30 transition-all shadow-inner"
                       />
                     </div>
                     <div className="form-field" style={{ opacity: 0 }}>
-                      <label htmlFor="email" className="text-foreground/70 block mb-2 font-display text-[13px] tracking-wide font-medium">
+                      <label htmlFor="email" className="text-foreground/80 block mb-2 font-display text-[13px] tracking-wide font-medium">
                         Email
                       </label>
                       <input
@@ -271,11 +271,11 @@ const Contact = () => {
                         value={form.email}
                         onChange={handleChange}
                         placeholder="your.email@example.com"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-display text-sm text-foreground focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 placeholder:text-foreground/30 transition-all shadow-inner"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-body text-sm text-foreground focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/20 placeholder:text-foreground/30 transition-all shadow-inner"
                       />
                     </div>
                     <div className="form-field flex-1 flex flex-col" style={{ opacity: 0 }}>
-                      <label htmlFor="message" className="text-foreground/70 block mb-2 font-display text-[13px] tracking-wide font-medium">
+                      <label htmlFor="message" className="text-foreground/80 block mb-2 font-display text-[13px] tracking-wide font-medium">
                         Message
                       </label>
                       <textarea
@@ -286,7 +286,7 @@ const Contact = () => {
                         value={form.message}
                         onChange={handleChange}
                         placeholder="Your message..."
-                        className="w-full flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-display text-sm text-foreground focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 placeholder:text-foreground/30 resize-none transition-all shadow-inner"
+                        className="w-full flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-body text-sm text-foreground focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/20 placeholder:text-foreground/30 resize-none transition-all shadow-inner"
                       ></textarea>
                     </div>
                   </div>
@@ -294,11 +294,15 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="submit-btn w-full bg-white/10 text-foreground border border-white/20 font-display font-medium tracking-wide py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group/btn shadow-sm"
+                    className="submit-btn btn-primary w-full !py-3.5 group/btn"
                     style={{ opacity: 0 }}
                   >
-                    {loading ? <Loader2 className="animate-spin" /> : <Send className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-300" size={18} />}
-                    {loading ? "Sending..." : "Send Message"}
+                    {loading ? (
+                      <Loader2 className="animate-spin" size={18} />
+                    ) : (
+                      <Send className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-300" size={18} />
+                    )}
+                    <span>{loading ? "Sending..." : "Send Message"}</span>
                   </button>
                 </form>
               </div>
@@ -311,7 +315,7 @@ const Contact = () => {
           background: 'hsl(var(--card))',
           color: 'hsl(var(--foreground))',
           border: '1px solid hsl(var(--border))',
-          fontFamily: 'monospace'
+          fontFamily: 'var(--font-display), sans-serif'
         }
       }} />
     </section>
